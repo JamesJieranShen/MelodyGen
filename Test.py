@@ -17,16 +17,20 @@ SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
 
 # Phrase building
 test_note = note.Note("C")
-scale = scale.Scale("A", 'HARM_MINOR', 3)
+test_scale = scale.Scale("A", 'HARM_MINOR', 3)
 test_phrase = phrase.Phrase(120)
-#print(str(scale))
+print(str(test_scale))
 
 
 # Populate Phrase
-for i in range(len(scale)):
+for i in range(len(test_scale)):
     test_slot = slot.Slot(test_note, SLOT_LEN_DICT[4],
             SLOT_LEN_MOD_DICT["NONE"])
-    test_slot.rand_note(scale)
+    test_slot.rand_note(test_scale)
     test_phrase.append(test_slot)
 
+# Copy phrase and mutate
+mutate_phrase = phrase.copy_ctor(test_phrase)
+
 test_phrase.play()
+mutate_phrase.play()

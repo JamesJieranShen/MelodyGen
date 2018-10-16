@@ -49,9 +49,18 @@ class Phrase():
     def set_phrase(self, phrase):
         self.phrase = phrase
 
+    # Copy ctor for Phrase
+    @staticmethod
+    def copy_ctor(phrase):
+        new_phrase = []
+        for slot in phrase.phrase:
+            new_phrase.append(slot.Slot.copy_ctor(slot))
+
+        return new_phrase 
+
     # Append to Phrase
     def append(self, input_slot):
-        input_slot = slot.Slot.copy_ctor(input_slot)
+        input_slot = slot.copy_ctor(input_slot)
         self.phrase.append(input_slot)
 
     # Str representation of Phrase
