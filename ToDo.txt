@@ -1,3 +1,6 @@
+All:
+- Remove slot.Slot (no alias at top of script)
+
 Slot:
 - Implement mutate_rhythm
 

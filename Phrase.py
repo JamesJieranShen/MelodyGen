@@ -60,7 +60,7 @@ class Phrase():
 
     # Append to Phrase
     def append(self, input_slot):
-        input_slot = slot.copy_ctor(input_slot)
+        input_slot = slot.Slot.copy_ctor(input_slot)
         self.phrase.append(input_slot)
 
     # Str representation of Phrase
