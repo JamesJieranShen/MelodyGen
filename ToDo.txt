@@ -1,0 +1,6 @@
+Slot:
+- Implement mutate_rhythm
+
+Phrase:
+- Implement generate phrase (based on algorithm)
+- Implement different algorithms? 

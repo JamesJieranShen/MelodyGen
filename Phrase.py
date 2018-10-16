@@ -23,7 +23,7 @@ class Phrase():
         self.debug = debug
         self.handler = handler.MIDIHandler(tempo, debug)
     
-    # Utility method to play slot
+    # Utility method to play phrase
     def play(self):
         for slot in self.phrase:
             trig = False
