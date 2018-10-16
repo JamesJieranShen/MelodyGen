@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+
+import mido
+import Note as note
+import Scale as scale
+import MIDIHandler as handler
+import random
+
+# Constant slot dictionaries
+SLOT_TYPE_DICT = ["NOTE", "REST"]
+SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
+#SLOT_LEN_MOD_DICT = ["NONE", "TRIPLET", "DOTTED"]
+SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
+
+# Phrase object. Is an array of Slots.
+class Phrase():
+    
+    def __init__(self, tempo=120, debug=False):
+        self.phrase = []
+        print(type(self.phrase))
+        self.tempo = tempo
+        self.debug = debug
+        self.handler = handler.MIDIHandler(tempo, debug)
+
+    # Play Phrase via MIDIHandler
+    def play_phrase(self):
+        for slot in self.phrase:
+            if self.debug: print(note.note)
+            handler.play_slot(note)
+        '''
+        # Populate phrase1
+        for i in range(len(scale)):
+            test_slot = slot.Slot(test_note, SLOT_LEN_DICT[4],
+                    SLOT_LEN_MOD_DICT["NONE"])
+            test_slot.rand_note(scale)
+            phrase1.append(test_slot)
+        '''
+    # Build phrase
+    def generate_phrase(self):
+        
+        '''
+        # Manual phrase building
+        phrase1 = []
+        phrase2 = []
+        print("run")
+        test_note = note.Note("C")
+        scale = scale.Scale("A", 'HARM_MINOR', 3)
+        handler = handler.MIDIHandler(100)
+        '''
+
+    # Set phrase
+    def set_phrase(self, phrase):
+        self.phrase = phrase
+
+    # Str representation of Phrase
+    def __str__(self):
+        return ("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
+                len(self.phrase), self.tempo, self.debug))
+
+if __name__ == "__main__":
+    #print("hi")
+    test = Phrase(150, True)
+    print(str(test))

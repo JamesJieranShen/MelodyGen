@@ -1,0 +1,3 @@
+Mido Documentation: http://mido.readthedocs.io/en/latest/index.html
+Mido GitHub: https://github.com/olemb/mido/
+MIDI Note Codes: http://computermusicresource.com/midikeys.html
