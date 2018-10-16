@@ -1,3 +1,4 @@
 *.logicx
 *.pyc
 *~
+.DS_Store
