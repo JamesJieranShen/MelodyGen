@@ -2,6 +2,5 @@ Slot:
 - Implement mutate_rhythm
 
 Phrase:
-- Implement copy_ctor (use Slot copy_ctor)
 - Implement generate phrase (based on algorithm)
 - Implement different algorithms? 
