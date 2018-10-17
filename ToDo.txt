@@ -1,3 +1,6 @@
+All:
+- Generate documentation
+
 Slot:
 - Add probability threshold (prob) for mutate_note
 - Implement mutate_rhythm
