@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import mido
-import Note as note
-import Scale as scale
+import Note
+import Scale
 #import MIDIHandler as handler
 import random
 

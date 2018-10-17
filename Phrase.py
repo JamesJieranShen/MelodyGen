@@ -3,9 +3,9 @@
 import random
 import time
 import mido
-import Note as note
-import Scale as scale
-import Slot as slot
+import Note
+import Scale
+import Slot
 import MIDIHandler as handler
 
 # Constant slot dictionaries
@@ -68,7 +68,7 @@ class Phrase():
 
     # Append to Phrase
     def append(self, input_slot):
-        input_slot = slot.Slot.copy_ctor(input_slot)
+        input_slot = Slot.Slot.copy_ctor(input_slot)
         self.phrase.append(input_slot)
 
     # Str representation of Phrase

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import Note as note
+import Note
 
 # Scale object. Is an array of Notes
 class Scale():
@@ -126,8 +126,8 @@ class Scale():
 
         # Initialize note octave wrapping logic
         has_wrapped = False
-        last_note = note.Note("C", 1)
-        current_note = note.Note("C", 1)
+        last_note = Note.Note("C", 1)
+        current_note = Note.Note("C", 1)
         first_run = True
 
         # Check if scale has sharps/flats
@@ -145,7 +145,7 @@ class Scale():
             last_note = current_note
 
             # Get new current note
-            current_note = note.Note(reordered_note_dict[full_count], self.starting_octave)
+            current_note = Note.Note(reordered_note_dict[full_count], self.starting_octave)
 
             # If notes are wrapping from B back to C, increase octave
             if (not has_wrapped and not first_run and
@@ -174,7 +174,7 @@ class Scale():
             full_count += 1
 
         # Add first note at end (up an octave)
-        current_note = note.Note(reordered_note_dict[0], self.starting_octave + 1)
+        current_note = Note.Note(reordered_note_dict[0], self.starting_octave + 1)
         working_note_dict.append(current_note)
 
         return working_note_dict
