@@ -51,11 +51,19 @@ class Phrase():
 
     # Copy ctor for Phrase
     @staticmethod
-    def copy_ctor(phrase):
-        new_phrase = []
-        for slot in phrase.phrase:
-            new_phrase.append(slot.Slot.copy_ctor(slot))
+    def copy_ctor(old_phrase):
+        # Create new phrase
+        new_phrase = Phrase()
+        
+        # Copy tempo, debug, handler info
+        new_phrase.tempo = old_phrase.tempo
+        new_phrase.debug = old_phrase.debug
+        new_phrase.handler = old_phrase.handler
 
+        # Copy actual phrase info
+        for slot in old_phrase.phrase:
+            new_phrase.append(slot)
+        
         return new_phrase 
 
     # Append to Phrase
