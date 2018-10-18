@@ -61,8 +61,8 @@ class Slot():
         return self
 
     # Mutate note and rhythm value
-    def mutate(self, scale):
-        self.mutate_note(scale)
+    def mutate(self, scale, prob=1):
+        self.mutate_note(scale, prob)
         self.mutate_rhythm()
         return self
 

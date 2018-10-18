@@ -11,9 +11,21 @@ class Note():
     NOTE_DICT_FLATS  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
     OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-    # Default constructor for Note. Assigns random pitch in 3rd octave.
+    # 
     def __init__(self, note_name=None, octave=None, vel=100):
+        """Default constructor for Note. Assigns random pitch in 3rd octave
+        
+        :param note_name: Name of note
+        :param octave: Octave of note
+        :param vel: Velocity of note
+        
+        :type note_name: String
+        :type octave: int
+        :type vel: int
 
+        :return: Returns a Note object
+        :rtype: Note 
+        """
         # Check for note_name
         if note_name is None:
             # Assign random note
