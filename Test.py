@@ -30,7 +30,7 @@ for i in range(len(test_scale)):
 # Copy phrase and mutate
 mutate_phrase = Phrase.Phrase.copy_ctor(test_phrase)
 for slot in mutate_phrase.phrase:
-    slot.mutate_note(test_scale)
+    slot.mutate_note(test_scale, 0.5)
 
 print("Phrase 1")
 test_phrase.play()

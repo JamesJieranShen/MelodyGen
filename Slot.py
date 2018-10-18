@@ -62,12 +62,16 @@ class Slot():
 
     # Mutate note and rhythm value
     def mutate(self, scale):
-        mutate_note(scale)
-        mutate_rhythm()
+        self.mutate_note(scale)
+        self.mutate_rhythm()
         return self
 
     # Mutate note based on scale (returns adjacent note in scale)
-    def mutate_note(self, scale, threshold=0.5):
+    def mutate_note(self, scale, prob=1, threshold=0.5):
+        # Don't mutate if random prob is larger than prob
+        if random.random() > prob:
+            return self
+        
         # Get index of note in Scale
         for index, note in enumerate(scale.notes):
             if self.note.note_name == note.note_name:
