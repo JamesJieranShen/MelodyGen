@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
+"""
+.. module:: Note
+   :platform: Mac, Unix, Windows
+   :synopsis: Note object for MelodyGen 
 
+.. moduleauthor:: Nicholas Schenone 
+
+
+"""
 import random
 
 # Base note object. Has Name of pitch and MIDI value.
@@ -13,7 +21,7 @@ class Note():
 
     # 
     def __init__(self, note_name=None, octave=None, vel=100):
-        """Default constructor for Note. Assigns random pitch in 3rd octave
+        """Default constructor for Note. Assigns random pitch in 3rd octave.
         
         :param note_name: Name of note
         :param octave: Octave of note
@@ -51,6 +59,17 @@ class Note():
     # Static method to return the MIDI value of a note based on its name/octave.
     @staticmethod
     def note_to_midi(note_name, octave):
+        """Static method to get midi value based on note name and octave.
+        
+        :param note_name: Name of note
+        :param octave: Octave of note
+        
+        :type note_name: String
+        :type octave: int
+
+        :return: Returns MIDI value of note
+        :rtype: int 
+        """
         # Default note dictionary to flats
         note_dict = Note.NOTE_DICT_FLATS
 
@@ -70,6 +89,15 @@ class Note():
 
     # Class method to return random note name.
     def random_note(self, threshold=0.5):
+        """Method to get random chromatic note. 
+        
+        :param threshold: Threshold for sharps (0) vs flats (1)
+        
+        :type threshold: float
+
+        :return: Returns Note object 
+        :rtype: Note 
+        """
         # Randomly determine sharps or flats (default is 50/50)
         note_dict = self.NOTE_DICT_SHARPS if (random.random() > threshold) else self.NOTE_DICT_FLATS
 
@@ -78,6 +106,11 @@ class Note():
 
     # Utility function to increase octave of a note
     def increase_octave(self):
+        """Member method to increase octave of note. 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
         # Get current octave index
         current_index = self.OCTAVES.index(self.octave)
         # If not the last element in OCTAVES
@@ -91,6 +124,11 @@ class Note():
 
     # Utility function to decrease octave of a note
     def decrease_octave(self):
+        """Member method to decrease octave of note. 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
         # Get current octave index
         current_index = OCTAVES.index(self.octave)
 
@@ -105,8 +143,18 @@ class Note():
 
     # Utility function to get note_name
     def get_note_name(self):
+        """Utility function to get note_name.
+       
+        :return: Returns Note name
+        :rtype: String 
+        """
         return self.note_name
 
     # String representation of Note.
     def __str__(self):
+        """Utility function to print Note.
+       
+        :return: String representation of Note
+        :rtype: String 
+        """
         return "<Note: name_name: %s, octave: %d, midi_value: %d, vel: %d>" % (self.note_name, self.octave, self.midi_value, self.vel)

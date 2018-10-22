@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
+"""
+.. module:: Scale
+   :platform: Mac, Unix, Windows
+   :synopsis: Scale object for MelodyGen 
 
+.. moduleauthor:: Nicholas Schenone 
+
+
+"""
 import Note
 
 # Scale object. Is an array of Notes
@@ -44,6 +52,19 @@ class Scale():
 
     # Default constructor for Scale. Takes in mode and key
     def __init__(self, key, mode, starting_octave=OCTAVES[5]):
+        """Default constructor for Scale. Assigns starting pitch in 3rd octave.
+        
+        :param key: Key of scale
+        :param mode: Mode of scale
+        :param starting_octave: Starting octave of scale 
+        
+        :type key: String
+        :type mode: String
+        :type starting_octave: int
+
+        :return: Returns a Scale object
+        :rtype: Scale 
+        """
         # Assign mode and key
         self.key = key
         self.mode = mode
@@ -68,10 +89,28 @@ class Scale():
     # Static method to get scale intervals based on mode
     @staticmethod
     def get_intervals(mode):
+        """Static method to get scale intervals based on mode.
+        
+        :param mode: Mode of scale
+        
+        :type mode: String
+
+        :return: List of intervals 
+        :rtype: List of ints 
+        """
         return Scale.SCALE_DICT[mode.upper()]
 
     # Class method to determine if mode is major or minor
     def get_major_minor(self, mode):
+        """Class method to determine if mode is major or minor.
+        
+        :param mode: Mode of scale
+        
+        :type mode: String
+
+        :return: List of intervals 
+        :rtype: List of ints 
+        """
         if mode in self.MAJOR_MODE_DICT:
             # 1: Major, 2: Minor
             return True, False

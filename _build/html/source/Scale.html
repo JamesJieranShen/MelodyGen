@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Scale module &#8212; Melody Gen 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Scale">
+<span id="scale-module"></span><h1>Scale module<a class="headerlink" href="#module-Scale" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Scale.Scale">
+<em class="property">class </em><code class="descclassname">Scale.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>key</em>, <em>mode</em>, <em>starting_octave=3</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="Scale.Scale.MAJOR_MODE_DICT">
+<code class="descname">MAJOR_MODE_DICT</code><em class="property"> = ['MAJOR', 'IONIAN', 'LYDIAN', 'MIXOLYDIAN', 'CHROMATIC', 'MAJOR_PENT']</em><a class="headerlink" href="#Scale.Scale.MAJOR_MODE_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.MAJOR_SHARP_FLAT_DICT">
+<code class="descname">MAJOR_SHARP_FLAT_DICT</code><em class="property"> = {'A': 's', 'Ab': 'b', 'As': 's', 'B': 's', 'Bb': 'b', 'C': 'n', 'Cs': 's', 'D': 's', 'Db': 'b', 'Ds': 's', 'E': 's', 'Eb': 'b', 'F': 'b', 'Fs': 's', 'G': 's', 'Gb': 'b', 'Gs': 's'}</em><a class="headerlink" href="#Scale.Scale.MAJOR_SHARP_FLAT_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.MINOR_MODE_DICT">
+<code class="descname">MINOR_MODE_DICT</code><em class="property"> = ['MINOR', 'DORIAN', 'PHRYGIAN', 'AEOLIAN', 'LOCRIAN', 'MINOR_PENT', 'BLUES']</em><a class="headerlink" href="#Scale.Scale.MINOR_MODE_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.MINOR_SHARP_FLAT_DICT">
+<code class="descname">MINOR_SHARP_FLAT_DICT</code><em class="property"> = {'A': 'n', 'Ab': 'b', 'As': 's', 'B': 's', 'Bb': 'b', 'C': 'b', 'Cs': 's', 'D': 'b', 'Db': 'b', 'Ds': 's', 'E': 's', 'Eb': 'b', 'F': 'b', 'Fs': 's', 'G': 'b', 'Gb': 'b', 'Gs': 's'}</em><a class="headerlink" href="#Scale.Scale.MINOR_SHARP_FLAT_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.NOTE_DICT_FLATS">
+<code class="descname">NOTE_DICT_FLATS</code><em class="property"> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']</em><a class="headerlink" href="#Scale.Scale.NOTE_DICT_FLATS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.NOTE_DICT_NUMKEY">
+<code class="descname">NOTE_DICT_NUMKEY</code><em class="property"> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]</em><a class="headerlink" href="#Scale.Scale.NOTE_DICT_NUMKEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.NOTE_DICT_SHARPS">
+<code class="descname">NOTE_DICT_SHARPS</code><em class="property"> = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B']</em><a class="headerlink" href="#Scale.Scale.NOTE_DICT_SHARPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.OCTAVES">
+<code class="descname">OCTAVES</code><em class="property"> = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]</em><a class="headerlink" href="#Scale.Scale.OCTAVES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.ORDER_OF_FLATS">
+<code class="descname">ORDER_OF_FLATS</code><em class="property"> = ['B', 'E', 'A', 'D', 'G', 'C', 'F']</em><a class="headerlink" href="#Scale.Scale.ORDER_OF_FLATS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.ORDER_OF_SHARPS">
+<code class="descname">ORDER_OF_SHARPS</code><em class="property"> = ['F', 'C', 'G', 'D', 'A', 'E', 'B']</em><a class="headerlink" href="#Scale.Scale.ORDER_OF_SHARPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Scale.Scale.SCALE_DICT">
+<code class="descname">SCALE_DICT</code><em class="property"> = {'AEOLIAN': [2, 1, 2, 2, 1, 2, 2], 'BLUES': [3, 2, 1, 1, 3, 2], 'CHROMATIC': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'DORIAN': [2, 1, 2, 2, 2, 1, 2], 'HARM_MINOR': [2, 1, 2, 2, 1, 3, 1], 'IONIAN': [2, 2, 1, 2, 2, 2, 1], 'LOCRIAN': [1, 2, 2, 1, 2, 2, 2], 'LYDIAN': [2, 2, 2, 1, 2, 2, 1], 'MAJOR': [2, 2, 1, 2, 2, 2, 1], 'MAJOR_PENT': [2, 2, 3, 2, 3], 'MINOR': [2, 1, 2, 2, 1, 2, 2], 'MINOR_PENT': [3, 2, 2, 3, 2], 'MIXOLYDIAN': [2, 2, 1, 2, 2, 1, 2], 'PHRYGIAN': [1, 2, 2, 2, 1, 2, 2]}</em><a class="headerlink" href="#Scale.Scale.SCALE_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.build_scale">
+<code class="descname">build_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.build_scale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Scale.Scale.get_intervals">
+<em class="property">static </em><code class="descname">get_intervals</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.get_major_minor">
+<code class="descname">get_major_minor</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_major_minor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.get_sharps_flats">
+<code class="descname">get_sharps_flats</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_sharps_flats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.note_dict_offset">
+<code class="descname">note_dict_offset</code><span class="sig-paren">(</span><em>key</em>, <em>note_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.note_dict_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Melody Gen</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicholas Schenone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/Scale.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

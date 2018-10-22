@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Slot module &#8212; Melody Gen 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Slot">
+<span id="slot-module"></span><h1>Slot module<a class="headerlink" href="#module-Slot" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Slot.Slot">
+<em class="property">class </em><code class="descclassname">Slot.</code><code class="descname">Slot</code><span class="sig-paren">(</span><em>note</em>, <em>length</em>, <em>length_mod</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="Slot.Slot.NOTE_DICT_FLATS">
+<code class="descname">NOTE_DICT_FLATS</code><em class="property"> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']</em><a class="headerlink" href="#Slot.Slot.NOTE_DICT_FLATS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.NOTE_DICT_NUMKEY">
+<code class="descname">NOTE_DICT_NUMKEY</code><em class="property"> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]</em><a class="headerlink" href="#Slot.Slot.NOTE_DICT_NUMKEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.NOTE_DICT_SHARPS">
+<code class="descname">NOTE_DICT_SHARPS</code><em class="property"> = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B']</em><a class="headerlink" href="#Slot.Slot.NOTE_DICT_SHARPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.OCTAVES">
+<code class="descname">OCTAVES</code><em class="property"> = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]</em><a class="headerlink" href="#Slot.Slot.OCTAVES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.SLOT_LEN_DICT">
+<code class="descname">SLOT_LEN_DICT</code><em class="property"> = [0.015625, 0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 2]</em><a class="headerlink" href="#Slot.Slot.SLOT_LEN_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.SLOT_LEN_MOD_DICT">
+<code class="descname">SLOT_LEN_MOD_DICT</code><em class="property"> = {'DOTTED': 1.5, 'NONE': 1, 'TRIPLET': 0.6666666666666666}</em><a class="headerlink" href="#Slot.Slot.SLOT_LEN_MOD_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Slot.Slot.SLOT_TYPE_DICT">
+<code class="descname">SLOT_TYPE_DICT</code><em class="property"> = ['NOTE', 'REST']</em><a class="headerlink" href="#Slot.Slot.SLOT_TYPE_DICT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Slot.Slot.copy_ctor">
+<em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>slot</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.copy_ctor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.mutate_note">
+<code class="descname">mutate_note</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em>, <em>threshold=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.mutate_rhythm">
+<code class="descname">mutate_rhythm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate_rhythm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.rand">
+<code class="descname">rand</code><span class="sig-paren">(</span><em>scale</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.rand_note">
+<code class="descname">rand_note</code><span class="sig-paren">(</span><em>scale</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.rand_rhythm">
+<code class="descname">rand_rhythm</code><span class="sig-paren">(</span><em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand_rhythm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>note</em>, <em>length</em>, <em>length_mod</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.set_note">
+<code class="descname">set_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Slot.Slot.set_rhythm">
+<code class="descname">set_rhythm</code><span class="sig-paren">(</span><em>length</em>, <em>length_mod</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set_rhythm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Melody Gen</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicholas Schenone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/Slot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
