@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
+"""
+.. module:: Slot
+   :platform: Mac, Unix, Windows
+   :synopsis: Slot object for MelodyGen 
 
+.. moduleauthor:: Nicholas Schenone 
+
+
+"""
 import mido
 import Note
 import Scale
@@ -23,6 +31,21 @@ class Slot():
 
     # Default ctor for Slot
     def __init__(self, note, length, length_mod, prob=1):
+        """Default constructor for Slot. 
+        
+        :param note: Note object to hold within slot 
+        :param length: Length to play slot 
+        :param length_mod: Modifier for length 
+        :param prob: Probability that Slot is triggered 
+        
+        :type note: Note 
+        :type length: float 
+        :type length_mod: int
+        :type prob: float 
+
+        :return: Returns a Slot object
+        :rtype: Slot 
+        """
         self.note = note
         self.length = length
         self.length_mod = length_mod
@@ -31,6 +54,15 @@ class Slot():
     # Copy ctor for Slot
     @staticmethod
     def copy_ctor(slot):
+        """Static copy constructor for Slot. 
+        
+        :param slot: Slot object to copy 
+        
+        :type slot: Slot 
+
+        :return: Returns a Slot object, copy of slot
+        :rtype: Slot 
+        """
         return Slot(slot.note, slot.length, slot.length_mod, slot.prob)
            
     # Get random note from scale and random rhythm value
