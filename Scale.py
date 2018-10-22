@@ -108,8 +108,8 @@ class Scale():
         
         :type mode: String
 
-        :return: List of intervals 
-        :rtype: List of ints 
+        :return: Pair of booleans (#1 Major, #2 Minor)
+        :rtype: booleans
         """
         if mode in self.MAJOR_MODE_DICT:
             # 1: Major, 2: Minor
@@ -120,6 +120,15 @@ class Scale():
 
     # Class method to determine if scale has sharps or flats
     def get_sharps_flats(self, key):
+        """Class method to determine if scale has sharps or flats.
+        
+        :param key: Key of scale
+        
+        :type key: String
+
+        :return: Pair of booleans (#1 Sharps, #2 Flats)
+        :rtype: booleans
+        """
         # Assign sharp_flat_dict based on if major or minor
         if self.is_major:
             # Major sharp/flat dict
@@ -141,6 +150,17 @@ class Scale():
 
     # Class method to create new note_dict starting with note of key
     def note_dict_offset(self, key, note_dict):
+        """Class method to create new note_dict starting with note of key.
+        
+        :param key: Key of scale
+        :param note_dict: Set of notes to rearrange 
+        
+        :type key: String
+        :type note_dict: Dictionary of Note objects 
+
+        :return: Rearranged note_dict
+        :rtype: Dictionary of Note objects 
+        """
         # Get index of key
         key_index = note_dict.index(key)
 
@@ -149,6 +169,11 @@ class Scale():
 
     # Class method to build scale
     def build_scale(self):
+        """Method to build scale - called by __init__. 
+       
+        :return: Scale object
+        :rtype: Scale object 
+        """
 
         # Counter to add notes on
         count = 0
@@ -220,6 +245,11 @@ class Scale():
 
     # String representation of Scale.
     def __str__(self):
+        """Utility function to print Scale.
+       
+        :return: String representation of Scale
+        :rtype: String 
+        """
         print("<Scale: key: %s, mode: %s>" % (self.key, self.mode))
 
         for note in self.notes:
@@ -228,4 +258,9 @@ class Scale():
         return ""
 
     def __len__(self):
+        """Utility function to get length of Scale.
+       
+        :return: Length of Scale object
+        :rtype: int
+        """
         return len(self.notes)

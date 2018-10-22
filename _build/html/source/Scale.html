@@ -32,10 +32,30 @@
             
   <div class="section" id="module-Scale">
 <span id="scale-module"></span><h1>Scale module<a class="headerlink" href="#module-Scale" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span class="target" id="module-Scale"></span><dl class="class">
 <dt id="Scale.Scale">
 <em class="property">class </em><code class="descclassname">Scale.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>key</em>, <em>mode</em>, <em>starting_octave=3</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default constructor for Scale. Assigns starting pitch in 3rd octave.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<em>String</em>) – Key of scale</li>
+<li><strong>mode</strong> (<em>String</em>) – Mode of scale</li>
+<li><strong>starting_octave</strong> (<em>int</em>) – Starting octave of scale</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns a Scale object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#Scale.Scale" title="Scale.Scale">Scale</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="attribute">
 <dt id="Scale.Scale.MAJOR_MODE_DICT">
 <code class="descname">MAJOR_MODE_DICT</code><em class="property"> = ['MAJOR', 'IONIAN', 'LYDIAN', 'MIXOLYDIAN', 'CHROMATIC', 'MAJOR_PENT']</em><a class="headerlink" href="#Scale.Scale.MAJOR_MODE_DICT" title="Permalink to this definition">¶</a></dt>
@@ -94,27 +114,96 @@
 <dl class="method">
 <dt id="Scale.Scale.build_scale">
 <code class="descname">build_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.build_scale" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Method to build scale - called by __init__.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Scale object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Scale object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="staticmethod">
 <dt id="Scale.Scale.get_intervals">
 <em class="property">static </em><code class="descname">get_intervals</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_intervals" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Static method to get scale intervals based on mode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>String</em>) – Mode of scale</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of intervals</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List of ints</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Scale.Scale.get_major_minor">
 <code class="descname">get_major_minor</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_major_minor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Class method to determine if mode is major or minor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>String</em>) – Mode of scale</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Pair of booleans (#1 Major, #2 Minor)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">booleans</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Scale.Scale.get_sharps_flats">
 <code class="descname">get_sharps_flats</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_sharps_flats" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Class method to determine if scale has sharps or flats.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<em>String</em>) – Key of scale</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Pair of booleans (#1 Sharps, #2 Flats)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">booleans</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Scale.Scale.note_dict_offset">
 <code class="descname">note_dict_offset</code><span class="sig-paren">(</span><em>key</em>, <em>note_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.note_dict_offset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Class method to create new note_dict starting with note of key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<em>String</em>) – Key of scale</li>
+<li><strong>note_dict</strong> (<em>Dictionary of Note objects</em>) – Set of notes to rearrange</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Rearranged note_dict</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary of Note objects</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
