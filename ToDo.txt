@@ -1,5 +1,5 @@
-All:
-- Generate documentation
+Build:
+- Add AWS S3 script
 
 Slot:
 - Implement mutate_rhythm
