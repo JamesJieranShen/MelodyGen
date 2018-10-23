@@ -9,4 +9,3 @@ Python
    Phrase
    Scale
    Slot
-   Test

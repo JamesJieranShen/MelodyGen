@@ -99,15 +99,40 @@ class MIDIHandler():
 
     # Utility method to get tempo of handler
     def get_tempo():
+        """Utility method to get tempo of handler. 
+        
+        :return: Tempo of handler 
+        :rtype: int 
+        """
         return self.tempo
 
     # Utility method to turn bytes into MIDI
     def MSG(self, msg):
-       return mido.Message.from_bytes(msg)
+        """Utility method to turn bytes into MIDI. 
+        
+        :param msg: Byte string to be converted into MIDI 
+        
+        :type msg: bytes 
+
+        :return: MIDI message from byte string 
+        :rtype: MIDI 
+        """
+        return mido.Message.from_bytes(msg)
 
 
     # Utility method to send a note on signal
     def note_on(self, slot, chan=MIDI_CHANNEL_1):
+        """Utility method to turn MIDI note on. 
+        
+        :param slot: Slot to play MIDI from 
+        :param chan: MIDI channel to play on 
+        
+        :type slot: Slot 
+        :type chan: Hexidecimal 
+
+        :return: No return, starts playing MIDI note 
+        :rtype: None 
+        """
         msg = [0] * 3
         msg = [0x90 + chan, slot.note.midi_value, slot.note.vel]
 
@@ -119,6 +144,17 @@ class MIDIHandler():
 
     # Utility method to send a note off signal
     def note_off(self, slot, chan=MIDI_CHANNEL_1):
+        """Utility method to turn MIDI note off. 
+        
+        :param slot: Slot to play MIDI from 
+        :param chan: MIDI channel to play on 
+        
+        :type slot: Slot 
+        :type chan: Hexidecimal 
+
+        :return: No return, stops playing MIDI note 
+        :rtype: None 
+        """
         msg = [0] * 3
         msg = [0x80 + chan, slot.note.midi_value, 127]
         self.midi_output.send(self.MSG(msg))
