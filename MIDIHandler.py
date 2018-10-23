@@ -1,36 +1,36 @@
 #!/usr/bin/env python3
+"""
+.. module:: MIDIHandler
+   :platform: Mac, Unix, Windows
+   :synopsis: MIDIHandler object for MelodyGen 
 
+.. moduleauthor:: Nicholas Schenone 
+
+
+"""
 import random
 import time
 import mido
-#import Note as note
-#import Scale as scale
-#import Slot
 
 # Object to handle playing MIDI data
 class MIDIHandler():
-    # Utility method to play slot
-    def play_slot(self, slot):
-        '''
-        if not isinstance(slot, Slot.Slot):
-            print("NOT A SLOT")
-        else:
-            print(slot.length, slot.length_mod, self.tempo)
-        '''
-        trig = False
-        if (random.random() <= slot.prob):
-            trig = True
-
-        if trig: self.note_on(slot)
-        time.sleep((240 * slot.length * slot.length_mod) / self.tempo)
-        if trig: self.note_off(slot)
-
     # Constants
     DEBUG_ON = False
     PRINT_NOTES = True
     MIDI_CHANNEL_1 = 0x0
-
+    
     def __init__(self, tempo=120, debug=DEBUG_ON):
+        """Default constructor for MIDIHandler. 
+        
+        :param tempo: Tempo of MIDIHandler
+        :param debug: Whether or not to display debug info when playing 
+        
+        :type tempo: int 
+        :type debug: boolean 
+
+        :return: Returns a MIDIHandler object
+        :rtype: MIDIHandler
+        """
         self.tempo = tempo
 
         # Get inputs/outputs
@@ -44,8 +44,36 @@ class MIDIHandler():
         # Print IO info
         self.print_io(debug)
 
+    # Utility method to play slot
+    def play_slot(self, slot):
+        """Utility method to play slot. 
+        
+        :param slot: Slot to play
+        
+        :type slot: Slot 
+
+        :return: No return, plays Slot 
+        :rtype: None 
+        """
+        trig = False
+        if (random.random() <= slot.prob):
+            trig = True
+
+        if trig: self.note_on(slot)
+        time.sleep((240 * slot.length * slot.length_mod) / self.tempo)
+        if trig: self.note_off(slot)
+
 
     def print_io(self, debug):
+        """Utility method to print input/output debug info. 
+        
+        :param debug: Whether or not to display debug info when playing 
+        
+        :type debug: boolean 
+
+        :return: Input/output debug info 
+        :rtype: String
+        """
         # Print input/output debug info
         if debug:
             print("MIDI Inputs")
@@ -58,6 +86,15 @@ class MIDIHandler():
 
     # Utility method to set tempo of handler
     def set_tempo(tempo):
+        """Utility method to set tempo of handler. 
+        
+        :param tempo: Tempo to set handler to 
+        
+        :type tempo: int 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
         self.tempo = tempo
 
     # Utility method to get tempo of handler
