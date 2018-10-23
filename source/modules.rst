@@ -10,4 +10,3 @@ Python
    Scale
    Slot
    Test
-   conf

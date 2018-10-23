@@ -32,41 +32,114 @@
             
   <div class="section" id="module-Phrase">
 <span id="phrase-module"></span><h1>Phrase module<a class="headerlink" href="#module-Phrase" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span class="target" id="module-Phrase"></span><dl class="class">
 <dt id="Phrase.Phrase">
 <em class="property">class </em><code class="descclassname">Phrase.</code><code class="descname">Phrase</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default constructor for Phrase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tempo</strong> (<em>int</em>) – Tempo of phrase</li>
+<li><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns a Phrase object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="Phrase.Phrase.append">
 <code class="descname">append</code><span class="sig-paren">(</span><em>input_slot</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.append" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Utility method to append a Slot to a Phrase</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to append</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, modifys existing object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="staticmethod">
 <dt id="Phrase.Phrase.copy_ctor">
 <em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>old_phrase</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.copy_ctor" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Static copy constructor for Phrase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>old_phrase</strong> (<a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase"><em>Phrase</em></a>) – Phrase object to copy</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a Phrase object, copy of old_phrase</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Phrase.Phrase.generate_phrase">
 <code class="descname">generate_phrase</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.generate_phrase" title="Permalink to this definition">¶</a></dt>
-<dd><p># Manual phrase building
-phrase1 = []
-phrase2 = []
-print(“run”)
-test_note = note.Note(“C”)
-scale = scale.Scale(“A”, ‘HARM_MINOR’, 3)
-handler = handler.MIDIHandler(100)</p>
+<dd><p>WORK IN PROGRESS - Class method to generate Phrase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Returns a Phrase object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="Phrase.Phrase.play">
 <code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.play" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Utility method to play Phrase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Plays Phrase via MIDIHandler</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Phrase.Phrase.set_phrase">
 <code class="descname">set_phrase</code><span class="sig-paren">(</span><em>phrase</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.set_phrase" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Utility method to set Phrase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>phrase</strong> (<a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase"><em>Phrase</em></a>) – Phrase to set</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, modifys existing object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
