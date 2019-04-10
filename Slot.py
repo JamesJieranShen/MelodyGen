@@ -11,24 +11,12 @@
 import mido
 import Note
 import Scale
-#import MIDIHandler as handler
 import random
+import Constants as const
 
 # Slot object. Capsule to hold item in phrase
 # (note/rest) of various lengths and pitches.
 class Slot():
-
-    # Constant slot dictionaries
-    SLOT_TYPE_DICT = ["NOTE", "REST"]
-    SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
-    SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
-
-    # Constant note/octave dictionaries
-    NOTE_DICT_NUMKEY = [ 0,   1,    2,   3,    4,   5,   6,    7,   8,    9,   10,   11]
-    NOTE_DICT_SHARPS = ["C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"]
-    NOTE_DICT_FLATS  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-    OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-
     # Default ctor for Slot
     def __init__(self, note, length, length_mod, prob=1):
         """Default constructor for Slot. 
@@ -113,13 +101,13 @@ class Slot():
         """
         # Get random rhythm from class dict or custom dict
         if custom_len_list is None:
-            self.length = random.choice(self.SLOT_LEN_DICT)
+            self.length = random.choice(const.SLOT_LEN_DICT)
         else:
             self.length = random.choice(custom_len_list)
 
         # Get random rhythm mod from class dict or custom dict
         if custom_len_mod_list is None:
-            self.length_mod = random.choice(list(self.SLOT_LEN_MOD_DICT.values()))
+            self.length_mod = random.choice(list(const.SLOT_LEN_MOD_DICT.values()))
         else:
             self.length_mod = random.choice(custom_len_mod_list)
 
@@ -260,5 +248,5 @@ class Slot():
         :rtype: None 
         """
         self.length = length
-        self.length_mod = self.SLOT_LEN_MOD_DICT.get(length_mod)
+        self.length_mod = const.SLOT_LEN_MOD_DICT.get(length_mod)
         return self
