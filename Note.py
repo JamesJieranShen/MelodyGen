@@ -9,17 +9,11 @@
 
 """
 import random
+import Constants as const
 
 # Base note object. Has Name of pitch and MIDI value.
 class Note():
 
-    # Constant note/octave dictionaries
-    NOTE_DICT_NUMKEY = [ 0,   1,    2,   3,    4,   5,   6,    7,   8,    9,   10,   11]
-    NOTE_DICT_SHARPS = ["C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"]
-    NOTE_DICT_FLATS  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-    OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-    # 
     def __init__(self, note_name=None, octave=None, vel=100):
         """Default constructor for Note. Assigns random pitch in 3rd octave.
         
@@ -45,7 +39,7 @@ class Note():
         # Check for octave
         if octave is None:
             # Assign octave 3
-            self.octave = self.OCTAVES[5]
+            self.octave = const.OCTAVES[5]
         else:
             # Assign inputted octave
             self.octave = octave
@@ -71,13 +65,13 @@ class Note():
         :rtype: int 
         """
         # Default note dictionary to flats
-        note_dict = Note.NOTE_DICT_FLATS
+        note_dict = const.NOTE_DICT_FLATS
 
         # Parse for sharps or flats to change dictionary
         if len(note_name) > 1:
             if note_name[1] == "s":
                 # Change note dictionary to sharps if note is sharp
-                note_dict = Note.NOTE_DICT_SHARPS
+                note_dict = const.NOTE_DICT_SHARPS
 
         # Get index of note
         note_index = note_dict.index(note_name)
@@ -85,7 +79,7 @@ class Note():
         # Return (12 * octave_index) + note_index
         # Ex: C3 = (12 * 5) + 0 = 60
         # Ex: G4 = (12 * 6) + 7 = 79
-        return (len(note_dict) * Note.OCTAVES.index(octave)) + note_index
+        return (len(note_dict) * const.OCTAVES.index(octave)) + note_index
 
     # Class method to return random note name.
     def random_note(self, threshold=0.5):
@@ -99,7 +93,7 @@ class Note():
         :rtype: Note 
         """
         # Randomly determine sharps or flats (default is 50/50)
-        note_dict = self.NOTE_DICT_SHARPS if (random.random() > threshold) else self.NOTE_DICT_FLATS
+        note_dict = const.NOTE_DICT_SHARPS if (random.random() > threshold) else const.NOTE_DICT_FLATS
 
         # Return random note
         return random.choice(note_dict)
@@ -112,12 +106,12 @@ class Note():
         :rtype: None 
         """
         # Get current octave index
-        current_index = self.OCTAVES.index(self.octave)
+        current_index = const.OCTAVES.index(self.octave)
         # If not the last element in OCTAVES
-        if current_index < len(self.OCTAVES) - 1:
+        if current_index < len(const.OCTAVES) - 1:
             # Increment index and increase octave
             current_index += 1
-            self.octave = self.OCTAVES[current_index]
+            self.octave = const.OCTAVES[current_index]
 
             # Update midi value
             self.midi_value = self.note_to_midi(self.note_name, self.octave)
@@ -130,13 +124,13 @@ class Note():
         :rtype: None 
         """
         # Get current octave index
-        current_index = OCTAVES.index(self.octave)
+        current_index = const.OCTAVES.index(self.octave)
 
         # If not the first element in OCTAVES
         if current_index > 0:
             # Decrement index and decrease octave
             current_index -= 1
-            self.octave = OCTAVES[current_index]
+            self.octave = const.OCTAVES[current_index]
 
             # Update midi value
             self.midi_value = note_to_midi(self.note_name, self.octave)
