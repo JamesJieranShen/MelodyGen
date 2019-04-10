@@ -1,9 +1,11 @@
 Build:
 - Add AWS S3 script
 
-Slot:
-- Implement mutate_rhythm
+Combine Slot and Phrase:
+Switch over to MIDI numbers (instead of note values)
+- Make a note to scale method (input of note and scale)
 
 Phrase:
+- Implement mutate_rhythm
 - Implement generate phrase (based on algorithm)
 - Implement different algorithms? 
