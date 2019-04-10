@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Slot module &#8212; Melody Gen 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -13,7 +11,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -28,6 +26,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="module-Slot">
@@ -37,26 +37,22 @@
 <em class="property">class </em><code class="descclassname">Slot.</code><code class="descname">Slot</code><span class="sig-paren">(</span><em>note</em>, <em>length</em>, <em>length_mod</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Default constructor for Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note object to hold within slot</li>
-<li><strong>length</strong> (<em>float</em>) – Length to play slot</li>
-<li><strong>length_mod</strong> (<em>int</em>) – Modifier for length</li>
-<li><strong>prob</strong> (<em>float</em>) – Probability that Slot is triggered</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note object to hold within slot</p></li>
+<li><p><strong>length</strong> (<em>float</em>) – Length to play slot</p></li>
+<li><p><strong>length_mod</strong> (<em>int</em>) – Modifier for length</p></li>
+<li><p><strong>prob</strong> (<em>float</em>) – Probability that Slot is triggered</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns a Slot object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#Slot.Slot" title="Slot.Slot">Slot</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Slot object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Slot.Slot" title="Slot.Slot">Slot</a></p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="Slot.Slot.NOTE_DICT_FLATS">
 <code class="descname">NOTE_DICT_FLATS</code><em class="property"> = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']</em><a class="headerlink" href="#Slot.Slot.NOTE_DICT_FLATS" title="Permalink to this definition">¶</a></dt>
@@ -96,228 +92,197 @@
 <dt id="Slot.Slot.copy_ctor">
 <em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>slot</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.copy_ctor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Static copy constructor for Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>slot</strong> (<a class="reference internal" href="#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot object to copy</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Returns a Slot object, copy of slot</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#Slot.Slot" title="Slot.Slot">Slot</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>slot</strong> (<a class="reference internal" href="#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot object to copy</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Slot object, copy of slot</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Slot.Slot" title="Slot.Slot">Slot</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.mutate">
 <code class="descname">mutate</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to mutate note and rhythm values of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale</strong> (<em>scale</em>) – Scale object to pick random note from</li>
-<li><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</li>
-<li><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</li>
-<li><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>scale</em>) – Scale object to pick random note from</p></li>
+<li><p><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.mutate_note">
 <code class="descname">mutate_note</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em>, <em>threshold=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to mutate note value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale</strong> (<em>scale</em>) – Scale object to pick random note from</li>
-<li><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</li>
-<li><strong>threshold</strong> (<em>int</em>) – Probability of mutating note up or down</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>scale</em>) – Scale object to pick random note from</p></li>
+<li><p><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</p></li>
+<li><p><strong>threshold</strong> (<em>int</em>) – Probability of mutating note up or down</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.mutate_rhythm">
 <code class="descname">mutate_rhythm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.mutate_rhythm" title="Permalink to this definition">¶</a></dt>
 <dd><p>WORK IN PROGRESS - Class method to mutate rhythm value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</li>
-<li><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</li>
-<li><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prob</strong> (<em>int</em>) – Probability that Slot is mutated</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.rand">
 <code class="descname">rand</code><span class="sig-paren">(</span><em>scale</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize note and rhythm values of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</li>
-<li><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</li>
-<li><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.rand_note">
 <code class="descname">rand_note</code><span class="sig-paren">(</span><em>scale</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to get random note from scale.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, modifys existing object</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.rand_rhythm">
 <code class="descname">rand_rhythm</code><span class="sig-paren">(</span><em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.rand_rhythm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize rhythm value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</li>
-<li><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.set">
 <code class="descname">set</code><span class="sig-paren">(</span><em>note</em>, <em>length</em>, <em>length_mod</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to set note and rhythm value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to set Slot to</li>
-<li><strong>length</strong> (<em>String</em>) – Length to set Slot to</li>
-<li><strong>length_mod</strong> (<em>String</em>) – Length mod to set Slot to</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to set Slot to</p></li>
+<li><p><strong>length</strong> (<em>String</em>) – Length to set Slot to</p></li>
+<li><p><strong>length_mod</strong> (<em>String</em>) – Length mod to set Slot to</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.set_note">
 <code class="descname">set_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to set note value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to set Slot to</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, modifys existing object</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>note</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to set Slot to</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="Slot.Slot.set_rhythm">
 <code class="descname">set_rhythm</code><span class="sig-paren">(</span><em>length</em>, <em>length_mod</em><span class="sig-paren">)</span><a class="headerlink" href="#Slot.Slot.set_rhythm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to set rhythm value of Slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>length</strong> (<em>String</em>) – Length to set Slot to</li>
-<li><strong>length_mod</strong> (<em>String</em>) – Length mod to set Slot to</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<em>String</em>) – Length to set Slot to</p></li>
+<li><p><strong>length_mod</strong> (<em>String</em>) – Length mod to set Slot to</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, modifys existing object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -326,6 +291,7 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -354,12 +320,18 @@
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -368,8 +340,8 @@
       &copy;2018, Nicholas Schenone.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/source/Slot.rst.txt"

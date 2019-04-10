@@ -9,49 +9,12 @@
 
 """
 import Note
+import Constants as const
 
 # Scale object. Is an array of Notes
 class Scale():
-
-    # Constant note/octave dictionaries
-    #KEY_DICT = ["C", "D", "E", "F", "G", "A", "B"]
-    NOTE_DICT_NUMKEY = [ 0,   1,    2,   3,    4,   5,   6,    7,   8,    9,   10,   11]
-    NOTE_DICT_SHARPS = ["C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A", "As", "B"]
-    NOTE_DICT_FLATS  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-    OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-    # Order of sharps/flats
-    ORDER_OF_SHARPS = ["F", "C", "G", "D", "A", "E", "B"]
-    ORDER_OF_FLATS  = ["B", "E", "A", "D", "G", "C", "F"]
-
-    SCALE_DICT = {'MAJOR':        [2, 2, 1, 2, 2, 2, 1],
-                  'IONIAN':       [2, 2, 1, 2, 2, 2, 1],
-                  'DORIAN':       [2, 1, 2, 2, 2, 1, 2],
-                  'PHRYGIAN':     [1, 2, 2, 2, 1 ,2, 2],
-                  'LYDIAN':       [2, 2, 2, 1, 2, 2, 1],
-                  'MIXOLYDIAN':   [2, 2, 1, 2, 2, 1, 2],
-                  'MINOR':        [2, 1, 2, 2, 1, 2, 2],
-                  'AEOLIAN':      [2, 1, 2, 2, 1, 2, 2],
-                  'LOCRIAN':      [1, 2, 2, 1, 2, 2, 2],
-                  'CHROMATIC':    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                  'HARM_MINOR':   [2, 1, 2, 2, 1, 3, 1],
-                  'MAJOR_PENT':   [2, 2, 3, 2, 3],
-                  'MINOR_PENT':   [3, 2, 2, 3, 2],
-                  'BLUES':        [3, 2, 1, 1, 3, 2]}
-
-    MAJOR_MODE_DICT = ['MAJOR', 'IONIAN', 'LYDIAN', 'MIXOLYDIAN', 'CHROMATIC', 'MAJOR_PENT']
-    MINOR_MODE_DICT = ['MINOR', 'DORIAN', 'PHRYGIAN', 'AEOLIAN', 'LOCRIAN', 'MINOR_PENT', 'BLUES']
-
-    MAJOR_SHARP_FLAT_DICT = {'C': 'n', 'Cs': 's', 'Db': 'b', 'D': 's', 'Ds': 's', 'Eb': 'b',
-                            'E': 's', 'F': 'b', 'Fs': 's', 'Gb': 'b', 'G': 's', 'Gs': 's',
-                            'Ab': 'b', 'A': 's', 'As': 's', 'Bb': 'b', 'B': 's'}
-
-    MINOR_SHARP_FLAT_DICT = {'C': 'b', 'Cs': 's', 'Db': 'b', 'D': 'b', 'Ds': 's', 'Eb': 'b',
-                            'E': 's', 'F': 'b', 'Fs': 's', 'Gb': 'b', 'G': 'b', 'Gs': 's',
-                            'Ab': 'b', 'A': 'n', 'As': 's', 'Bb': 'b', 'B': 's'}
-
     # Default constructor for Scale. Takes in mode and key
-    def __init__(self, key, mode, starting_octave=OCTAVES[5]):
+    def __init__(self, key, mode, starting_octave=const.OCTAVES[5]):
         """Default constructor for Scale. Assigns starting pitch in 3rd octave.
         
         :param key: Key of scale
@@ -98,7 +61,7 @@ class Scale():
         :return: List of intervals 
         :rtype: List of ints 
         """
-        return Scale.SCALE_DICT[mode.upper()]
+        return const.SCALE_DICT[mode.upper()]
 
     # Class method to determine if mode is major or minor
     def get_major_minor(self, mode):
@@ -111,7 +74,7 @@ class Scale():
         :return: Pair of booleans (#1 Major, #2 Minor)
         :rtype: booleans
         """
-        if mode in self.MAJOR_MODE_DICT:
+        if mode in const.MAJOR_MODE_DICT:
             # 1: Major, 2: Minor
             return True, False
         else:
@@ -132,10 +95,10 @@ class Scale():
         # Assign sharp_flat_dict based on if major or minor
         if self.is_major:
             # Major sharp/flat dict
-            sharp_flat_dict = self.MAJOR_SHARP_FLAT_DICT
+            sharp_flat_dict = const.MAJOR_SHARP_FLAT_DICT
         else:
             # Minor sharp/flat dict
-            sharp_flat_dict = self.MINOR_SHARP_FLAT_DICT
+            sharp_flat_dict = const.MINOR_SHARP_FLAT_DICT
 
         # Check for key in sharp_flat_dict
         if key in sharp_flat_dict:
@@ -197,10 +160,10 @@ class Scale():
         # Check if scale has sharps/flats
         if self.has_sharps:
             # Has sharps
-            reordered_note_dict = self.note_dict_offset(self.key, self.NOTE_DICT_SHARPS)
+            reordered_note_dict = self.note_dict_offset(self.key, const.NOTE_DICT_SHARPS)
         else:
             # Has flats
-            reordered_note_dict = self.note_dict_offset(self.key, self.NOTE_DICT_FLATS)
+            reordered_note_dict = self.note_dict_offset(self.key, const.NOTE_DICT_FLATS)
 
         # Loop through reordered_note_dict and add notes based on intervals
         while (count < len(reordered_note_dict) and list_index < len(self.intervals)):
