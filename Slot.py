@@ -161,8 +161,7 @@ class Slot():
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        self.mutate_note(scale, prob)
-        self.mutate_rhythm()
+
         # Don't mutate if random prob is larger than prob
         if random.random() > prob:
             return self

@@ -36,9 +36,9 @@ class MIDIHandler():
         # Get inputs/outputs
         self.outputs = mido.get_output_names()
         self.inputs = mido.get_input_names()
-
+        
         # Define input/output to be used
-        self.keyboard_input = mido.open_input(self.inputs[4])
+        self.keyboard_input = mido.open_input(self.inputs[0])
         self.midi_output = mido.open_output(self.outputs[0])
          
         # Print IO info
