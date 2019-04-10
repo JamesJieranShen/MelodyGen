@@ -33,8 +33,7 @@ for slot in mutate_phrase.phrase:
     slot.mutate_note(test_scale, 0.5)
 
 print("Phrase 1")
-#test_phrase.play()
+test_phrase.play()
 
 print("Phrase 2")
 #mutate_phrase.play()
-print(const.TEST)

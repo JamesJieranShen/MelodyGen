@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>MIDIHandler module &#8212; Melody Gen 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -13,7 +11,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -28,6 +26,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="module-MIDIHandler">
@@ -37,24 +37,20 @@
 <em class="property">class </em><code class="descclassname">MIDIHandler.</code><code class="descname">MIDIHandler</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Default constructor for MIDIHandler.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>tempo</strong> (<em>int</em>) – Tempo of MIDIHandler</li>
-<li><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempo</strong> (<em>int</em>) – Tempo of MIDIHandler</p></li>
+<li><p><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns a MIDIHandler object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#MIDIHandler.MIDIHandler" title="MIDIHandler.MIDIHandler">MIDIHandler</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a MIDIHandler object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#MIDIHandler.MIDIHandler" title="MIDIHandler.MIDIHandler">MIDIHandler</a></p>
+</dd>
+</dl>
 <dl class="attribute">
 <dt id="MIDIHandler.MIDIHandler.DEBUG_ON">
 <code class="descname">DEBUG_ON</code><em class="property"> = False</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.DEBUG_ON" title="Permalink to this definition">¶</a></dt>
@@ -69,18 +65,17 @@
 <dt id="MIDIHandler.MIDIHandler.MSG">
 <code class="descname">MSG</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.MSG" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to turn bytes into MIDI.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> (<em>bytes</em>) – Byte string to be converted into MIDI</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">MIDI message from byte string</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">MIDI</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>bytes</em>) – Byte string to be converted into MIDI</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MIDI message from byte string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>MIDI</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -92,118 +87,105 @@
 <dt id="MIDIHandler.MIDIHandler.get_tempo">
 <code class="descname">get_tempo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.get_tempo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to get tempo of handler.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tempo of handler</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tempo of handler</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.note_off">
 <code class="descname">note_off</code><span class="sig-paren">(</span><em>slot</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_off" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to turn MIDI note off.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</li>
-<li><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</p></li>
+<li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, stops playing MIDI note</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, stops playing MIDI note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.note_on">
 <code class="descname">note_on</code><span class="sig-paren">(</span><em>slot</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to turn MIDI note on.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</li>
-<li><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</p></li>
+<li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">No return, starts playing MIDI note</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, starts playing MIDI note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.play_slot">
 <code class="descname">play_slot</code><span class="sig-paren">(</span><em>slot</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.play_slot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to play slot.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, plays Slot</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, plays Slot</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.print_io">
 <code class="descname">print_io</code><span class="sig-paren">(</span><em>debug</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.print_io" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to print input/output debug info.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Input/output debug info</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Input/output debug info</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>String</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.set_tempo">
 <code class="descname">set_tempo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.set_tempo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to set tempo of handler.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tempo</strong> (<em>int</em>) – Tempo to set handler to</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">No return, modifys existing object</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tempo</strong> (<em>int</em>) – Tempo to set handler to</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -212,6 +194,7 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -240,12 +223,18 @@
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -254,8 +243,8 @@
       &copy;2018, Nicholas Schenone.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="../_sources/source/MIDIHandler.rst.txt"
