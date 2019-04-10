@@ -16,15 +16,8 @@ import Scale
 import Slot
 import MIDIHandler as handler
 
-# Constant slot dictionaries
-SLOT_TYPE_DICT = ["NOTE", "REST"]
-SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
-#SLOT_LEN_MOD_DICT = ["NONE", "TRIPLET", "DOTTED"]
-SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
-
 # Phrase object. Is an array of Slots.
 class Phrase():
-    
     def __init__(self, tempo=120, debug=False):
         """Default constructor for Phrase. 
         
