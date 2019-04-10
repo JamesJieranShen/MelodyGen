@@ -7,6 +7,8 @@ import MIDIHandler as handler
 import mido
 import time
 import random
+import Constants as const
+
 # Constant slot dictionaries
 SLOT_TYPE_DICT = ["NOTE", "REST"]
 SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
@@ -31,8 +33,8 @@ for slot in mutate_phrase.phrase:
     slot.mutate_note(test_scale, 0.5)
 
 print("Phrase 1")
-test_phrase.play()
+#test_phrase.play()
 
 print("Phrase 2")
-mutate_phrase.play()
-print("Done")
+#mutate_phrase.play()
+print(const.TEST)
