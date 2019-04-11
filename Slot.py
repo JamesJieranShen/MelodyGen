@@ -17,27 +17,6 @@ import Constants as const
 # Slot object. Capsule to hold item in phrase
 # (note/rest) of various lengths and pitches.
 class Slot():
-    # Default ctor for Slot
-    def __init__(self, note, length, length_mod, prob=1):
-        """Default constructor for Slot. 
-        
-        :param note: Note object to hold within slot 
-        :param length: Length to play slot 
-        :param length_mod: Modifier for length 
-        :param prob: Probability that Slot is triggered 
-        
-        :type note: Note 
-        :type length: float 
-        :type length_mod: int
-        :type prob: float 
-
-        :return: Returns a Slot object
-        :rtype: Slot 
-        """
-        self.note = note
-        self.length = length
-        self.length_mod = length_mod
-        self.prob = prob
     
     # Copy ctor for Slot
     @staticmethod
@@ -53,66 +32,7 @@ class Slot():
         """
         return Slot(slot.note, slot.length, slot.length_mod, slot.prob)
            
-    # Get random note from scale and random rhythm value
-    def rand(self, scale, custom_len_list=None, custom_len_mod_list=None):
-        """Class method to randomize note and rhythm values of Slot. 
-        
-        :param scale: Scale object to pick random note from 
-        :param custom_len_list: Optional list of custom length values 
-        :param custom_len_mod_list: Optional list of custom length modifier values 
-        
-        :type scale: Scale 
-        :type custom_len_list: List of Strings 
-        :type custom_len_mod_list: List of Strings 
-
-        :return: No return, modifys existing object 
-        :rtype: None 
-        """
-        self.rand_note(scale)
-        self.rand_rhythm(custom_len_list, custom_len_mod_list)
-        return self
-
-    # Get random note from scale
-    def rand_note(self, scale):
-        """Class method to get random note from scale. 
-        
-        :param scale: Scale object to pick random note from 
-        
-        :type scale: Scale 
-
-        :return: No return, modifys existing object 
-        :rtype: None 
-        """
-        self.note = random.choice(scale.notes)
-        return self
-
-    # Get random rhythm value
-    def rand_rhythm(self, custom_len_list=None, custom_len_mod_list=None):
-        """Class method to randomize rhythm value of Slot. 
-        
-        :param custom_len_list: Optional list of custom length values 
-        :param custom_len_mod_list: Optional list of custom length modifier values 
-        
-        :type custom_len_list: List of Strings 
-        :type custom_len_mod_list: List of Strings 
-
-        :return: No return, modifys existing object 
-        :rtype: None 
-        """
-        # Get random rhythm from class dict or custom dict
-        if custom_len_list is None:
-            self.length = random.choice(const.SLOT_LEN_DICT)
-        else:
-            self.length = random.choice(custom_len_list)
-
-        # Get random rhythm mod from class dict or custom dict
-        if custom_len_mod_list is None:
-            self.length_mod = random.choice(list(const.SLOT_LEN_MOD_DICT.values()))
-        else:
-            self.length_mod = random.choice(custom_len_mod_list)
-
-        return self
-
+    
     # Mutate note and rhythm value
     def mutate(self, scale, prob=1, custom_len_list=None, custom_len_mod_list=None):
         """Class method to mutate note and rhythm values of Slot. 
