@@ -63,6 +63,20 @@ class Note():
         # Set note probability
         self.prob = prob
 
+    # Copy ctor for Note
+    @staticmethod
+    def copy_note(note):
+        """Static copy constructor for Note. 
+        
+        :param note: Note object to copy 
+        
+        :type note: Note 
+
+        :return: Returns a Note object, copy of note 
+        :rtype: Note 
+        """
+        return Note(note.note, note.vel, note.length, note.length_mod, note.prob)
+
     # Get random note from scale and random rhythm value
     def rand(self, scale, custom_len_list=None, custom_len_mod_list=None):
         """Class method to randomize note and rhythm values of Note. 
@@ -97,18 +111,16 @@ class Note():
         :rtype: None 
         """
         # If scale was passed in, choose note from scale
-        if (scale not None):
+        if (scale is not None):
             self.note = random.choice(scale.notes)
-            return self
-        else
+        else:
             # Randomly determine sharps or flats (default is 50/50)
-            if (random.random() > threshold)
+            if (random.random() > threshold):
                 note_dict = const.NOTE_DICT_SHARPS
-            else
+            else:
                 note_dict = const.NOTE_DICT_FLATS
-
-        # Get random note
-        self.note = random.choice(note_dict)
+            # Get random note
+            self.note = random.choice(note_dict)
         return self
 
     # Get random length value
@@ -158,6 +170,157 @@ class Note():
         """
         return self.note
 
+    '''
+    # Mutate note and rhythm value
+    def mutate(self, scale, prob=1, custom_len_list=None, custom_len_mod_list=None):
+        """Class method to mutate note and rhythm values of Slot. 
+        
+        :param scale: Scale object to pick random note from
+        :param prob: Probability that Slot is mutated
+        :param custom_len_list: Optional list of custom length values 
+        :param custom_len_mod_list: Optional list of custom length modifier values 
+        
+        :type scale: scale
+        :type prob: int
+        :type custom_len_list: List of Strings 
+        :type custom_len_mod_list: List of Strings 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.mutate_note(scale, prob)
+        self.mutate_rhythm()
+        return self
+
+    # Mutate note based on scale (returns adjacent note in scale)
+    def mutate_note(self, scale, prob=1, threshold=0.5):
+        """Class method to mutate note value of Slot. 
+        
+        :param scale: Scale object to pick random note from
+        :param prob: Probability that Slot is mutated
+        :param threshold: Probability of mutating note up or down
+
+        :type scale: scale
+        :type prob: int
+        :type threshold: int
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+
+        # Don't mutate if random prob is larger than prob
+        if random.random() > prob:
+            return self
+        
+        # Get index of note in Scale
+        for index, note in enumerate(scale.notes):
+            if self.note.note_name == note.note_name:
+                if self.note.octave == note.octave:
+                    scale_index = index
+                    break
+            else:
+                scale_index = -1
+
+        # Raise error if note is not in scale
+        if scale_index == -1:
+            raise ValueError("Note not in scale for mutate_note")
+
+        # If the first element, return next value
+        if scale_index == 0:
+            self.note = scale.notes[scale_index + 1]
+
+        # If the last element, return prev value
+        elif scale_index == len(scale.notes) - 1:
+            self.note = scale.notes[scale_index - 1]
+
+        # Else, return next or prev value based on threshold
+        else:
+            if random.random() >= threshold:
+                self.note = scale.notes[scale_index + 1]
+            else:
+                self.note = scale.notes[scale_index - 1]
+
+        return self
+
+    # Mutate rhythm value
+    def mutate_rhythm(self):
+        """WORK IN PROGRESS - Class method to mutate rhythm value of Slot. 
+        
+        :param prob: Probability that Slot is mutated
+        :param custom_len_list: Optional list of custom length values 
+        :param custom_len_mod_list: Optional list of custom length modifier values 
+        
+        :type prob: int
+        :type custom_len_list: List of Strings 
+        :type custom_len_mod_list: List of Strings 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        return self
+    '''
+    # Set note and rhythm value
+    def set(self, note, length, length_mod):
+        """Class method to set note and rhythm value of Note. 
+        
+        :param note: MIDI value to set Note to 
+        :param length: Length to set Note to 
+        :param length_mod: Length mod to set Note to 
+        
+        :type note: int
+        :type length: float 
+        :type length_mod: float 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.set_note(note)
+        self.set_length(length)
+        self.set_length_mod(length_mod)
+        return self
+
+    # Set note
+    def set_note(self, note):
+        """Class method to set note value of Note. 
+        
+        :param note: MIDI value to set Note to 
+        
+        :type note: int 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.note = note
+        return self
+
+    # Set length value
+    def set_length(self, length):
+        """Class method to set length value of Note. 
+        
+        :param length: Length to set Note to 
+        
+        :type length: float 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.length = length
+        return self
+
+    # Set length mod value
+    def set_length_mod(self, length_mod):
+        """Class method to set length mod value of Note. 
+        
+        :param length_mod: Length mod to set Note to 
+        
+        :type length_mod: float 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.length_mod = const.SLOT_LEN_MOD_DICT.get(length_mod)
+        return self
+
     # String representation of Note.
     def __str__(self):
         """Utility function to print Note.
@@ -165,6 +328,6 @@ class Note():
         :return: String representation of Note
         :rtype: String 
         """
-        return "<Note: name: %d, vel: %d>, length: %f, length_mod: %f,
-            prob: %f" % (self.note, self.vel, self.length, self.length_mod,
+        return """<Note: name: %d, vel: %d>, length: %f, length_mod: %f,
+            prob: %f""" % (self.note, self.vel, self.length, self.length_mod,
             self.prob)
