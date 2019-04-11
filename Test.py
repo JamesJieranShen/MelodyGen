@@ -15,7 +15,18 @@ SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
 SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
 
 # Phrase building
-test_note = Note.Note("C")
+test_note = Note.Note(60)
+rand_note = Note.Note()
+copy_note = Note.Note.copy_note(test_note)
+
+print(test_note)
+print(rand_note)
+print(copy_note)
+copy_note.set(40, const.NOTE_LEN_DICT[4], const.NOTE_LEN_MOD_DICT['NONE'])
+print(test_note)
+print(rand_note)
+print(copy_note)
+"""
 test_scale = Scale.Scale("A", 'HARM_MINOR', 3)
 test_phrase = Phrase.Phrase(120)
 #print(str(test_scale))
@@ -37,3 +48,4 @@ test_phrase.play()
 
 print("Phrase 2")
 #mutate_phrase.play()
+"""

@@ -9,6 +9,7 @@
 
 """
 import random
+from fractions import Fraction
 import Constants as const
 
 # Base note object. Has Name of pitch and MIDI value.
@@ -114,6 +115,8 @@ class Note():
         if (scale is not None):
             self.note = random.choice(scale.notes)
         else:
+            self.note = random.randint(0, 127)
+            """
             # Randomly determine sharps or flats (default is 50/50)
             if (random.random() > threshold):
                 note_dict = const.NOTE_DICT_SHARPS
@@ -121,6 +124,7 @@ class Note():
                 note_dict = const.NOTE_DICT_FLATS
             # Get random note
             self.note = random.choice(note_dict)
+            """
         return self
 
     # Get random length value
@@ -136,7 +140,7 @@ class Note():
         """
         # Get random rhythm from class dict or custom dict
         if custom_len_list is None:
-            self.length = random.choice(const.SLOT_LEN_DICT)
+            self.length = random.choice(const.NOTE_LEN_DICT)
         else:
             self.length = random.choice(custom_len_list)
         
@@ -155,7 +159,7 @@ class Note():
         """
         # Get random rhythm mod from class dict or custom dict
         if custom_len_mod_list is None: 
-            self.length_mod = random.choice(list(const.SLOT_LEN_MOD_DICT.values()))
+            self.length_mod = random.choice(list(const.NOTE_LEN_MOD_DICT.values()))
         else:
             self.length_mod = random.choice(custom_len_mod_list)
         
@@ -260,7 +264,7 @@ class Note():
         return self
     '''
     # Set note and rhythm value
-    def set(self, note, length, length_mod):
+    def set(self, note, length, length_mod, prob=None):
         """Class method to set note and rhythm value of Note. 
         
         :param note: MIDI value to set Note to 
@@ -277,6 +281,7 @@ class Note():
         self.set_note(note)
         self.set_length(length)
         self.set_length_mod(length_mod)
+        self.set_prob(prob)
         return self
 
     # Set note
@@ -318,7 +323,24 @@ class Note():
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        self.length_mod = const.SLOT_LEN_MOD_DICT.get(length_mod)
+        self.length_mod = length_mod 
+        return self
+
+    # Set prob value
+    def set_prob(self, prob=None):
+        """Class method to set probability of Note. 
+        
+        :param prob: Probability that Note is triggered 
+        
+        :type prob: float 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        if (prob is None):
+            self.prob = 1
+        else:
+            self.prob = prob
         return self
 
     # String representation of Note.
@@ -328,6 +350,9 @@ class Note():
         :return: String representation of Note
         :rtype: String 
         """
-        return """<Note: name: %d, vel: %d>, length: %f, length_mod: %f,
-            prob: %f""" % (self.note, self.vel, self.length, self.length_mod,
-            self.prob)
+        return """<Note: note: %d, vel: %d, length: %s, length_mod: %s,
+            prob: %.2f>""" % (self.note,
+                              self.vel,
+                              Fraction(self.length),
+                              Fraction(self.length_mod).limit_denominator(),
+                              self.prob)

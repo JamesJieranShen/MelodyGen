@@ -40,7 +40,6 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
- | <a href="#I"><strong>I</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
@@ -70,8 +69,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/Constants.html#module-Constants">Constants (module)</a>, <a href="source/Constants.html#module-Constants">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/Phrase.html#Phrase.Phrase.copy_ctor">copy_ctor() (Phrase.Phrase static method)</a>
 
       <ul>
@@ -79,16 +76,16 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source/Note.html#Note.Note.copy_note">copy_note() (Note.Note static method)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="source/MIDIHandler.html#MIDIHandler.MIDIHandler.DEBUG_ON">DEBUG_ON (MIDIHandler.MIDIHandler attribute)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/Note.html#Note.Note.decrease_octave">decrease_octave() (Note.Note method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -104,19 +101,11 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/Note.html#Note.Note.get_note_name">get_note_name() (Note.Note method)</a>
+      <li><a href="source/Note.html#Note.Note.get_note">get_note() (Note.Note method)</a>
 </li>
       <li><a href="source/Scale.html#Scale.Scale.get_sharps_flats">get_sharps_flats() (Scale.Scale method)</a>
 </li>
       <li><a href="source/MIDIHandler.html#MIDIHandler.MIDIHandler.get_tempo">get_tempo() (MIDIHandler.MIDIHandler method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="I">I</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/Note.html#Note.Note.increase_octave">increase_octave() (Note.Note method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -176,8 +165,6 @@
 </li>
       <li><a href="source/MIDIHandler.html#MIDIHandler.MIDIHandler.note_on">note_on() (MIDIHandler.MIDIHandler method)</a>
 </li>
-      <li><a href="source/Note.html#Note.Note.note_to_midi">note_to_midi() (Note.Note static method)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -220,15 +207,15 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/Slot.html#Slot.Slot.rand">rand() (Slot.Slot method)</a>
+      <li><a href="source/Note.html#Note.Note.rand">rand() (Note.Note method)</a>
 </li>
-      <li><a href="source/Slot.html#Slot.Slot.rand_note">rand_note() (Slot.Slot method)</a>
+      <li><a href="source/Note.html#Note.Note.rand_length">rand_length() (Note.Note method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="source/Slot.html#Slot.Slot.rand_rhythm">rand_rhythm() (Slot.Slot method)</a>
+      <li><a href="source/Note.html#Note.Note.rand_length_mod">rand_length_mod() (Note.Note method)</a>
 </li>
-      <li><a href="source/Note.html#Note.Note.random_note">random_note() (Note.Note method)</a>
+      <li><a href="source/Note.html#Note.Note.rand_note">rand_note() (Note.Note method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,14 +231,26 @@
       </ul></li>
       <li><a href="source/Constants.html#Constants.SCALE_DICT">SCALE_DICT (in module Constants)</a>
 </li>
-      <li><a href="source/Slot.html#Slot.Slot.set">set() (Slot.Slot method)</a>
+      <li><a href="source/Note.html#Note.Note.set">set() (Note.Note method)</a>
+
+      <ul>
+        <li><a href="source/Slot.html#Slot.Slot.set">(Slot.Slot method)</a>
 </li>
-      <li><a href="source/Slot.html#Slot.Slot.set_note">set_note() (Slot.Slot method)</a>
+      </ul></li>
+      <li><a href="source/Note.html#Note.Note.set_length">set_length() (Note.Note method)</a>
 </li>
-      <li><a href="source/Phrase.html#Phrase.Phrase.set_phrase">set_phrase() (Phrase.Phrase method)</a>
+      <li><a href="source/Note.html#Note.Note.set_length_mod">set_length_mod() (Note.Note method)</a>
 </li>
+      <li><a href="source/Note.html#Note.Note.set_note">set_note() (Note.Note method)</a>
+
+      <ul>
+        <li><a href="source/Slot.html#Slot.Slot.set_note">(Slot.Slot method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="source/Phrase.html#Phrase.Phrase.set_phrase">set_phrase() (Phrase.Phrase method)</a>
+</li>
       <li><a href="source/Slot.html#Slot.Slot.set_rhythm">set_rhythm() (Slot.Slot method)</a>
 </li>
       <li><a href="source/MIDIHandler.html#MIDIHandler.MIDIHandler.set_tempo">set_tempo() (MIDIHandler.MIDIHandler method)</a>

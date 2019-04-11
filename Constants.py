@@ -60,13 +60,13 @@ MINOR_SHARP_FLAT_DICT = {'C': 'b', 'Cs': 's', 'Db': 'b', 'D': 'b', 'Ds': 's', 'E
                         'Ab': 'b', 'A': 'n', 'As': 's', 'Bb': 'b', 'B': 's'}
 """
 """
-# Constant slot dictionaries
-SLOT_TYPE_DICT = ["NOTE", "REST"]
+# Constant note length dictionaries
+NOTE_TYPE_DICT = ["NOTE", "REST"]
 """
 """
-SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
+NOTE_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
 """
 """
-SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
+NOTE_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
 """
 """ 
