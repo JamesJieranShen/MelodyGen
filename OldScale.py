@@ -14,36 +14,25 @@ import Constants as const
 # Scale object. Is an array of Notes
 class Scale():
     # Default constructor for Scale. Takes in mode and key
-    def __init__(self, key, mode, starting_octave=None):
+    def __init__(self, key, mode, starting_octave=const.OCTAVES[5]):
         """Default constructor for Scale. Assigns starting pitch in 3rd octave.
         
         :param key: Key of scale
         :param mode: Mode of scale
         :param starting_octave: Starting octave of scale 
         
-        :type key: String / int
+        :type key: String
         :type mode: String
-        :type starting_octave: int / None
+        :type starting_octave: int
 
         :return: Returns a Scale object
         :rtype: Scale 
         """
         # Assign mode and key
-        if (isinstance(key, str)):
-            if (starting_octave is None):
-                raise ValueError("Starting octave not specified for scale")
-            else:
-                self.key = get_midi(key, starting_octave)
-        else:
-            self.key = key
-        '''
-        Initialize major/minor first, then use that to determine
-        sharps/flat
-        '''
+        self.key = key
         self.mode = mode
         self.starting_octave = starting_octave
-        
-        '''
+
         # Initialize output paramaters for lookup/calculation functions
         self.intervals = []
         self.is_major = False
@@ -59,23 +48,6 @@ class Scale():
 
         # Build scale
         self.notes = self.build_scale()
-        '''
-
-    # Method to get MIDI value of note based on note name and starting octave
-    def get_midi(self, key, starting_octave):
-        """Method to get MIDI note value based on
-        note name and starting octave.
-        
-        :param key: Note name of key 
-        :param starting_octave: Starting octave of scale 
-        
-        :type key: String
-        :type starting_octave: int
-
-        :return: MIDI value of note 
-        :rtype: int 
-        """
-        
 
     # Static method to get scale intervals based on mode
     @staticmethod

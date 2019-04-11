@@ -9,11 +9,6 @@ import time
 import random
 import Constants as const
 
-# Constant slot dictionaries
-SLOT_TYPE_DICT = ["NOTE", "REST"]
-SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
-SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
-
 # Phrase building
 test_note = Note.Note(60)
 rand_note = Note.Note()
