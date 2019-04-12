@@ -80,7 +80,7 @@
 
 <dl class="attribute">
 <dt id="MIDIHandler.MIDIHandler.PRINT_NOTES">
-<code class="descname">PRINT_NOTES</code><em class="property"> = True</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.PRINT_NOTES" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PRINT_NOTES</code><em class="property"> = False</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.PRINT_NOTES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -99,12 +99,12 @@
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.note_off">
-<code class="descname">note_off</code><span class="sig-paren">(</span><em>slot</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_off" title="Permalink to this definition">¶</a></dt>
+<code class="descname">note_off</code><span class="sig-paren">(</span><em>note</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_off" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to turn MIDI note off.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</p></li>
+<li><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play MIDI from</p></li>
 <li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
 </ul>
 </dd>
@@ -119,12 +119,12 @@
 
 <dl class="method">
 <dt id="MIDIHandler.MIDIHandler.note_on">
-<code class="descname">note_on</code><span class="sig-paren">(</span><em>slot</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_on" title="Permalink to this definition">¶</a></dt>
+<code class="descname">note_on</code><span class="sig-paren">(</span><em>note</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to turn MIDI note on.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play MIDI from</p></li>
+<li><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play MIDI from</p></li>
 <li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
 </ul>
 </dd>
@@ -138,15 +138,15 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="MIDIHandler.MIDIHandler.play_slot">
-<code class="descname">play_slot</code><span class="sig-paren">(</span><em>slot</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.play_slot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Utility method to play slot.</p>
+<dt id="MIDIHandler.MIDIHandler.play_note">
+<code class="descname">play_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.play_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to play note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>slot</strong> (<a class="reference internal" href="Slot.html#Slot.Slot" title="Slot.Slot"><em>Slot</em></a>) – Slot to play</p>
+<dd class="field-odd"><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>No return, plays Slot</p>
+<dd class="field-even"><p>No return, plays Note</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None</p>

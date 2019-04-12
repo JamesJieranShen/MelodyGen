@@ -44,6 +44,15 @@ class Phrase():
         for note in self.phrase:
             self.handler.play_note(note)
         print('\n')
+    
+    # Utility method to reverse phrase
+    def reverse(self):
+        """Utility method to reverse Phrase. 
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        self.phrase.reverse()
 
     # Build phrase
     def generate_phrase(self):

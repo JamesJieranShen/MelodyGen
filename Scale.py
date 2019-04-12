@@ -30,10 +30,10 @@ class Scale():
         """
         # Initialize output paramaters for lookup/calculation functions
         self.intervals = []
-        #self.is_major = False
-        #self.is_minor = False
-        self.has_sharps = False
-        self.has_flats = False
+        self.is_major = False
+        self.is_minor = False
+        #self.has_sharps = False
+        #self.has_flats = False
         self.notes = []
 
         # Assign mode and determine major/minor
