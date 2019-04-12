@@ -196,9 +196,9 @@ class Note():
         :rtype: None 
         """
         self.mutate_note(scale, prob, threshold)
-        self.mutate_length()
-        self.mutate_length_mod()
-        self.mutate_prob()
+        self.mutate_length(custom_len_list, prob, threshold)
+        self.mutate_length_mod(custom_len_mod_list, prob)
+        #self.mutate_prob()
         return self
 
     # Mutate note based on scale (returns adjacent note in scale)
@@ -208,15 +208,10 @@ class Note():
         :param scale: Scale object to pick random note from
         :param prob: Probability that Note is mutated
         :param threshold: Probability of mutating note up or down
-        :param custom_len_list: Optional list of custom length values
-        :param custom_len_mod_list: Optional list of custom length modifier
-            values
 
         :type scale: Scale
         :type prob: float
         :type threshold: float
-        :type custom_len_list: List of floats
-        :type custom_len_mod_list: Dict of floats
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -258,11 +253,14 @@ class Note():
     def mutate_length(self, custom_len_list=None, prob=1, threshold=0.5):
         """Class method to mutate length value of Note. 
         
-        :param prob: Probability that Note is mutated
         :param custom_len_list: Optional list of custom length values 
+        :param prob: Probability that Note is mutated
+        :param threshold: Determines whether length is mutated more up \ 
+            or down
         
-        :type prob: float
         :type custom_len_list: List of floats 
+        :type prob: float
+        :type threshold: float
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -307,8 +305,7 @@ class Note():
         return self
     
     # Mutate length mod value
-    def mutate_length_mod(self, custom_len_mod_list=None, prob=1,
-            threshold=0.5):
+    def mutate_length_mod(self, custom_len_mod_list=None, prob=1):
         """Class method to mutate length mod value of Note using
             rand_length_mod. 
         
@@ -326,7 +323,9 @@ class Note():
         if random.random() > prob:
             return self
 
-        self.rand_length_mod(custom_len_mod_list)
+        old_length_mod = self.length_mod
+        while(self.length_mod == old_length_mod):
+            self.rand_length_mod(custom_len_mod_list)
         return self
 
     # Set note and rhythm value
