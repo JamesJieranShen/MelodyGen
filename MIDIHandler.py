@@ -44,24 +44,24 @@ class MIDIHandler():
         # Print IO info
         self.print_io(debug)
 
-    # Utility method to play slot
-    def play_slot(self, slot):
-        """Utility method to play slot. 
+    # Utility method to play note
+    def play_note(self, note):
+        """Utility method to play note. 
         
-        :param slot: Slot to play
+        :param slot: Note to play
         
-        :type slot: Slot 
+        :type slot: Note 
 
-        :return: No return, plays Slot 
+        :return: No return, plays Note 
         :rtype: None 
         """
         trig = False
-        if (random.random() <= slot.prob):
+        if (random.random() <= note.prob):
             trig = True
 
-        if trig: self.note_on(slot)
-        time.sleep((240 * slot.length * slot.length_mod) / self.tempo)
-        if trig: self.note_off(slot)
+        if trig: self.note_on(note.note)
+        time.sleep((240 * note.length * note.length_mod) / self.tempo)
+        if trig: self.note_off(note.note)
 
 
     def print_io(self, debug):
@@ -121,40 +121,40 @@ class MIDIHandler():
 
 
     # Utility method to send a note on signal
-    def note_on(self, slot, chan=MIDI_CHANNEL_1):
+    def note_on(self, note, chan=MIDI_CHANNEL_1):
         """Utility method to turn MIDI note on. 
         
-        :param slot: Slot to play MIDI from 
+        :param slot: Note to play MIDI from 
         :param chan: MIDI channel to play on 
         
-        :type slot: Slot 
+        :type slot: Note 
         :type chan: Hexidecimal 
 
         :return: No return, starts playing MIDI note 
         :rtype: None 
         """
         msg = [0] * 3
-        msg = [0x90 + chan, slot.note.midi_value, slot.note.vel]
+        msg = [0x90 + chan, note.note, note.vel]
 
         # Debug print
         if self.DEBUG_ON or self.PRINT_NOTES:
-            print(slot.note.note_name, msg)
+            print(note.note, msg)
 
         self.midi_output.send(self.MSG(msg))
 
     # Utility method to send a note off signal
-    def note_off(self, slot, chan=MIDI_CHANNEL_1):
+    def note_off(self, note, chan=MIDI_CHANNEL_1):
         """Utility method to turn MIDI note off. 
         
-        :param slot: Slot to play MIDI from 
+        :param slot: Note to play MIDI from 
         :param chan: MIDI channel to play on 
         
-        :type slot: Slot 
+        :type slot: Note 
         :type chan: Hexidecimal 
 
         :return: No return, stops playing MIDI note 
         :rtype: None 
         """
         msg = [0] * 3
-        msg = [0x80 + chan, slot.note.midi_value, 127]
+        msg = [0x80 + chan, note.note, 127]
         self.midi_output.send(self.MSG(msg))

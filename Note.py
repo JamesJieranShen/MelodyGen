@@ -354,5 +354,4 @@ class Note():
             prob: %.2f>""" % (self.note,
                               self.vel,
                               Fraction(self.length),
-                              Fraction(self.length_mod).limit_denominator(),
-                              self.prob)
+                              Fraction(self.length_mod).limit_denominator(), self.prob)

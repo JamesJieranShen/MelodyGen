@@ -42,12 +42,7 @@ class Phrase():
         :rtype: None 
         """
         for note in self.phrase:
-            trig = False
-            if (random.random() <= note.prob):
-                trig = True
-            if trig: self.handler.note_on(note)
-            time.sleep((240 * note.length * note.length_mod) / self.tempo)
-            if trig: self.handler.note_off(note)
+            self.handler.play_note(note)
 
     # Build phrase
     def generate_phrase(self):
