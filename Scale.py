@@ -28,7 +28,20 @@ class Scale():
         :return: Returns a Scale object
         :rtype: Scale 
         """
-        # Assign mode and key
+        # Initialize output paramaters for lookup/calculation functions
+        self.intervals = []
+        #self.is_major = False
+        #self.is_minor = False
+        self.has_sharps = False
+        self.has_flats = False
+        self.notes = []
+
+        # Assign mode and determine major/minor
+        self.mode = mode
+        self.is_major, self.is_minor = self.get_major_minor(self.mode)
+        self.starting_octave = starting_octave
+
+        # Assign key
         if (isinstance(key, str)):
             if (starting_octave is None):
                 raise ValueError("Starting octave not specified for scale")
@@ -36,30 +49,15 @@ class Scale():
                 self.key = get_midi(key, starting_octave)
         else:
             self.key = key
-        '''
-        Initialize major/minor first, then use that to determine
-        sharps/flat
-        '''
-        self.mode = mode
-        self.starting_octave = starting_octave
-        
-        '''
-        # Initialize output paramaters for lookup/calculation functions
-        self.intervals = []
-        self.is_major = False
-        self.is_minor = False
-        self.has_sharps = False
-        self.has_flats = False
-        self.notes = []
 
+        # Assign sharps/flats
+        #self.has_sharps, self.has_flats = self.get_sharps_flats(self.key)
+        
         # Lookup/calculate intervals, major/minor, sharps/flats
         self.intervals = Scale.get_intervals(self.mode)
-        self.is_major, self.is_minor = self.get_major_minor(self.mode)
-        self.has_sharps, self.has_flats = self.get_sharps_flats(self.key)
 
         # Build scale
         self.notes = self.build_scale()
-        '''
 
     # Method to get MIDI value of note based on note name and starting octave
     def get_midi(self, key, starting_octave):
@@ -75,7 +73,7 @@ class Scale():
         :return: MIDI value of note 
         :rtype: int 
         """
-        
+        return (starting_octave + 2) * MIDI_KEY_DICT[key]
 
     # Static method to get scale intervals based on mode
     @staticmethod
@@ -108,7 +106,7 @@ class Scale():
         else:
             # 1: Major, 2: Minor
             return False, True
-
+    '''
     # Class method to determine if scale has sharps or flats
     def get_sharps_flats(self, key):
         """Class method to determine if scale has sharps or flats.
@@ -138,6 +136,7 @@ class Scale():
                 # Has flats
                 # 1: Sharps, 2: Flats
                 return False, True
+    '''
 
     # Class method to create new note_dict starting with note of key
     def note_dict_offset(self, key, note_dict):
@@ -157,7 +156,8 @@ class Scale():
 
         # Splice and rearrange list at key_index
         return note_dict[key_index:] + note_dict[:key_index]
-
+    
+    '''
     # Class method to build scale
     def build_scale(self):
         """Method to build scale - called by __init__. 
@@ -233,7 +233,19 @@ class Scale():
         working_note_dict.append(current_note)
 
         return working_note_dict
+    '''
 
+    # Class method to build scale
+    def build_scale(self):
+        """Method to build scale - called by __init__. 
+       
+        :return: Scale object
+        :rtype: Scale object 
+        """
+        scale_degree = key
+        for interval in intervals:
+            self.notes.append() 
+        
     # String representation of Scale.
     def __str__(self):
         """Utility function to print Scale.
