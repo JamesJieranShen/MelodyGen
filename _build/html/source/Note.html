@@ -87,6 +87,53 @@ specified.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="Note.Note.mutate">
+<code class="descname">mutate</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em>, <em>threshold=0.5</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to mutate note and rhythm values of Note.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>scale</em>) – Scale object to pick random note from</p></li>
+<li><p><strong>prob</strong> (<em>float</em>) – Probability that Note is mutated</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>Dict of floats</em>) – Optional list of custom length modifier
+values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Note.Note.mutate_note">
+<code class="descname">mutate_note</code><span class="sig-paren">(</span><em>scale</em>, <em>prob=1</em>, <em>threshold=0.5</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.mutate_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to mutate note value of Note.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</p></li>
+<li><p><strong>prob</strong> (<em>float</em>) – Probability that Note is mutated</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Probability of mutating note up or down</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>Dict of floats</em>) – Optional list of custom length modifier
+values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="Note.Note.rand">
 <code class="descname">rand</code><span class="sig-paren">(</span><em>scale</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize note and rhythm values of Note.</p>
@@ -94,8 +141,8 @@ specified.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</p></li>
-<li><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p></li>
-<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
+<li><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p></li>
+<li><p><strong>custom_len_mod_list</strong> (<em>Dict of floats</em>) – Optional list of custom length modifier values</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -113,7 +160,7 @@ specified.</p>
 <dd><p>Class method to randomize length value of Note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>custom_len_list</strong> (<em>List of Strings</em>) – Optional list of custom length values</p>
+<dd class="field-odd"><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>No return, modifys existing object</p>

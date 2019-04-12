@@ -15,7 +15,8 @@ import Constants as const
 # Base note object. Has Name of pitch and MIDI value.
 class Note():
 
-    def __init__(self, note=None, vel=100, length=None, length_mod=None, prob=1):
+    def __init__(self, note=None, vel=100, length=None, length_mod=None,
+            prob=1):
         """Default constructor for Note. Assigns random pitch and length if not 
         specified.
         
@@ -87,8 +88,8 @@ class Note():
         :param custom_len_mod_list: Optional list of custom length modifier values 
         
         :type scale: Scale 
-        :type custom_len_list: List of Strings 
-        :type custom_len_mod_list: List of Strings 
+        :type custom_len_list: List of floats 
+        :type custom_len_mod_list: Dict of floats 
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -133,7 +134,7 @@ class Note():
         
         :param custom_len_list: Optional list of custom length values 
         
-        :type custom_len_list: List of Strings 
+        :type custom_len_list: List of floats 
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -159,7 +160,8 @@ class Note():
         """
         # Get random rhythm mod from class dict or custom dict
         if custom_len_mod_list is None: 
-            self.length_mod = random.choice(list(const.NOTE_LEN_MOD_DICT.values()))
+            self.length_mod = \
+                random.choice(list(const.NOTE_LEN_MOD_DICT.values()))
         else:
             self.length_mod = random.choice(custom_len_mod_list)
         
@@ -174,39 +176,47 @@ class Note():
         """
         return self.note
 
-    '''
     # Mutate note and rhythm value
-    def mutate(self, scale, prob=1, custom_len_list=None, custom_len_mod_list=None):
-        """Class method to mutate note and rhythm values of Slot. 
+    def mutate(self, scale, prob=1, threshold=0.5,
+            custom_len_list=None, custom_len_mod_list=None):
+        """Class method to mutate note and rhythm values of Note. 
         
         :param scale: Scale object to pick random note from
-        :param prob: Probability that Slot is mutated
+        :param prob: Probability that Note is mutated
         :param custom_len_list: Optional list of custom length values 
-        :param custom_len_mod_list: Optional list of custom length modifier values 
+        :param custom_len_mod_list: Optional list of custom length modifier
+            values 
         
         :type scale: scale
-        :type prob: int
-        :type custom_len_list: List of Strings 
-        :type custom_len_mod_list: List of Strings 
+        :type prob: float
+        :type custom_len_list: List of floats 
+        :type custom_len_mod_list: Dict of floats 
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        self.mutate_note(scale, prob)
-        self.mutate_rhythm()
+        self.mutate_note(scale, prob, threshold)
+        self.mutate_length()
+        self.mutate_length_mod()
+        self.mutate_prob()
         return self
 
     # Mutate note based on scale (returns adjacent note in scale)
     def mutate_note(self, scale, prob=1, threshold=0.5):
-        """Class method to mutate note value of Slot. 
+        """Class method to mutate note value of Note. 
         
         :param scale: Scale object to pick random note from
-        :param prob: Probability that Slot is mutated
+        :param prob: Probability that Note is mutated
         :param threshold: Probability of mutating note up or down
+        :param custom_len_list: Optional list of custom length values
+        :param custom_len_mod_list: Optional list of custom length modifier
+            values
 
-        :type scale: scale
-        :type prob: int
-        :type threshold: int
+        :type scale: Scale
+        :type prob: float
+        :type threshold: float
+        :type custom_len_list: List of floats
+        :type custom_len_mod_list: Dict of floats
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -218,10 +228,9 @@ class Note():
         
         # Get index of note in Scale
         for index, note in enumerate(scale.notes):
-            if self.note.note_name == note.note_name:
-                if self.note.octave == note.octave:
-                    scale_index = index
-                    break
+            if self.note == note.note:
+                scale_index = index
+                break
             else:
                 scale_index = -1
 
@@ -231,32 +240,33 @@ class Note():
 
         # If the first element, return next value
         if scale_index == 0:
-            self.note = scale.notes[scale_index + 1]
+            self.note = scale.notes[scale_index + 1].note
 
         # If the last element, return prev value
         elif scale_index == len(scale.notes) - 1:
-            self.note = scale.notes[scale_index - 1]
+            self.note = scale.notes[scale_index - 1].note
 
         # Else, return next or prev value based on threshold
         else:
             if random.random() >= threshold:
-                self.note = scale.notes[scale_index + 1]
+                self.note = scale.notes[scale_index + 1].note
             else:
-                self.note = scale.notes[scale_index - 1]
-
+                self.note = scale.notes[scale_index - 1].note
         return self
 
+    '''
     # Mutate rhythm value
     def mutate_rhythm(self):
         """WORK IN PROGRESS - Class method to mutate rhythm value of Slot. 
         
         :param prob: Probability that Slot is mutated
         :param custom_len_list: Optional list of custom length values 
-        :param custom_len_mod_list: Optional list of custom length modifier values 
+        :param custom_len_mod_list: Optional list of custom length modifier
+            values 
         
         :type prob: int
-        :type custom_len_list: List of Strings 
-        :type custom_len_mod_list: List of Strings 
+        :type custom_len_list: List of floats 
+        :type custom_len_mod_list: Dict of floats 
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -354,4 +364,5 @@ class Note():
             prob: %.2f>""" % (self.note,
                               self.vel,
                               Fraction(self.length),
-                              Fraction(self.length_mod).limit_denominator(), self.prob)
+                              Fraction(self.length_mod).limit_denominator(),
+                              self.prob)
