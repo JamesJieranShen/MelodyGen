@@ -21,11 +21,12 @@ copy_note.set(40, const.NOTE_LEN_DICT[4], const.NOTE_LEN_MOD_DICT['NONE'])
 print(test_note)
 print(rand_note)
 print(copy_note)
-"""
 test_scale = Scale.Scale("A", 'HARM_MINOR', 3)
+test_scale2 = Scale.Scale(60, 'MAJOR')
+print(test_scale)
+print(test_scale2)
+"""
 test_phrase = Phrase.Phrase(120)
-#print(str(test_scale))
-
 # Populate Phrase
 for i in range(len(test_scale)):
     test_slot = Slot.Slot(test_note, SLOT_LEN_DICT[4],

@@ -77,7 +77,7 @@ class Note():
         :rtype: Note 
         """
         return Note(note.note, note.vel, note.length, note.length_mod, note.prob)
-
+    
     # Get random note from scale and random rhythm value
     def rand(self, scale, custom_len_list=None, custom_len_mod_list=None):
         """Class method to randomize note and rhythm values of Note. 
