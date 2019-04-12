@@ -177,8 +177,8 @@ class Note():
         return self.note
 
     # Mutate note and rhythm value
-    def mutate(self, scale, prob=1, threshold=0.5,
-            custom_len_list=None, custom_len_mod_list=None):
+    def mutate(self, scale, custom_len_list=None, custom_len_mod_list=None,
+            prob=1, threshold=0.5):
         """Class method to mutate note and rhythm values of Note. 
         
         :param scale: Scale object to pick random note from
@@ -254,23 +254,103 @@ class Note():
                 self.note = scale.notes[scale_index - 1].note
         return self
 
-    '''
-    # Mutate rhythm value
-    def mutate_rhythm(self):
-        """WORK IN PROGRESS - Class method to mutate rhythm value of Slot. 
+    # Mutate length value
+    def mutate_length(self, custom_len_list=None, prob=1, threshold=0.5):
+        """Class method to mutate length value of Note. 
         
-        :param prob: Probability that Slot is mutated
+        :param prob: Probability that Note is mutated
         :param custom_len_list: Optional list of custom length values 
+        
+        :type prob: float
+        :type custom_len_list: List of floats 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        # Don't mutate if random prob is larger than prob
+        if random.random() > prob:
+            return self
+
+        # Get list of length values to mutate from
+        len_list = []
+        if custom_len_list is None:
+            len_list = const.NOTE_LEN_DICT
+        else:
+            len_list = custom_len_list
+
+        # Get index of note in Scale
+        for index, length in enumerate(len_list):
+            if self.length == length:
+                len_index = index
+                break
+            else:
+                len_index = -1
+
+        # Raise error if rhythm is not in list 
+        if len_index == -1:
+            raise ValueError("Length not in list for mutate_length")
+
+        # If the first element, return next value
+        if len_index == 0:
+            self.length = len_list[len_index + 1]
+
+        # If the last element, return prev value
+        elif len_index == len(len_list) - 1:
+            self.length = len_list[len_index - 1]
+
+        # Else, return next or prev value based on threshold
+        else:
+            if random.random() >= threshold:
+                self.note = scale.notes[scale_index + 1].note
+            else:
+                self.note = scale.notes[scale_index - 1].note
+        return self
+    
+    '''
+    # Mutate length mod value
+    def mutate_length_mod(self):
+        """Class method to mutate length mod value of Note. 
+        
+        :param prob: Probability that Note is mutated
         :param custom_len_mod_list: Optional list of custom length modifier
             values 
         
-        :type prob: int
-        :type custom_len_list: List of floats 
+        :type prob: float
         :type custom_len_mod_list: Dict of floats 
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
+        # Don't mutate if random prob is larger than prob
+        if random.random() > prob:
+            return self
+        
+        # Get index of note in Scale
+        for index, note in enumerate(scale.notes):
+            if self.note == note.note:
+                scale_index = index
+                break
+            else:
+                scale_index = -1
+
+        # Raise error if note is not in scale
+        if scale_index == -1:
+            raise ValueError("Note not in scale for mutate_note")
+
+        # If the first element, return next value
+        if scale_index == 0:
+            self.note = scale.notes[scale_index + 1].note
+
+        # If the last element, return prev value
+        elif scale_index == len(scale.notes) - 1:
+            self.note = scale.notes[scale_index - 1].note
+
+        # Else, return next or prev value based on threshold
+        else:
+            if random.random() >= threshold:
+                self.note = scale.notes[scale_index + 1].note
+            else:
+                self.note = scale.notes[scale_index - 1].note
         return self
     '''
     # Set note and rhythm value
