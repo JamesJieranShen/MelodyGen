@@ -301,15 +301,16 @@ class Note():
         # Else, return next or prev value based on threshold
         else:
             if random.random() >= threshold:
-                self.note = scale.notes[scale_index + 1].note
+                self.length = len_list[len_index + 1]
             else:
-                self.note = scale.notes[scale_index - 1].note
+                self.length = len_list[len_index - 1]
         return self
     
-    '''
     # Mutate length mod value
-    def mutate_length_mod(self):
-        """Class method to mutate length mod value of Note. 
+    def mutate_length_mod(self, custom_len_mod_list=None, prob=1,
+            threshold=0.5):
+        """Class method to mutate length mod value of Note using
+            rand_length_mod. 
         
         :param prob: Probability that Note is mutated
         :param custom_len_mod_list: Optional list of custom length modifier
@@ -324,35 +325,10 @@ class Note():
         # Don't mutate if random prob is larger than prob
         if random.random() > prob:
             return self
-        
-        # Get index of note in Scale
-        for index, note in enumerate(scale.notes):
-            if self.note == note.note:
-                scale_index = index
-                break
-            else:
-                scale_index = -1
 
-        # Raise error if note is not in scale
-        if scale_index == -1:
-            raise ValueError("Note not in scale for mutate_note")
-
-        # If the first element, return next value
-        if scale_index == 0:
-            self.note = scale.notes[scale_index + 1].note
-
-        # If the last element, return prev value
-        elif scale_index == len(scale.notes) - 1:
-            self.note = scale.notes[scale_index - 1].note
-
-        # Else, return next or prev value based on threshold
-        else:
-            if random.random() >= threshold:
-                self.note = scale.notes[scale_index + 1].note
-            else:
-                self.note = scale.notes[scale_index - 1].note
+        self.rand_length_mod(custom_len_mod_list)
         return self
-    '''
+
     # Set note and rhythm value
     def set(self, note, length, length_mod, prob=None):
         """Class method to set note and rhythm value of Note. 

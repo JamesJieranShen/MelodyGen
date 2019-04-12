@@ -18,10 +18,12 @@ test_note = Note.Note.copy_note(test_scale.notes[1])
 #print(test_scale)
 print(test_note)
 
-test_note.mutate_note(test_scale, 1, .1)
+test_note.mutate_note(test_scale)
 print(test_note)
 
-test_note.mutate_note(test_scale)
+test_note.mutate_length()
+print(test_note)
+test_note.mutate_length_mod()
 print(test_note)
 
 '''
