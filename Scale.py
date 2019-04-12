@@ -153,6 +153,9 @@ class Scale():
                 scale.append(Note.Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
                 const.NOTE_LEN_MOD_DICT["NONE"])) 
             scale_degree += interval
+        if 0 <= scale_degree <= 127:
+            scale.append(Note.Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
+                const.NOTE_LEN_MOD_DICT["NONE"])) 
         return scale
 
     # String representation of Scale.

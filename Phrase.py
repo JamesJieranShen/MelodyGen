@@ -43,6 +43,7 @@ class Phrase():
         """
         for note in self.phrase:
             self.handler.play_note(note)
+        print('\n')
 
     # Build phrase
     def generate_phrase(self):

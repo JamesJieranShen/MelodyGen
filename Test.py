@@ -15,8 +15,8 @@ test_phrase = Phrase.Phrase(120)
 
 # Populate Phrase
 for i in range(len(test_scale)):
-    test_note = Note.Note(60, 1/4, 1)
-    test_note.rand_note(test_scale)
+    test_note = test_scale.notes[i]
+    #test_note.rand_note(test_scale)
     #print(test_note.prob)
     #print(test_note)
     test_phrase.append(test_note)
@@ -29,7 +29,6 @@ for slot in mutate_phrase.phrase:
 '''
 print("Phrase 1")
 test_phrase.play()
-print("done")
 '''
 print("Phrase 2")
 #mutate_phrase.play()

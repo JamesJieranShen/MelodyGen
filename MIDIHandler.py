@@ -16,7 +16,7 @@ import mido
 class MIDIHandler():
     # Constants
     DEBUG_ON = False
-    PRINT_NOTES = True
+    PRINT_NOTES = False
     MIDI_CHANNEL_1 = 0x0
     
     def __init__(self, tempo=120, debug=DEBUG_ON):
@@ -59,9 +59,9 @@ class MIDIHandler():
         if (random.random() <= note.prob):
             trig = True
 
-        if trig: self.note_on(note.note)
+        if trig: self.note_on(note)
         time.sleep((240 * note.length * note.length_mod) / self.tempo)
-        if trig: self.note_off(note.note)
+        if trig: self.note_off(note)
 
 
     def print_io(self, debug):
