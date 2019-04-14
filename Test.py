@@ -28,7 +28,7 @@ phrase = Phrase.Phrase(120, True)
 
 for i in range(phrase_len):
     phrase.append(Note.Note(length=1/16,
-        length_mod=1, scale=a_harm_min))
+        length_mod=1, scale=a_harm_min, prob=0.8))
 
 while(True):
     phrase.play()
