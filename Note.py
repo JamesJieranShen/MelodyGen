@@ -16,7 +16,7 @@ import Constants as const
 class Note():
 
     def __init__(self, note=None, vel=100, length=None, length_mod=None,
-            prob=1):
+            prob=1, scale=None):
         """Default constructor for Note. Assigns random pitch and length if not 
         specified.
         
@@ -25,12 +25,14 @@ class Note():
         :param length: Length of note
         :param length_mod: Rhythm modifier (dotted, triplet, etc.)
         :param prob: Probability that note is triggered 
-        
+        :param scale: Scale to choose random notes from
+
         :type note_name: int
         :type vel: int
         :type length: float 
         :type length_mod: float 
         :type vel: int
+        :type scale: Scale
 
         :return: Returns a Note object
         :rtype: Note 
@@ -38,7 +40,7 @@ class Note():
         # Check for note_name
         if note is None:
             # Assign random note
-            self.rand_note()
+            self.rand_note(scale)
         else:
             # Assign inputted note
             self.note = note
@@ -80,16 +82,19 @@ class Note():
         return Note(note.note, note.vel, note.length, note.length_mod, note.prob)
     
     # Get random note from scale and random rhythm value
-    def rand(self, scale, custom_len_list=None, custom_len_mod_list=None):
+    def rand(self, scale, custom_len_list=None, custom_len_mod_list=None,
+            prob=1):
         """Class method to randomize note and rhythm values of Note. 
         
         :param scale: Scale object to pick random note from 
         :param custom_len_list: Optional list of custom length values 
         :param custom_len_mod_list: Optional list of custom length modifier values 
-        
+        :param prob: Probability that note is randomized 
+
         :type scale: Scale 
         :type custom_len_list: List of floats 
         :type custom_len_mod_list: Dict of floats 
+        :type prob: float
 
         :return: No return, modifys existing object 
         :rtype: None 
@@ -100,64 +105,72 @@ class Note():
         return self
 
     # Class method to return random note
-    def rand_note(self, scale=None, threshold=0.5):
+    def rand_note(self, scale=None, prob=1):
         """Method to get random note. 
        
         :param scale: Optional scale to choose random note from
         :param threshold: Threshold for sharps (0) vs flats (1)
-       
+        :param prob: Probability that note is randomized
+
         :type scale: Scale
         :type threshold: float
+        :type prob: floats
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
+        # Don't randomize if random prob is larger than prob
+        if random.random() > prob:
+            return self
+
         # If scale was passed in, choose note from scale
         if (scale is not None):
-            self.note = random.choice(scale.notes)
+            self.note = random.choice(scale.notes).note
         else:
             self.note = random.randint(0, 127)
-            """
-            # Randomly determine sharps or flats (default is 50/50)
-            if (random.random() > threshold):
-                note_dict = const.NOTE_DICT_SHARPS
-            else:
-                note_dict = const.NOTE_DICT_FLATS
-            # Get random note
-            self.note = random.choice(note_dict)
-            """
         return self
 
     # Get random length value
-    def rand_length(self, custom_len_list=None):
+    def rand_length(self, custom_len_list=None, prob=1):
         """Class method to randomize length value of Note. 
         
         :param custom_len_list: Optional list of custom length values 
-        
+        :param prob: Probability that note is randomized
+
         :type custom_len_list: List of floats 
+        :type prob: float
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
+        # Don't randomize if random prob is larger than prob
+        if random.random() > prob:
+            return self
+
         # Get random rhythm from class dict or custom dict
         if custom_len_list is None:
             self.length = random.choice(const.NOTE_LEN_DICT)
         else:
             self.length = random.choice(custom_len_list)
-        
         return self
 
     # Get random length mod value
-    def rand_length_mod(self, custom_len_mod_list=None):
+    def rand_length_mod(self, custom_len_mod_list=None, prob=1):
         """Class method to randomize rhythm value of Note. 
         
         :param custom_len_mod_list: Optional list of custom length modifier values 
-        
+        :param prob: Probability that note is randomized
+
         :type custom_len_mod_list: List of Strings 
+        :type prob: floats
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
+        # Don't randomize if random prob is larger than prob
+        if random.random() > prob:
+            return self
+
         # Get random rhythm mod from class dict or custom dict
         if custom_len_mod_list is None: 
             self.length_mod = \

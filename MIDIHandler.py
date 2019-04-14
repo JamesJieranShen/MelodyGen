@@ -19,7 +19,7 @@ class MIDIHandler():
     PRINT_NOTES = False
     MIDI_CHANNEL_1 = 0x0
     
-    def __init__(self, tempo=120, debug=DEBUG_ON):
+    def __init__(self, tempo=120, print_notes=PRINT_NOTES, debug=DEBUG_ON):
         """Default constructor for MIDIHandler. 
         
         :param tempo: Tempo of MIDIHandler
@@ -32,6 +32,8 @@ class MIDIHandler():
         :rtype: MIDIHandler
         """
         self.tempo = tempo
+        self.print_notes = print_notes
+        self.debug = debug
 
         # Get inputs/outputs
         self.outputs = mido.get_output_names()
@@ -137,8 +139,8 @@ class MIDIHandler():
         msg = [0x90 + chan, note.note, note.vel]
 
         # Debug print
-        if self.DEBUG_ON or self.PRINT_NOTES:
-            print(note.note, msg)
+        if self.print_notes:
+            print(note)
 
         self.midi_output.send(self.MSG(msg))
 

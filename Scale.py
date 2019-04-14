@@ -32,8 +32,6 @@ class Scale():
         self.intervals = []
         self.is_major = False
         self.is_minor = False
-        #self.has_sharps = False
-        #self.has_flats = False
         self.notes = []
 
         # Assign mode and determine major/minor
@@ -73,7 +71,7 @@ class Scale():
         :return: MIDI value of note 
         :rtype: int 
         """
-        return (starting_octave + 2) * const.MIDI_KEY_DICT[key]
+        return (starting_octave + 2) * 12 + const.MIDI_KEY_DICT[key]
 
     # Static method to get scale intervals based on mode
     @staticmethod

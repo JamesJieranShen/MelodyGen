@@ -178,7 +178,7 @@ values</p></li>
 
 <dl class="method">
 <dt id="Note.Note.rand">
-<code class="descname">rand</code><span class="sig-paren">(</span><em>scale</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rand</code><span class="sig-paren">(</span><em>scale</em>, <em>custom_len_list=None</em>, <em>custom_len_mod_list=None</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize note and rhythm values of Note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -186,6 +186,7 @@ values</p></li>
 <li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale object to pick random note from</p></li>
 <li><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p></li>
 <li><p><strong>custom_len_mod_list</strong> (<em>Dict of floats</em>) – Optional list of custom length modifier values</p></li>
+<li><p><strong>prob</strong> (<em>float</em>) – Probability that note is randomized</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -199,11 +200,14 @@ values</p></li>
 
 <dl class="method">
 <dt id="Note.Note.rand_length">
-<code class="descname">rand_length</code><span class="sig-paren">(</span><em>custom_len_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_length" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rand_length</code><span class="sig-paren">(</span><em>custom_len_list=None</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize length value of Note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_len_list</strong> (<em>List of floats</em>) – Optional list of custom length values</p></li>
+<li><p><strong>prob</strong> (<em>float</em>) – Probability that note is randomized</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>No return, modifys existing object</p>
@@ -216,11 +220,14 @@ values</p></li>
 
 <dl class="method">
 <dt id="Note.Note.rand_length_mod">
-<code class="descname">rand_length_mod</code><span class="sig-paren">(</span><em>custom_len_mod_list=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_length_mod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rand_length_mod</code><span class="sig-paren">(</span><em>custom_len_mod_list=None</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_length_mod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class method to randomize rhythm value of Note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_len_mod_list</strong> (<em>List of Strings</em>) – Optional list of custom length modifier values</p></li>
+<li><p><strong>prob</strong> (<em>floats</em>) – Probability that note is randomized</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>No return, modifys existing object</p>
@@ -233,13 +240,14 @@ values</p></li>
 
 <dl class="method">
 <dt id="Note.Note.rand_note">
-<code class="descname">rand_note</code><span class="sig-paren">(</span><em>scale=None</em>, <em>threshold=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_note" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rand_note</code><span class="sig-paren">(</span><em>scale=None</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note.rand_note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to get random note.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Optional scale to choose random note from</p></li>
 <li><p><strong>threshold</strong> (<em>float</em>) – Threshold for sharps (0) vs flats (1)</p></li>
+<li><p><strong>prob</strong> (<em>floats</em>) – Probability that note is randomized</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

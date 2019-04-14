@@ -9,38 +9,29 @@ import random
 import Constants as const
 
 
-# Phrase building
-#test_scale = Scale.Scale("A", 'HARM_MINOR', 3)
-test_scale = Scale.Scale(60, "BLUES")
-#test_phrase = Phrase.Phrase(120)
-test_note = Note.Note.copy_note(test_scale.notes[1])
+# Scales 
+a_harm_min = Scale.Scale("A", 'HARM_MINOR', 4)
+c_min_pent = Scale.Scale("C", 'MINOR_PENT', 4)
+g_phrygian = Scale.Scale("G", 'PHRYGIAN', 4)
 
-#print(test_scale)
-print(test_note)
+scales = [a_harm_min, c_min_pent, g_phrygian]
 
-test_note.mutate(test_scale)
-print(test_note)
-'''
-test_note.mutate_length()
-print(test_note)
-test_note.mutate_length_mod()
-print(test_note)
-'''
-'''
-# Populate Phrase
-for i in range(len(test_scale)):
-    test_note = test_scale.notes[i]
-    #test_note.rand_note(test_scale)
-    #print(test_note.prob)
-    #print(test_note)
-    test_phrase.append(test_note)
+for scale in scales:
+    print(scale)
 
-# Copy phrase and mutate
-rev_phrase = Phrase.Phrase.copy_ctor(test_phrase)
-rev_phrase.reverse()
+# Vars
+phrase_len = 16
+play_len = 5
 
-print("Phrase 1")
-test_phrase.play()
-print("Phrase 2")
-rev_phrase.play()
-'''
+# Phrase
+phrase = Phrase.Phrase(120, True)
+
+for i in range(phrase_len):
+    phrase.append(Note.Note(length=1/16,
+        length_mod=1, scale=a_harm_min))
+
+while(True):
+    phrase.play()
+    for note in phrase.phrase:
+        note.rand_note(scale=random.choice(scales), prob=0.2)
+        note.mutate_length(prob=0.01)
