@@ -45,14 +45,6 @@ class Phrase():
             self.handler.play_note(note)
         print('\n')
     
-    # Utility method to reverse phrase
-    def reverse(self):
-        """Utility method to reverse Phrase. 
-        
-        :return: None, modifys object in place 
-        :rtype: None 
-        """
-        self.phrase.reverse()
 
     # Build phrase
     def generate_phrase(self):
@@ -121,6 +113,45 @@ class Phrase():
         """
         input_note = Note.Note.copy_note(input_note)
         self.phrase.append(input_note)
+    
+    # Utility methods for phrase manipulation
+    
+    # Utility method to reverse Phrase.  
+    def reverse(self):
+        """Utility method to reverse Phrase. 
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        self.phrase.reverse()
+
+    def flip(self):
+        """Reverse all intervals in the Phrase.
+
+        :return: None, modifies object in place
+        :rtype: None
+        """
+        first_note = self.phrase[0].get_note()
+        for note in self.phrase:
+            original_value = note.get_note()
+            interval = original_value - first_note
+            new_value = first_note - interval
+            note.set_note(new_value)
+
+    def unify_prob(self, prob=1.0):
+        """Set prob of all notes in phrase to be the same.
+
+        :param prob:    new probablity to be set
+
+        :type prob:     float
+
+        :return:        No return, modifies existing object
+        :rtype:         None
+        """
+
+        for note in self.phrase:
+            note.set_prob(prob)
+
 
     # Str representation of Phrase
     def __str__(self):

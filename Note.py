@@ -375,6 +375,7 @@ class Note():
         """
         self.note = note
         return self
+    
 
     # Set length value
     def set_length(self, length):
