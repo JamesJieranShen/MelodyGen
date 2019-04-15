@@ -39,22 +39,19 @@ for i in range(phrase_len):
     phrase.append(Note.Note(length=1/16,
         length_mod=1, scale=a_harm_min, prob=0.8))
 
-
 while(True):
     phrase.play()
-    phrase.unify_prob()
-    if random.random() < 0.5:
-        phrase.reverse()
-        print("Reversed")
-    else:
-        phrase.flip();
-        print("Flipped")
-
+    #phrase.unify_prob()
+    if random.random() < 0.2:
+        if random.random() < 0.5:
+            phrase.reverse()
+            print("Reversed")
+        else:
+            phrase.flip();
+            print("Flipped")
     
-    """
     for note in phrase.phrase:
         note.rand_note(scale=random.choice(scales), prob=0.2)
         note.mutate_length(prob=0.01)
-    """
 
 sys.exit();
