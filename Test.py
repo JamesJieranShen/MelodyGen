@@ -41,17 +41,15 @@ for i in range(phrase_len):
 
 while(True):
     phrase.play()
-    #phrase.unify_prob()
-    if random.random() < 0.2:
+    phrase.unify_prob()
+    if random.random() < 1:
         if random.random() < 0.5:
             phrase.reverse()
             print("Reversed")
         else:
             phrase.flip();
             print("Flipped")
-    
     for note in phrase.phrase:
         note.rand_note(scale=random.choice(scales), prob=0.2)
         note.mutate_length(prob=0.01)
-
 sys.exit();

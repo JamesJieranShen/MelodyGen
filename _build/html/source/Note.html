@@ -34,7 +34,7 @@
 <span id="note-module"></span><h1>Note module<a class="headerlink" href="#module-Note" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-Note"></span><dl class="class">
 <dt id="Note.Note">
-<em class="property">class </em><code class="descclassname">Note.</code><code class="descname">Note</code><span class="sig-paren">(</span><em>note=None</em>, <em>vel=100</em>, <em>length=None</em>, <em>length_mod=None</em>, <em>prob=1</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">Note.</code><code class="descname">Note</code><span class="sig-paren">(</span><em>note=None</em>, <em>vel=100</em>, <em>length=None</em>, <em>length_mod=None</em>, <em>prob=1</em>, <em>scale=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Note.Note" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Default constructor for Note. Assigns random pitch and length if not 
 specified.</p>
@@ -46,6 +46,7 @@ specified.</p>
 <li><p><strong>length</strong> (<em>float</em>) – Length of note</p></li>
 <li><p><strong>length_mod</strong> (<em>float</em>) – Rhythm modifier (dotted, triplet, etc.)</p></li>
 <li><p><strong>prob</strong> – Probability that note is triggered</p></li>
+<li><p><strong>scale</strong> (<a class="reference internal" href="Scale.html#Scale.Scale" title="Scale.Scale"><em>Scale</em></a>) – Scale to choose random notes from</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

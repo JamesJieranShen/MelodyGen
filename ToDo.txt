@@ -1,5 +1,6 @@
 Note:
-- Implement mutate, mutate_note, mutate_length, mutate_length_mod, mutate_prob
+- Implement is_valid (midi note between 0 and 127)
+- Implement mutate_prob
 
 Phrase:
 - Implement mutate (with 'type' input - all, note, length, etc.)
