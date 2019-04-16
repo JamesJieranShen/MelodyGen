@@ -16,7 +16,7 @@ import Constants as const
 class Note():
 
     def __init__(self, note=None, vel=100, length=None, length_mod=None,
-            prob=1, scale=None):
+            prob=1, scale=None, accented=False):
         """Default constructor for Note. Assigns random pitch and length if not 
         specified.
         
@@ -66,6 +66,9 @@ class Note():
 
         # Set note probability
         self.prob = prob
+
+        # Set note accent
+        self.accented = accented
 
     # Copy ctor for Note
     @staticmethod
