@@ -11,6 +11,9 @@
 import random
 import time
 import mido
+import Note
+import os
+import gc
 
 # Object to handle playing MIDI data
 class MIDIHandler():
@@ -18,7 +21,7 @@ class MIDIHandler():
     DEBUG_ON = False
     PRINT_NOTES = False
     MIDI_CHANNEL_1 = 0x0
-    
+
     def __init__(self, tempo=120, print_notes=PRINT_NOTES, debug=DEBUG_ON):
         """Default constructor for MIDIHandler. 
         
@@ -61,10 +64,14 @@ class MIDIHandler():
         if (random.random() <= note.prob):
             trig = True
 
-        if trig: self.note_on(note)
-        time.sleep((240 * note.length * note.length_mod) / self.tempo)
-        if trig: self.note_off(note)
-
+        try:
+            if trig: self.note_on(note)
+            time.sleep((240 * note.length * note.length_mod) / self.tempo)
+            if trig: self.note_off(note)
+        except KeyboardInterrupt:
+            self.note_off(note)
+            gc.collect(generation=2)
+            os._exit(0)
 
     def print_io(self, debug):
         """Utility method to print input/output debug info. 
