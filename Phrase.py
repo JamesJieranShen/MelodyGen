@@ -53,14 +53,8 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        ## Manual phrase building
-        #phrase1 = []
-        #phrase2 = []
-        #print("run")
-        #test_note = note.Note("C")
-        #scale = scale.Scale("A", 'HARM_MINOR', 3)
-        #handler = handler.MIDIHandler(100)
-
+            
+    
     # Set phrase
     def set_phrase(self, phrase):
         """Utility method to set Phrase. 
@@ -148,10 +142,8 @@ class Phrase():
         :return:        No return, modifies existing object
         :rtype:         None
         """
-
         for note in self.phrase:
             note.set_prob(prob)
-
 
     # Str representation of Phrase
     def __str__(self):

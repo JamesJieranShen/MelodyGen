@@ -9,15 +9,16 @@ import random
 import Constants as const
 
 # Scales 
-a_harm_min = Scale.Scale("A", 'HARM_MINOR', 4)
-c_min_pent = Scale.Scale("C", 'MINOR_PENT', 4)
-g_phrygian = Scale.Scale("G", 'PHRYGIAN', 4)
+e = Scale.Scale("E", 'MAJOR', 3)
+g = Scale.Scale("G", 'MAJOR', 3)
+c = Scale.Scale("C", 'MAJOR_PENT', 4)
 
-scales = [a_harm_min, c_min_pent, g_phrygian]
+scales = [e, c, g]
 
+"""
 for scale in scales:
     print(scale)
-
+"""
 # Vars
 phrase_len = 16
 play_len = 5
@@ -35,13 +36,13 @@ handler.play_note(note);
 phrase = Phrase.Phrase(120, True)
 
 for i in range(phrase_len):
-    phrase.append(Note.Note(length=1/4,
-        length_mod=1, scale=a_harm_min, prob=0.8))
+    phrase.append(Note.Note(length=1/16,
+        length_mod=random.choice([1, 1.5, 2/3]), scale=random.choice(scales), prob=0.8))
 
 while(True):
     phrase.play()
-    phrase.unify_prob()
-    if random.random() < 1:
+    #phrase.unify_prob()
+    if random.random() < 0.2:
         if random.random() < 0.5:
             phrase.reverse()
             print("Reversed")
@@ -49,5 +50,5 @@ while(True):
             phrase.flip();
             print("Flipped")
     for note in phrase.phrase:
-        note.rand_note(scale=random.choice(scales), prob=0.2)
-        note.mutate_length(prob=0.01)
+        note.rand_note(scale=random.choice(scales), prob=0.15)
+        note.mutate_length(prob=0.05)

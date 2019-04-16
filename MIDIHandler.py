@@ -70,6 +70,7 @@ class MIDIHandler():
             if trig: self.note_off(note)
         except KeyboardInterrupt:
             self.note_off(note)
+            print('\n')
             gc.collect(generation=2)
             os._exit(0)
 
