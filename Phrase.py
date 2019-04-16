@@ -13,10 +13,9 @@ import time
 import mido
 import Note
 import Scale
-import Slot
 import MIDIHandler as handler
 
-# Phrase object. Is an array of Slots.
+# Phrase object. Is an array of Notes.
 class Phrase():
     def __init__(self, tempo=120, debug=False):
         """Default constructor for Phrase. 
@@ -42,13 +41,10 @@ class Phrase():
         :return: Plays Phrase via MIDIHandler
         :rtype: None 
         """
-        for slot in self.phrase:
-            trig = False
-            if (random.random() <= slot.prob):
-                trig = True
-            if trig: self.handler.note_on(slot)
-            time.sleep((240 * slot.length * slot.length_mod) / self.tempo)
-            if trig: self.handler.note_off(slot)
+        for note in self.phrase:
+            self.handler.play_note(note)
+        print('\n')
+    
 
     # Build phrase
     def generate_phrase(self):
@@ -99,24 +95,63 @@ class Phrase():
         new_phrase.handler = old_phrase.handler
 
         # Copy actual phrase info
-        for slot in old_phrase.phrase:
-            new_phrase.append(slot)
+        for note in old_phrase.phrase:
+            new_phrase.append(note)
         
         return new_phrase 
 
     # Append to Phrase
-    def append(self, input_slot):
-        """Utility method to append a Slot to a Phrase
+    def append(self, input_note):
+        """Utility method to append a Note to a Phrase
         
-        :param input_slot: Slot to append 
+        :param input_slot: Note to append 
         
-        :type input_slot: Slot 
+        :type input_slot: Note 
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        input_slot = Slot.Slot.copy_ctor(input_slot)
-        self.phrase.append(input_slot)
+        input_note = Note.Note.copy_note(input_note)
+        self.phrase.append(input_note)
+    
+    # Utility methods for phrase manipulation
+    
+    # Utility method to reverse Phrase.  
+    def reverse(self):
+        """Utility method to reverse Phrase. 
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        self.phrase.reverse()
+
+    def flip(self):
+        """Reverse all intervals in the Phrase.
+
+        :return: None, modifies object in place
+        :rtype: None
+        """
+        first_note = self.phrase[0].get_note()
+        for note in self.phrase:
+            original_value = note.get_note()
+            interval = original_value - first_note
+            new_value = first_note - interval
+            note.set_note(new_value)
+
+    def unify_prob(self, prob=1.0):
+        """Set prob of all notes in phrase to be the same.
+
+        :param prob:    new probablity to be set
+
+        :type prob:     float
+
+        :return:        No return, modifies existing object
+        :rtype:         None
+        """
+
+        for note in self.phrase:
+            note.set_prob(prob)
+
 
     # Str representation of Phrase
     def __str__(self):

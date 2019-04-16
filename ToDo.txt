@@ -1,9 +1,15 @@
-Combine Slot and Phrase:
-Switch over to MIDI numbers (instead of note values)
-- Make a note to scale method (input of note and scale)
+Note:
+- Implement is_valid (midi note between 0 and 127)
+- Implement mutate_prob
+
+Scale:
+- Implement get_scale_degree method - returns a copy of a note
+  at a certain scale degree
+- Implement a get_note method - each note in scale has a certain
+  probablity of being chosen (some more than others)
 
 Phrase:
-- Implement mutate_rhythm
+- Implement mutate (with 'type' input - all, note, length, etc.)
 - Implement generate phrase (based on algorithm)
 - Implement different algorithms? 
 

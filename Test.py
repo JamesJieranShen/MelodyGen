@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import Note
 import Scale
-import Slot
 import Phrase
 import MIDIHandler as handler
 import mido
@@ -9,31 +8,46 @@ import time
 import random
 import Constants as const
 
-# Constant slot dictionaries
-SLOT_TYPE_DICT = ["NOTE", "REST"]
-SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
-SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
+# Scales 
+a_harm_min = Scale.Scale("A", 'HARM_MINOR', 4)
+c_min_pent = Scale.Scale("C", 'MINOR_PENT', 4)
+g_phrygian = Scale.Scale("G", 'PHRYGIAN', 4)
 
-# Phrase building
-test_note = Note.Note("C")
-test_scale = Scale.Scale("A", 'HARM_MINOR', 3)
-test_phrase = Phrase.Phrase(120)
-#print(str(test_scale))
+scales = [a_harm_min, c_min_pent, g_phrygian]
 
-# Populate Phrase
-for i in range(len(test_scale)):
-    test_slot = Slot.Slot(test_note, SLOT_LEN_DICT[4],
-            SLOT_LEN_MOD_DICT["NONE"])
-    test_slot.rand_note(test_scale)
-    test_phrase.append(test_slot)
+for scale in scales:
+    print(scale)
 
-# Copy phrase and mutate
-mutate_phrase = Phrase.Phrase.copy_ctor(test_phrase)
-for slot in mutate_phrase.phrase:
-    slot.mutate_note(test_scale, 0.5)
+# Vars
+phrase_len = 16
+play_len = 5
 
-print("Phrase 1")
-test_phrase.play()
+"""
+# Notes
+note = Note.Note(note = 60, vel = 100, length = 1/2, length_mod = 1, prob = 1)
+handler = handler.MIDIHandler(tempo = 80);
+handler.play_note(note);
+note.pitch_shift(7);
+handler.play_note(note);
+"""
 
-print("Phrase 2")
-#mutate_phrase.play()
+# Phrase
+phrase = Phrase.Phrase(120, True)
+
+for i in range(phrase_len):
+    phrase.append(Note.Note(length=1/4,
+        length_mod=1, scale=a_harm_min, prob=0.8))
+
+while(True):
+    phrase.play()
+    phrase.unify_prob()
+    if random.random() < 1:
+        if random.random() < 0.5:
+            phrase.reverse()
+            print("Reversed")
+        else:
+            phrase.flip();
+            print("Flipped")
+    for note in phrase.phrase:
+        note.rand_note(scale=random.choice(scales), prob=0.2)
+        note.mutate_length(prob=0.01)

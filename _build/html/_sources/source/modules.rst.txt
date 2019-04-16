@@ -8,5 +8,4 @@ Python
    Note
    Phrase
    Scale
-   Slot
    Constants

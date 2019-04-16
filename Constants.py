@@ -21,6 +21,28 @@ OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
 """
 """
 
+# Dict of MIDI note values
+MIDI_KEY_DICT = {"C": 0,
+        "C#": 1,
+        "Db": 1,
+        "D": 2,
+        "D#": 3,
+        "Eb": 3,
+        "E": 4,
+        "F": 5,
+        "F#": 6,
+        "Gb": 6,
+        "G": 7,
+        "G#": 8,
+        "Ab": 8,
+        "A": 9,
+        "A#": 10,
+        "Bb": 10,
+        "B": 11
+        }
+"""
+"""
+
 # Order of sharps/flats
 ORDER_OF_SHARPS = ["F", "C", "G", "D", "A", "E", "B"]
 """
@@ -60,13 +82,13 @@ MINOR_SHARP_FLAT_DICT = {'C': 'b', 'Cs': 's', 'Db': 'b', 'D': 'b', 'Ds': 's', 'E
                         'Ab': 'b', 'A': 'n', 'As': 's', 'Bb': 'b', 'B': 's'}
 """
 """
-# Constant slot dictionaries
-SLOT_TYPE_DICT = ["NOTE", "REST"]
+# Constant note length dictionaries
+NOTE_TYPE_DICT = ["NOTE", "REST"]
 """
 """
-SLOT_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
+NOTE_LEN_DICT = [1/64, 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2]
 """
 """
-SLOT_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
+NOTE_LEN_MOD_DICT = {"NONE": 1, "TRIPLET": 2/3, "DOTTED": 1.5}
 """
 """ 
