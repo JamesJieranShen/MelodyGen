@@ -53,7 +53,27 @@ class Generate():
         :rtype: Generate
         """
         return Generate(old_generate.algorithm, old_generate.params) 
+    
+    @staticmethod
+    def check_params(alg_name, required_params, params):
+        """Static utility method that checks to make sure all required parameters
+        were passed in to generative algorithm.
+        
+        :param alg_name: Name of algorithm 
+        :param required_params: Required parameters
+        :param params: Parameters passed in 
 
+        :type params: String 
+        :type params: List 
+        :type params: Dict 
+
+        :return: No return, raises ValueError 
+        :rtype: None
+        """
+        for param in required_params:
+            if param not in params.keys():
+                raise ValueError("Generate {}: {} not specified".format(alg_name, param))
+    
     def generate_map_mod(params):
         """Generative algorithm that maps numbers to scale degrees
         and scale modulations based on an input file.
@@ -76,10 +96,8 @@ class Generate():
         required_params = ["scales", "input", "gen_len"]
         
         # Error checking for params
-        for param in required_params:
-            if param not in params.keys():
-                raise ValueError("Generate MapMod: {} not specified".format(param))
-        
+        Generate.check_params("MapMod", required_params, params)
+
         # Local vars to generate phrase
         working_phrase = []
         active_scale = params["scales"][0]
