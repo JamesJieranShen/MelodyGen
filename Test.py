@@ -13,6 +13,7 @@ import random
 e = Scale.Scale("E", 'MAJOR', 3)
 g = Scale.Scale("G", 'MAJOR', 3)
 c = Scale.Scale("C", 'MAJOR_PENT', 4)
+d = Scale.Scale("D", "HARM_MINOR", 4)
 
 scales = [e, c, g]
 
@@ -56,8 +57,13 @@ while(True):
         note.mutate_length(prob=0.05)
 """
 #print(e)
-phrase.generate_phrase("MapMod", {"input": "pi.txt", "scales": [e, g, c], "gen_len": 20})
+phrase.generate_phrase("MapMod", {"input": "pi.txt", "scales": [c, e, g],
+    "gen_len": 50})
 
 for note in phrase.phrase:
-    note.set_length(1/16)
-print(phrase)
+    note.set_prob(0.8)
+    if random.random() < 0.5:
+        note.set_length(1/16)
+    else:
+        note.set_length(1/8)
+phrase.play()
