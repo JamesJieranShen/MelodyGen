@@ -79,17 +79,32 @@ class Generate():
             raise ValueError("Generate MapMod: Input file not specified")
         if ("gen_len" not in params.keys()):
             raise ValueError("Generate MapMod: Generate length not specified") 
-        
+       
+        # Local vars to generate phrase
+        working_phrase = []
+        active_scale = params["scales"][0]
+        counter = 0
+
         # Read in one character at a time from file
-        '''
-        with open("filename") as fileobj:
+        with open(params["input"]) as fileobj:
             for line in fileobj:  
                 for ch in line: 
+                    # Check if character is a number
                     if ch.isdigit():
-                        working_phrase.append(ch)
-        '''
+                        ch_int = int(ch)
+                        # If digit is between 0-scale length, add note
+                        if (0 <= ch_int <= len(active_scale)):
+                            # Append scale degree of active_scale based on ch
+                            working_phrase.append(active_scale.get_scale_degree(int(ch)))
+                            # Counter logic to break after desired length
+                            counter += 1
+                            if counter >= params["gen_len"]:
+                                break
+                        # If digit is between scale length -9, change active_scale
+                        elif (len(active_scale) < ch_int <= 9):
+                            active_scale = random.choice(params["scales"])
 
-        return params["scales"].notes
+        return working_phrase 
 
     # Str representation of Generate
     def __str__(self):

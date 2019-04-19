@@ -55,7 +55,9 @@ while(True):
         note.rand_note(scale=random.choice(scales), prob=0.15)
         note.mutate_length(prob=0.05)
 """
+#print(e)
+phrase.generate_phrase("MapMod", {"input": "pi.txt", "scales": [e, g, c], "gen_len": 20})
 
-print(e.get_scale_degree(1))
-phrase.generate_phrase("MapMod", {"input": "asdf.txt", "scales": e, "gen_len": 5})
+for note in phrase.phrase:
+    note.set_length(1/16)
 print(phrase)
