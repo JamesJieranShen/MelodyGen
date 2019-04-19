@@ -55,6 +55,23 @@ class Generate():
         return Generate(old_generate.algorithm, old_generate.params) 
 
     def generate_map_mod(params):
+        """Generative algorithm that maps numbers to scale degrees
+        and scale modulations based on an input file.
+        
+        :param params: Dictionary of parameters 
+        :param params["scales"]: List of Scales to generate notes from (and
+        modulate to)
+        :param params["input"]: Input file to read from
+        :param params["gen_len"]: How long of a phrase to generate
+
+        :type params: Dictionary 
+        :type params["scales"]: List
+        :type params["input"]: Text file
+        :type params["gen_len"]: int
+
+        :return: Returns an array of Note objects
+        :rtype: List
+        """
         return params["scale"].notes
 
     # Str representation of Generate

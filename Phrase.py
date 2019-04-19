@@ -54,7 +54,7 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        self.phrase = Generate.Generate(algorithm, params)
+        self.set_phrase(Generate.Generate(algorithm, params))
     
     # Set phrase
     def set_phrase(self, phrase):
