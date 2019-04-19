@@ -59,8 +59,8 @@ class Generate():
         and scale modulations based on an input file.
         
         :param params: Dictionary of parameters 
-        :param params["scales"]: List of Scales to generate notes from (and
-        modulate to)
+        :param params["scales"]: List of Scales to generate notes from
+            (and modulate to)
         :param params["input"]: Input file to read from
         :param params["gen_len"]: How long of a phrase to generate
 
@@ -72,7 +72,24 @@ class Generate():
         :return: Returns an array of Note objects
         :rtype: List
         """
-        return params["scale"].notes
+        # Error checking for params
+        if ("scales" not in params.keys()):
+            raise ValueError("Generate MapMod: Scales not specified")
+        if ("input" not in params.keys()):
+            raise ValueError("Generate MapMod: Input file not specified")
+        if ("gen_len" not in params.keys()):
+            raise ValueError("Generate MapMod: Generate length not specified") 
+        
+        # Read in one character at a time from file
+        '''
+        with open("filename") as fileobj:
+            for line in fileobj:  
+                for ch in line: 
+                    if ch.isdigit():
+                        working_phrase.append(ch)
+        '''
+
+        return params["scales"].notes
 
     # Str representation of Generate
     def __str__(self):

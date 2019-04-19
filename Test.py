@@ -57,7 +57,5 @@ while(True):
 """
 
 print(e.get_scale_degree(1))
-phrase.generate_phrase("MapMod", {"scale": e, "index": 5})
-print(phrase)
-phrase.generate_phrase("MapMod", {"scale": g})
+phrase.generate_phrase("MapMod", {"input": "asdf.txt", "scales": e, "gen_len": 5})
 print(phrase)
