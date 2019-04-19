@@ -72,14 +72,14 @@ class Generate():
         :return: Returns an array of Note objects
         :rtype: List
         """
+        # List of required params
+        required_params = ["scales", "input", "gen_len"]
+        
         # Error checking for params
-        if ("scales" not in params.keys()):
-            raise ValueError("Generate MapMod: Scales not specified")
-        if ("input" not in params.keys()):
-            raise ValueError("Generate MapMod: Input file not specified")
-        if ("gen_len" not in params.keys()):
-            raise ValueError("Generate MapMod: Generate length not specified") 
-       
+        for param in required_params:
+            if param not in params.keys():
+                raise ValueError("Generate MapMod: {} not specified".format(param))
+        
         # Local vars to generate phrase
         working_phrase = []
         active_scale = params["scales"][0]
