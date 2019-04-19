@@ -55,7 +55,7 @@ class Generate():
         return Generate(old_generate.algorithm, old_generate.params) 
 
     def generate_map_mod(params):
-        return params["scale"]
+        return params["scale"].notes
 
     # Str representation of Generate
     def __str__(self):

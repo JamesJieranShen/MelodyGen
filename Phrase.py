@@ -54,7 +54,7 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        return Generate.Generate(algorithm, params)
+        self.phrase = Generate.Generate(algorithm, params)
     
     # Set phrase
     def set_phrase(self, phrase):
@@ -153,5 +153,9 @@ class Phrase():
         :return: String representation of Phrase
         :rtype: String 
         """
-        return ("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
+        print("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
                 len(self.phrase), self.tempo, self.debug))
+        if self.debug:
+            for note in self.phrase:
+                print('\t', note)
+        return ""

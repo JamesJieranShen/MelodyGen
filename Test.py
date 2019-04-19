@@ -55,4 +55,6 @@ while(True):
         note.rand_note(scale=random.choice(scales), prob=0.15)
         note.mutate_length(prob=0.05)
 """
-print(phrase.generate_phrase("MapMod", {"scale": 1}))
+phrase.generate_phrase("MapMod", {"scale": e})
+
+print(phrase)
