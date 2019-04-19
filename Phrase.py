@@ -13,6 +13,7 @@ import time
 import mido
 import Note
 import Scale
+import Generate
 import MIDIHandler as handler
 
 # Phrase object. Is an array of Notes.
@@ -47,13 +48,13 @@ class Phrase():
     
 
     # Build phrase
-    def generate_phrase(self):
-        """WORK IN PROGRESS - Class method to generate Phrase. 
+    def generate_phrase(self, algorithm, params):
+        """Class method to generate Phrase - delegates to Generate. 
        
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-            
+        return Generate.Generate(algorithm, params)
     
     # Set phrase
     def set_phrase(self, phrase):

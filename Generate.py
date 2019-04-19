@@ -16,7 +16,8 @@ import Phrase
 
 # Generate object - takes in type of algorithm and array of params 
 class Generate():
-    def __init__(self, algorithm, params):
+    
+    def __new__(cls, algorithm, params):
         """Constructor for Generate object
         
         :param algorithm: Algorithm to use to generate Phrase 
@@ -28,9 +29,17 @@ class Generate():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        self.algorithm = algorithm
-        self.params = params
-   
+        ALGORITHM_DICT = {"MapMod" : cls.generate_map_mod}
+
+        if algorithm not in ALGORITHM_DICT.keys():
+            raise ValueError("Generate algorithm invalid")
+        else:
+            cls.algorithm = algorithm
+            cls.params = params
+
+        phrase = ALGORITHM_DICT[cls.algorithm](cls.params)
+        return phrase
+
     # Copy ctor for Generate
     @staticmethod
     def copy_ctor(old_generate):
@@ -44,6 +53,9 @@ class Generate():
         :rtype: Generate
         """
         return Generate(old_generate.algorithm, old_generate.params) 
+
+    def generate_map_mod(params):
+        return params["scale"]
 
     # Str representation of Generate
     def __str__(self):
