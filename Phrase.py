@@ -14,6 +14,7 @@ import mido
 import Note
 import Scale
 import MIDIHandler as handler
+import Signature as signature
 
 # Phrase object. Is an array of Notes.
 class Phrase():
@@ -33,7 +34,24 @@ class Phrase():
         self.tempo = tempo
         self.debug = debug
         self.handler = handler.MIDIHandler(tempo, debug)
+        self.signature = None
+
+    def attach_signature(self, signature):
+        if self.signature is not None:
+            detach_signature()
+        self.signature = signature
+        on_attach_signature()
     
+    def detach_signature(self):
+        self.signature = None
+        on_detattch_signature()
+    
+    def on_attach_signature(self):
+        pass
+
+    def on_detach_signature(self):
+        pass
+
     # Utility method to play phrase
     def play(self):
         """Utility method to play Phrase. 

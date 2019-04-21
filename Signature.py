@@ -1,4 +1,4 @@
-#!/usr//env python3
+#!/usr/bin/env python3
 """
 .. module:: Signature
    :platform: Mac, Unix, Windows
@@ -28,8 +28,8 @@ class Signature():
         :return:            Returns a Signature object
         :rtype:             Signature
         """
-        if Signature is not None 
-            and isinstance(Signature, classinfo = Signature):
+        if Signature is not None and isinstance(Signature, 
+                classinfo = Signature):
             self.num_beats = Signature.num_beats
             self.beat = Signature.beat
             self._accents = Signature.get_accents()
@@ -126,7 +126,7 @@ class Signature():
             print("CATASTROPHIC FAILURE: list is not valid.")
             return False
         for i in range(accent_list):
-            self._accents[] = accent_list[i]
+            self._accents[i] = accent_list[i]
         return True
 
 # Other Setters and Getters
@@ -150,10 +150,8 @@ class Signature():
             self.beat = Fraction(beatValue)
 
     def __str__(self):
-        return """<Signature: %s  accents: [%s]>""" 
-                % ( Fraction(self.num_beats * self.beat)
-                    " ".join(str(x) for x in self._accents
-                )
+        return "<Signature: %s  accents: [%s]>" % ( Fraction(self.num_beats * 
+            self.beat), " ".join(str(x) for x in self._accents))
 
 
 
