@@ -9,3 +9,4 @@ Python
    Phrase
    Scale
    Constants
+   Generate

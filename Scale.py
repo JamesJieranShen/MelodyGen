@@ -48,9 +48,6 @@ class Scale():
         else:
             self.key = key
 
-        # Assign sharps/flats
-        #self.has_sharps, self.has_flats = self.get_sharps_flats(self.key)
-        
         # Lookup/calculate intervals, major/minor, sharps/flats
         self.intervals = Scale.get_intervals(self.mode)
 
@@ -105,38 +102,6 @@ class Scale():
             # 1: Major, 2: Minor
             return False, True
 
-    '''
-    # Class method to determine if scale has sharps or flats
-    def get_sharps_flats(self, key):
-        """Class method to determine if scale has sharps or flats.
-        
-        :param key: Key of scale
-        
-        :type key: String
-
-        :return: Pair of booleans (#1 Sharps, #2 Flats)
-        :rtype: booleans
-        """
-        # Assign sharp_flat_dict based on if major or minor
-        if self.is_major:
-            # Major sharp/flat dict
-            sharp_flat_dict = const.MAJOR_SHARP_FLAT_DICT
-        else:
-            # Minor sharp/flat dict
-            sharp_flat_dict = const.MINOR_SHARP_FLAT_DICT
-
-        # Check for key in sharp_flat_dict
-        if key in sharp_flat_dict:
-            if sharp_flat_dict[key] == 's':
-                # Has sharps
-                # 1: Sharps, 2: Flats
-                return True, False
-            else:
-                # Has flats
-                # 1: Sharps, 2: Flats
-                return False, True
-    '''
-
     # Class method to build scale
     def build_scale(self):
         """Method to build scale - called by __init__. 
@@ -155,6 +120,19 @@ class Scale():
             scale.append(Note.Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
                 const.NOTE_LEN_MOD_DICT["NONE"])) 
         return scale
+
+    # Class method to get scale degree of Scale
+    def get_scale_degree(self, degree): 
+        """Utility function to return scale degree of Scale.
+       
+        :param degree: Scale degree to return
+
+        :type degree: int
+        
+        :return: Note object at scale degree 
+        :rtype: Note 
+        """
+        return self.notes[degree-1]
 
     # String representation of Scale.
     def __str__(self):
