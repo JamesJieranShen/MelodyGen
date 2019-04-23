@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
+import melodygen as gen
+from melodygen import Note, Scale, Phrase, MIDIHandler as handler, Generate, Constants as const
+'''
 import Note
 import Scale
 import Phrase
 import MIDIHandler as handler
 import Generate
 import Constants as const
+'''
 import mido
 import time
 import random
 
 # Scales 
-e = Scale.Scale("E", 'MAJOR', 3)
-g = Scale.Scale("G", 'MAJOR', 3)
-c = Scale.Scale("C", 'MAJOR_PENT', 4)
-d = Scale.Scale("D", "HARM_MINOR", 4)
+e = gen.Scale("E", 'MAJOR', 3)
+g = gen.Scale("G", 'MAJOR', 3)
+c = gen.Scale("C", 'MAJOR_PENT', 4)
+d = gen.Scale("D", "HARM_MINOR", 4)
 
 scales = [e, c, g]
 
@@ -35,11 +39,10 @@ handler.play_note(note);
 """
 
 # Phrase
-phrase = Phrase.Phrase(120, True)
-
-"""
+phrase = gen.Phrase(120, True)
+'''
 for i in range(phrase_len):
-    phrase.append(Note.Note(length=1/16,
+    phrase.append(gen.Note(length=1/16,
         length_mod=random.choice([1, 1.5, 2/3]), scale=random.choice(scales), prob=0.8))
 
 while(True):
@@ -55,8 +58,8 @@ while(True):
     for note in phrase.phrase:
         note.rand_note(scale=random.choice(scales), prob=0.15)
         note.mutate_length(prob=0.05)
-"""
 #print(e)
+'''
 phrase.generate_phrase("MapMod", {"input": "pi.txt", "scales": [c, e, g],
     "gen_len": 50})
 
@@ -66,4 +69,5 @@ for note in phrase.phrase:
         note.set_length(1/16)
     else:
         note.set_length(1/8)
+
 phrase.play()
