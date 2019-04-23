@@ -13,6 +13,7 @@ import time
 import mido
 import Note
 import Scale
+import Generate
 import MIDIHandler as handler
 import Signature as signature
 
@@ -65,13 +66,13 @@ class Phrase():
     
 
     # Build phrase
-    def generate_phrase(self):
-        """WORK IN PROGRESS - Class method to generate Phrase. 
+    def generate_phrase(self, algorithm, params):
+        """Class method to generate Phrase - delegates to Generate. 
        
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-            
+        self.set_phrase(Generate.Generate(algorithm, params))
     
     # Set phrase
     def set_phrase(self, phrase):
@@ -170,5 +171,9 @@ class Phrase():
         :return: String representation of Phrase
         :rtype: String 
         """
-        return ("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
+        print("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
                 len(self.phrase), self.tempo, self.debug))
+        if self.debug:
+            for note in self.phrase:
+                print('\t', note)
+        return ""

@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Generate module &#8212; Melody Gen 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Generate">
+<span id="generate-module"></span><h1>Generate module<a class="headerlink" href="#module-Generate" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-Generate"></span><dl class="class">
+<dt id="Generate.Generate">
+<em class="property">class </em><code class="descclassname">Generate.</code><code class="descname">Generate</code><a class="headerlink" href="#Generate.Generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Constructor for Generate object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>String</em>) – Algorithm to use to generate Phrase</p></li>
+<li><p><strong>params</strong> – Array of params to pass into generative algorithm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Phrase object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="Phrase.html#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+</dd>
+</dl>
+<dl class="staticmethod">
+<dt id="Generate.Generate.check_params">
+<em class="property">static </em><code class="descname">check_params</code><span class="sig-paren">(</span><em>alg_name</em>, <em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.check_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static utility method that checks to make sure all required parameters
+were passed in to generative algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alg_name</strong> – Name of algorithm</p></li>
+<li><p><strong>required_params</strong> – Required parameters</p></li>
+<li><p><strong>params</strong> (<em>Dict</em>) – Parameters passed in</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, raises ValueError</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Generate.Generate.copy_ctor">
+<em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>old_generate</em><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.copy_ctor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static copy constructor for Generate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_phrase</strong> (<a class="reference internal" href="#Generate.Generate" title="Generate.Generate"><em>Generate</em></a>) – Generate object to copy</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Generate object, copy of old_generate</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Generate.Generate" title="Generate.Generate">Generate</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Generate.Generate.generate_map_mod">
+<code class="descname">generate_map_mod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.generate_map_mod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generative algorithm that maps numbers to scale degrees
+and scale modulations based on an input file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>Dictionary</em>) – Dictionary of parameters</p></li>
+<li><p><strong>params</strong><strong>[</strong><strong>&quot;scales&quot;</strong><strong>]</strong> (<em>List</em>) – List of Scales to generate notes from
+(and modulate to)</p></li>
+<li><p><strong>params</strong><strong>[</strong><strong>&quot;input&quot;</strong><strong>]</strong> (<em>Text file</em>) – Input file to read from</p></li>
+<li><p><strong>params</strong><strong>[</strong><strong>&quot;gen_len&quot;</strong><strong>]</strong> (<em>int</em>) – How long of a phrase to generate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns an array of Note objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Melody Gen</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicholas Schenone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/source/Generate.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
