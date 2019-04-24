@@ -1,9 +1,7 @@
 # Init.py
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from . import Constants
-from melodygen.Note import Note
+import os, sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+from melodygen.Constants import Constants
+from .Note import Note
 from melodygen.Scale import Scale
 from melodygen.Phrase import Phrase
 from melodygen.Generate import Generate
