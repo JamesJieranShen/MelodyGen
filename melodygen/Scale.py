@@ -8,8 +8,8 @@
 
 
 """
-import Note
-import Constants as const
+from note import Note
+import constants as const
 
 # Scale object. Is an array of Notes
 class Scale():

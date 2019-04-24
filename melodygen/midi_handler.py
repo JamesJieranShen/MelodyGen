@@ -13,7 +13,7 @@ import time
 import mido
 import os
 import gc
-import Note
+#from note import Note
 
 # Object to handle playing MIDI data
 class MIDIHandler():

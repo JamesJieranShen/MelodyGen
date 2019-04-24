@@ -10,9 +10,9 @@
 """
 import random
 import time
-import Note
-import Scale
-import Phrase
+#import note
+#import scale
+#import phrase
 
 # Generate object - takes in type of algorithm and array of params 
 class Generate():

@@ -1,1 +1,1 @@
-from . import melodygen
+import . from melodygen

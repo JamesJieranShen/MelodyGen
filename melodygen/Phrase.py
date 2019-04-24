@@ -11,11 +11,11 @@
 import random
 import time
 import mido
-import Note
-import Scale
-import Generate
-import MIDIHandler as handler
-import Signature as signature
+from note import Note
+#from scale import Scale
+from generate import Generate
+from midi_handler import MIDIHandler as handler
+#from signature import Signature
 
 # Phrase object. Is an array of Notes.
 class Phrase():
@@ -34,7 +34,7 @@ class Phrase():
         self.phrase = []
         self.tempo = tempo
         self.debug = debug
-        self.handler = handler.MIDIHandler(tempo, debug)
+        self.handler = handler(tempo, debug)
         self.signature = None
 
     def attach_signature(self, signature):
@@ -72,7 +72,7 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        self.set_phrase(Generate.Generate(algorithm, params))
+        self.set_phrase(Generate(algorithm, params))
     
     # Set phrase
     def set_phrase(self, phrase):

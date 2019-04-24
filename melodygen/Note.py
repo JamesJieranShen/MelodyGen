@@ -10,7 +10,7 @@
 """
 import random
 from fractions import Fraction
-import Constants as const
+import constants as const
 
 # Base note object. Has Name of pitch and MIDI value.
 class Note():
