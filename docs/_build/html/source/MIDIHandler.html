@@ -14,6 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Note module" href="Note.html" />
+    <link rel="prev" title="Python" href="modules.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -30,8 +32,166 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="midihandler-module">
-<h1>MIDIHandler module<a class="headerlink" href="#midihandler-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-MIDIHandler">
+<span id="midihandler-module"></span><h1>MIDIHandler module<a class="headerlink" href="#module-MIDIHandler" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-MIDIHandler"></span><dl class="class">
+<dt id="MIDIHandler.MIDIHandler">
+<em class="property">class </em><code class="descclassname">MIDIHandler.</code><code class="descname">MIDIHandler</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>print_notes=False</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default constructor for MIDIHandler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempo</strong> (<em>int</em>) – Tempo of MIDIHandler</p></li>
+<li><p><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a MIDIHandler object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#MIDIHandler.MIDIHandler" title="MIDIHandler.MIDIHandler">MIDIHandler</a></p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="MIDIHandler.MIDIHandler.DEBUG_ON">
+<code class="descname">DEBUG_ON</code><em class="property"> = False</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.DEBUG_ON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="MIDIHandler.MIDIHandler.MIDI_CHANNEL_1">
+<code class="descname">MIDI_CHANNEL_1</code><em class="property"> = 0</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.MIDI_CHANNEL_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.MSG">
+<code class="descname">MSG</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.MSG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to turn bytes into MIDI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>bytes</em>) – Byte string to be converted into MIDI</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MIDI message from byte string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>MIDI</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="MIDIHandler.MIDIHandler.PRINT_NOTES">
+<code class="descname">PRINT_NOTES</code><em class="property"> = False</em><a class="headerlink" href="#MIDIHandler.MIDIHandler.PRINT_NOTES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.get_tempo">
+<code class="descname">get_tempo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.get_tempo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to get tempo of handler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tempo of handler</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.note_off">
+<code class="descname">note_off</code><span class="sig-paren">(</span><em>note</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to turn MIDI note off.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play MIDI from</p></li>
+<li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, stops playing MIDI note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.note_on">
+<code class="descname">note_on</code><span class="sig-paren">(</span><em>note</em>, <em>chan=0</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.note_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to turn MIDI note on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play MIDI from</p></li>
+<li><p><strong>chan</strong> (<em>Hexidecimal</em>) – MIDI channel to play on</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, starts playing MIDI note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.play_note">
+<code class="descname">play_note</code><span class="sig-paren">(</span><em>note</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.play_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to play note.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to play</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, plays Note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.print_io">
+<code class="descname">print_io</code><span class="sig-paren">(</span><em>debug</em><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.print_io" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to print input/output debug info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Input/output debug info</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="MIDIHandler.MIDIHandler.set_tempo">
+<code class="descname">set_tempo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#MIDIHandler.MIDIHandler.set_tempo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to set tempo of handler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tempo</strong> (<em>int</em>) – Tempo to set handler to</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -51,11 +211,27 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MIDIHandler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Note.html">Note module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Phrase.html">Phrase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scale.html">Scale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Constants.html">Constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generate.html">Generate module</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Python</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Python</a></li>
+      <li>Next: <a href="Note.html" title="next chapter">Note module</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

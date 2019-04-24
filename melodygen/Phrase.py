@@ -11,11 +11,11 @@
 import random
 import time
 import mido
-from . import Note
-from . import Scale
-from . import Generate
-from . import MIDIHandler as handler
-from . import Signature as signature
+import Note
+import Scale
+import Generate
+import MIDIHandler as handler
+import Signature as signature
 
 # Phrase object. Is an array of Notes.
 class Phrase():

@@ -14,6 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scale module" href="Scale.html" />
+    <link rel="prev" title="Note module" href="Note.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -30,8 +32,173 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="phrase-module">
-<h1>Phrase module<a class="headerlink" href="#phrase-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-Phrase">
+<span id="phrase-module"></span><h1>Phrase module<a class="headerlink" href="#module-Phrase" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-Phrase"></span><dl class="class">
+<dt id="Phrase.Phrase">
+<em class="property">class </em><code class="descclassname">Phrase.</code><code class="descname">Phrase</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default constructor for Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempo</strong> (<em>int</em>) – Tempo of phrase</p></li>
+<li><p><strong>debug</strong> (<em>boolean</em>) – Whether or not to display debug info when playing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Phrase object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Phrase.Phrase.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>input_note</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to append a Note to a Phrase</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_slot</strong> (<a class="reference internal" href="Note.html#Note.Note" title="Note.Note"><em>Note</em></a>) – Note to append</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.attach_signature">
+<code class="descname">attach_signature</code><span class="sig-paren">(</span><em>signature</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.attach_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Phrase.Phrase.copy_ctor">
+<em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>old_phrase</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.copy_ctor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static copy constructor for Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>old_phrase</strong> (<a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase"><em>Phrase</em></a>) – Phrase object to copy</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Phrase object, copy of old_phrase</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.detach_signature">
+<code class="descname">detach_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.detach_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.flip">
+<code class="descname">flip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse all intervals in the Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None, modifies object in place</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.generate_phrase">
+<code class="descname">generate_phrase</code><span class="sig-paren">(</span><em>algorithm</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.generate_phrase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to generate Phrase - delegates to Generate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a Phrase object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.on_attach_signature">
+<code class="descname">on_attach_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.on_attach_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.on_detach_signature">
+<code class="descname">on_detach_signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.on_detach_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.play">
+<code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to play Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Plays Phrase via MIDIHandler</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.reverse">
+<code class="descname">reverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to reverse Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None, modifys object in place</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.set_phrase">
+<code class="descname">set_phrase</code><span class="sig-paren">(</span><em>phrase</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.set_phrase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method to set Phrase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>phrase</strong> (<a class="reference internal" href="#Phrase.Phrase" title="Phrase.Phrase"><em>Phrase</em></a>) – Phrase to set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Phrase.Phrase.unify_prob">
+<code class="descname">unify_prob</code><span class="sig-paren">(</span><em>prob=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#Phrase.Phrase.unify_prob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set prob of all notes in phrase to be the same.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>prob</strong> (<em>float</em>) – new probablity to be set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifies existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -51,11 +218,27 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MIDIHandler.html">MIDIHandler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Note.html">Note module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Phrase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scale.html">Scale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Constants.html">Constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generate.html">Generate module</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Python</a><ul>
+      <li>Previous: <a href="Note.html" title="previous chapter">Note module</a></li>
+      <li>Next: <a href="Scale.html" title="next chapter">Scale module</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

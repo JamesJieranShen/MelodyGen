@@ -9,7 +9,7 @@
 
 """
 from fractions import Fraction
-from . import Constants as const
+import Constants as const
 
 # This object describes a musical signature.
 class Signature():

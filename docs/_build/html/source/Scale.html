@@ -14,6 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Constants module" href="Constants.html" />
+    <link rel="prev" title="Phrase module" href="Phrase.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -30,8 +32,116 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="scale-module">
-<h1>Scale module<a class="headerlink" href="#scale-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-Scale">
+<span id="scale-module"></span><h1>Scale module<a class="headerlink" href="#module-Scale" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-Scale"></span><dl class="class">
+<dt id="Scale.Scale">
+<em class="property">class </em><code class="descclassname">Scale.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>key</em>, <em>mode</em>, <em>starting_octave=None</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default constructor for Scale. Assigns starting pitch in 3rd octave.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>String / int</em>) – Key of scale</p></li>
+<li><p><strong>mode</strong> (<em>String</em>) – Mode of scale</p></li>
+<li><p><strong>starting_octave</strong> (<em>int / None</em>) – Starting octave of scale</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Scale object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#Scale.Scale" title="Scale.Scale">Scale</a></p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="Scale.Scale.build_scale">
+<code class="descname">build_scale</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.build_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to build scale - called by __init__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Scale object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Scale object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Scale.Scale.get_intervals">
+<em class="property">static </em><code class="descname">get_intervals</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to get scale intervals based on mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>String</em>) – Mode of scale</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of intervals</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List of ints</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.get_major_minor">
+<code class="descname">get_major_minor</code><span class="sig-paren">(</span><em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_major_minor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to determine if mode is major or minor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>String</em>) – Mode of scale</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Pair of booleans (#1 Major, #2 Minor)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>booleans</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.get_midi">
+<code class="descname">get_midi</code><span class="sig-paren">(</span><em>key</em>, <em>starting_octave</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_midi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to get MIDI note value based on
+note name and starting octave.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>String</em>) – Note name of key</p></li>
+<li><p><strong>starting_octave</strong> (<em>int</em>) – Starting octave of scale</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>MIDI value of note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Scale.Scale.get_scale_degree">
+<code class="descname">get_scale_degree</code><span class="sig-paren">(</span><em>degree</em><span class="sig-paren">)</span><a class="headerlink" href="#Scale.Scale.get_scale_degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to return scale degree of Scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>degree</strong> (<em>int</em>) – Scale degree to return</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Note object at scale degree</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="Note.html#Note.Note" title="Note.Note">Note</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -51,11 +161,27 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MIDIHandler.html">MIDIHandler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Note.html">Note module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Phrase.html">Phrase module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scale module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Constants.html">Constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Generate.html">Generate module</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Python</a><ul>
+      <li>Previous: <a href="Phrase.html" title="previous chapter">Phrase module</a></li>
+      <li>Next: <a href="Constants.html" title="next chapter">Constants module</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

@@ -9,8 +9,8 @@ Welcome to Melody Gen's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-
+ 
+   Modules <source/modules.rst>
 
 Indices and tables
 ==================
