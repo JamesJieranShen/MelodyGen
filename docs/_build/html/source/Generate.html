@@ -14,7 +14,6 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Constants module" href="Constants.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -31,11 +30,11 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-Generate">
-<span id="generate-module"></span><h1>Generate module<a class="headerlink" href="#module-Generate" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-Generate"></span><dl class="class">
-<dt id="Generate.Generate">
-<em class="property">class </em><code class="descclassname">Generate.</code><code class="descname">Generate</code><a class="headerlink" href="#Generate.Generate" title="Permalink to this definition">¶</a></dt>
+  <div class="section" id="module-generate">
+<span id="generate-module"></span><h1>Generate module<a class="headerlink" href="#module-generate" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-generate"></span><dl class="class">
+<dt id="generate.Generate">
+<em class="property">class </em><code class="descclassname">generate.</code><code class="descname">Generate</code><a class="headerlink" href="#generate.Generate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Constructor for Generate object</p>
 <dl class="field-list simple">
@@ -49,12 +48,12 @@
 <dd class="field-even"><p>Returns a Phrase object</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="Phrase.html#Phrase.Phrase" title="Phrase.Phrase">Phrase</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="phrase.html#phrase.Phrase" title="phrase.Phrase">Phrase</a></p>
 </dd>
 </dl>
 <dl class="staticmethod">
-<dt id="Generate.Generate.check_params">
-<em class="property">static </em><code class="descname">check_params</code><span class="sig-paren">(</span><em>alg_name</em>, <em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.check_params" title="Permalink to this definition">¶</a></dt>
+<dt id="generate.Generate.check_params">
+<em class="property">static </em><code class="descname">check_params</code><span class="sig-paren">(</span><em>alg_name</em>, <em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.check_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Static utility method that checks to make sure all required parameters
 were passed in to generative algorithm.</p>
 <dl class="field-list simple">
@@ -75,25 +74,25 @@ were passed in to generative algorithm.</p>
 </dd></dl>
 
 <dl class="staticmethod">
-<dt id="Generate.Generate.copy_ctor">
-<em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>old_generate</em><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.copy_ctor" title="Permalink to this definition">¶</a></dt>
+<dt id="generate.Generate.copy_ctor">
+<em class="property">static </em><code class="descname">copy_ctor</code><span class="sig-paren">(</span><em>old_generate</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.copy_ctor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Static copy constructor for Generate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>old_phrase</strong> (<a class="reference internal" href="#Generate.Generate" title="Generate.Generate"><em>Generate</em></a>) – Generate object to copy</p>
+<dd class="field-odd"><p><strong>old_phrase</strong> (<a class="reference internal" href="#generate.Generate" title="generate.Generate"><em>Generate</em></a>) – Generate object to copy</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Returns a Generate object, copy of old_generate</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#Generate.Generate" title="Generate.Generate">Generate</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#generate.Generate" title="generate.Generate">Generate</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="Generate.Generate.generate_map_mod">
-<code class="descname">generate_map_mod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Generate.Generate.generate_map_mod" title="Permalink to this definition">¶</a></dt>
+<dt id="generate.Generate.generate_map_mod">
+<code class="descname">generate_map_mod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.generate_map_mod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generative algorithm that maps numbers to scale degrees
 and scale modulations based on an input file.</p>
 <dl class="field-list simple">
@@ -136,26 +135,11 @@ and scale modulations based on an input file.</p>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="MIDIHandler.html">MIDIHandler module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Note.html">Note module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Phrase.html">Phrase module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Scale.html">Scale module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Constants.html">Constants module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Generate module</a></li>
-</ul>
-</li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">Python</a><ul>
-      <li>Previous: <a href="Constants.html" title="previous chapter">Constants module</a></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -189,7 +173,7 @@ and scale modulations based on an input file.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/source/Generate.rst.txt"
+      <a href="../_sources/source/generate.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,7 +1,7 @@
 Scale module
 ============
 
-.. automodule:: Scale
+.. automodule:: scale
     :members:
     :undoc-members:
     :show-inheritance:

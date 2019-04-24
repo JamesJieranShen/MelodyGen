@@ -1,5 +1,5 @@
 """
-.. module:: Constants
+.. module:: constants
    :platform: Mac, Unix, Windows
    :synopsis: List of constants for MelodyGen 
 

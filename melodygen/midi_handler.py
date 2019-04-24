@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: MIDIHandler
+.. module:: midi_handler
    :platform: Mac, Unix, Windows
    :synopsis: MIDIHandler object for MelodyGen 
 

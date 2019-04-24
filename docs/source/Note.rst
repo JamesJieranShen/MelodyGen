@@ -1,7 +1,7 @@
 Note module
 ===========
 
-.. automodule:: Note
+.. automodule:: note
     :members:
     :undoc-members:
     :show-inheritance:

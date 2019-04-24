@@ -2,11 +2,11 @@ Python
 ======
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
-   MIDIHandler
-   Note
-   Phrase
-   Scale
-   Constants
-   Generate
+   midi_handler 
+   note 
+   phrase
+   scale
+   constants
+   generate 

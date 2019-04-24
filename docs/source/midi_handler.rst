@@ -1,7 +1,7 @@
 MIDIHandler module
 ==================
 
-.. automodule:: MIDIHandler
+.. automodule:: midi_handler
     :members:
     :undoc-members:
     :show-inheritance:

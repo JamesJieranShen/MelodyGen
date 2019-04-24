@@ -1,7 +1,7 @@
 Generate module
 ===============
 
-.. automodule:: Generate
+.. automodule:: generate
     :members:
     :undoc-members:
     :show-inheritance:
