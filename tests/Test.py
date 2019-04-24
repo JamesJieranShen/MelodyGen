@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import melodygen as gen
+from context import melodygen as gen
 from melodygen import Note, Scale, Phrase, MIDIHandler as handler, Generate, Constants as const
 import mido
 import time
@@ -52,7 +52,7 @@ while(True):
         note.mutate_length(prob=0.05)
 #print(e)
 '''
-phrase.generate_phrase("MapMod", {"input": "pi.txt", "scales": [c, e, g],
+phrase.generate_phrase("MapMod", {"input": "../melodygen/gen/pi.txt", "scales": [c, e, g],
     "gen_len": 50})
 
 for note in phrase.phrase:
