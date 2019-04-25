@@ -69,11 +69,22 @@ class MIDIHandler():
             time.sleep((240 * note.length * note.length_mod) / self.tempo)
             if trig: self.note_off(note)
         except KeyboardInterrupt:
-            self.note_off(note)
-            print('\n')
-            gc.collect(generation=2)
-            os._exit(0)
+            self.exit_program(note)
 
+    def exit_program(self, note):
+        """Utility method to exit program. 
+        
+        :param note: Note to shut off. 
+        
+        :type note: Note 
+
+        :return: None. 
+        """
+        self.note_off(note)
+        print('\n')
+        gc.collect(generation=2)
+        os._exit(0)
+    
     def print_io(self, debug):
         """Utility method to print input/output debug info. 
         

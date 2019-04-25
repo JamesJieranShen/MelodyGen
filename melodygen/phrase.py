@@ -19,14 +19,16 @@ from midi_handler import MIDIHandler as handler
 
 # Phrase object. Is an array of Notes.
 class Phrase():
-    def __init__(self, tempo=120, debug=False):
+    def __init__(self, tempo=120, debug=False, endless=False):
         """Default constructor for Phrase. 
         
         :param tempo: Tempo of phrase 
-        :param debug: Whether or not to display debug info when playing 
+        :param debug: Whether or not to display debug info when playing
+        :param endless: Whether or not phrase will exit program after finishing
         
         :type tempo: int 
         :type debug: boolean 
+        :type endless: boolean
 
         :return: Returns a Phrase object
         :rtype: Phrase 
@@ -36,6 +38,7 @@ class Phrase():
         self.debug = debug
         self.handler = handler(tempo, debug)
         self.signature = None
+        self.endless = endless
 
     def attach_signature(self, signature):
         if self.signature is not None:
@@ -60,10 +63,12 @@ class Phrase():
         :return: Plays Phrase via MIDIHandler
         :rtype: None 
         """
+        end_note = None
         for note in self.phrase:
             self.handler.play_note(note)
-        print('\n')
-    
+            end_note = note
+        if not self.endless:
+            self.handler.exit_program(end_note)
 
     # Build phrase
     def generate_phrase(self, algorithm, params):

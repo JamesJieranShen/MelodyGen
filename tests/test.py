@@ -31,7 +31,7 @@ handler.play_note(note);
 """
 
 # Phrase
-phrase = gen.Phrase(120, True)
+phrase = gen.Phrase(tempo=120, debug=True)
 '''
 for i in range(phrase_len):
     phrase.append(gen.Note(length=1/16,
@@ -53,7 +53,7 @@ while(True):
 #print(e)
 '''
 phrase.generate_phrase("MapMod", {"input": "../melodygen/gen/pi.txt", "scales": [c, e, g],
-    "gen_len": 50})
+    "gen_len": 10})
 
 for note in phrase.phrase:
     note.set_prob(0.8)
