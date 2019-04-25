@@ -14,16 +14,18 @@ import constants as const
 # Scale object. Is an array of Notes
 class Scale():
     # Default constructor for Scale. Takes in mode and key
-    def __init__(self, key, mode, starting_octave=None):
+    def __init__(self, key, mode, starting_octave=None, num_octaves=1):
         """Default constructor for Scale. Assigns starting pitch in 3rd octave.
         
         :param key: Key of scale
         :param mode: Mode of scale
         :param starting_octave: Starting octave of scale 
-        
+        :param num_octaves: Number of octaves in Scale 
+
         :type key: String / int
         :type mode: String
         :type starting_octave: int / None
+        :type num_octaves: int
 
         :return: Returns a Scale object
         :rtype: Scale 
@@ -38,6 +40,7 @@ class Scale():
         self.mode = mode
         self.is_major, self.is_minor = self.get_major_minor(self.mode)
         self.starting_octave = starting_octave
+        self.num_octaves = num_octaves
 
         # Assign key
         if (isinstance(key, str)):
@@ -111,11 +114,12 @@ class Scale():
         """
         scale = []
         scale_degree = self.key
-        for interval in self.intervals:
-            if 0 <= scale_degree <= 127:
-                scale.append(Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
-                const.NOTE_LEN_MOD_DICT["NONE"])) 
-            scale_degree += interval
+        for i in range(self.num_octaves):
+            for interval in self.intervals:
+                if 0 <= scale_degree <= 127:
+                    scale.append(Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
+                    const.NOTE_LEN_MOD_DICT["NONE"])) 
+                scale_degree += interval
         if 0 <= scale_degree <= 127:
             scale.append(Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
                 const.NOTE_LEN_MOD_DICT["NONE"])) 
@@ -141,7 +145,8 @@ class Scale():
         :return: String representation of Scale
         :rtype: String 
         """
-        print("<Scale: key: %s, mode: %s>" % (self.key, self.mode))
+        print("<Scale: key: %s, mode: %s, num_octaves: %d>" % (self.key,
+            self.mode, self.num_octaves))
         for note in self.notes:
             print("\t", note)
 
