@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: phrase
+.. module:: Phrase
    :platform: Mac, Unix, Windows
    :synopsis: Phrase object for MelodyGen 
 

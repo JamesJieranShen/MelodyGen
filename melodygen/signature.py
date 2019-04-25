@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: signature
+.. module:: Signature
    :platform: Mac, Unix, Windows
    :synopsis: Signature object for MelodyGen 
 
