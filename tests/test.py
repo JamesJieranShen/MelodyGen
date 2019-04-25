@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from context import melodygen as gen
-from melodygen import Note, Scale, Phrase, MIDIHandler as handler, constants as const
+from melodygen import Note, Scale, Phrase, MIDIHandler as handler, Generate, constants as const
 import mido
 import time
 import random
