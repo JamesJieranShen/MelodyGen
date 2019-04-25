@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: generate
+.. module:: Generate
    :platform: Mac, Unix, Windows
    :synopsis: Generate module for MelodyGen 
 
