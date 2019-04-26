@@ -21,7 +21,7 @@ play_len = 5
 phrase = gen.Phrase(tempo=120, debug=True, endless=True)
 
 phrase.generate_phrase("MapMod", {"input": "../melodygen/gen/pi.txt", "scales":
-    scales, "gen_len": 2})
+    scales, "gen_len": 2, "start_offset": 0})
 
 while(True):
     for note in phrase.phrase:

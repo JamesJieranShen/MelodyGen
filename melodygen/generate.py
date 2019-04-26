@@ -14,7 +14,7 @@ import time
 # Generate object - takes in type of algorithm and array of params 
 class Generate():
     
-    def __new__(self, algorithm, params):
+    def __init__(self, algorithm, params):
         """Constructor for Generate object
         
         :param algorithm: Algorithm to use to generate Phrase 
@@ -34,8 +34,7 @@ class Generate():
             self.algorithm = algorithm
             self.params = params
 
-        phrase = ALGORITHM_DICT[self.algorithm](self, self.params)
-        return phrase
+        self.phrase = ALGORITHM_DICT[self.algorithm](self.params)
 
     # Copy ctor for Generate
     @staticmethod
@@ -102,15 +101,10 @@ class Generate():
         Generate.check_req_params("MapMod", required_params, params)
 
         # Assign required params
-        for req_param in required_params:
-            setattr(self, req_param, params[req_param])
+        self.set_req_params(required_params, params)
 
         # Assign optional param
-        for opt_param in optional_params:
-            if opt_param in params:    
-                setattr(self, opt_param, params[opt_param])
-            else:
-                setattr(self, opt_param, optional_params[opt_param])
+        self.set_opt_params(optional_params, params)
 
         # Local vars to generate phrase
         working_phrase = []
@@ -147,6 +141,39 @@ class Generate():
                             active_scale = random.choice(self.scales)
 
         return working_phrase 
+
+    # Utility method to set required attributes
+    def set_req_params(self, required_params, params):
+        """Utility function to set required attributes 
+       
+        :param required_params: List of required parameters
+        :param params: Dict of inputted parameters
+
+        :type required_params: List
+        :type params: Dict
+
+        :return: None 
+        """
+        for req_param in required_params:
+            setattr(self, req_param, params[req_param])
+
+    # Utility method to set optional attributes
+    def set_opt_params(self, optional_params, params):
+        """Utility function to set optional attributes 
+       
+        :param optional_params: Dict of optional parameters
+        :param params: Dict of inputted parameters
+
+        :type optional_params: List
+        :type params: Dict
+
+        :return: None 
+        """
+        for opt_param in optional_params:
+            if opt_param in params:    
+                setattr(self, opt_param, params[opt_param])
+            else:
+                setattr(self, opt_param, optional_params[opt_param])
 
     # Str representation of Generate
     def __str__(self):
