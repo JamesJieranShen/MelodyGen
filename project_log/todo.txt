@@ -1,5 +1,8 @@
- Project:
-- Add __init__.py
+Project:
+- Implement saving/loading
+- Implement real-time command-line interface?
+- Implement MIDI CC controls
+- Implement Keyboard input => Phrase?
 
 Note:
 - Implement is_valid (midi note between 0 and 127)
