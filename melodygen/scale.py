@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: Scale
+.. module:: scale
    :platform: Mac, Unix, Windows
    :synopsis: Scale object for MelodyGen 
 

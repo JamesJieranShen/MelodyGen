@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: Generate
+.. module:: generate
    :platform: Mac, Unix, Windows
    :synopsis: Generate module for MelodyGen 
 
@@ -79,14 +79,14 @@ class Generate():
             (and modulate to)
         :param params["input"]: Input file to read from
         :param params["gen_len"]: How long of a phrase to generate
-        :param params["start_offset"] How many chars to offset before starting
+        :param params["start_offset"]: How many chars to offset before starting
             (optional)
 
         :type params: Dictionary 
         :type params["scales"]: List
         :type params["input"]: Text file
         :type params["gen_len"]: int
-        :type params["start_offset"] int
+        :type params["start_offset"]: int
 
         :return: Returns an array of Note objects
         :rtype: List
@@ -139,7 +139,6 @@ class Generate():
                         # If digit is between scale length-9 change active_scale
                         elif (len(active_scale) < ch_int <= 9):
                             active_scale = random.choice(self.scales)
-
         return working_phrase 
 
     # Utility method to set required attributes

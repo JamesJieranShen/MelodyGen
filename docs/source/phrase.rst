@@ -1,7 +1,7 @@
 Phrase module
 =============
 
-.. automodule:: Phrase
+.. automodule:: phrase
     :members:
     :undoc-members:
     :show-inheritance:

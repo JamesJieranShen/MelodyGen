@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-.. module:: Note
+.. module:: note
    :platform: Mac, Unix, Windows
    :synopsis: Note object for MelodyGen 
 

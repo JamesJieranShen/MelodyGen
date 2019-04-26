@@ -34,7 +34,7 @@
 <span id="generate-module"></span><h1>Generate module<a class="headerlink" href="#module-generate" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-generate"></span><dl class="class">
 <dt id="generate.Generate">
-<em class="property">class </em><code class="descclassname">generate.</code><code class="descname">Generate</code><a class="headerlink" href="#generate.Generate" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">generate.</code><code class="descname">Generate</code><span class="sig-paren">(</span><em>algorithm</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Constructor for Generate object</p>
 <dl class="field-list simple">
@@ -52,8 +52,8 @@
 </dd>
 </dl>
 <dl class="staticmethod">
-<dt id="generate.Generate.check_params">
-<em class="property">static </em><code class="descname">check_params</code><span class="sig-paren">(</span><em>alg_name</em>, <em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.check_params" title="Permalink to this definition">¶</a></dt>
+<dt id="generate.Generate.check_req_params">
+<em class="property">static </em><code class="descname">check_req_params</code><span class="sig-paren">(</span><em>alg_name</em>, <em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.check_req_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Static utility method that checks to make sure all required parameters
 were passed in to generative algorithm.</p>
 <dl class="field-list simple">
@@ -92,7 +92,7 @@ were passed in to generative algorithm.</p>
 
 <dl class="method">
 <dt id="generate.Generate.generate_map_mod">
-<code class="descname">generate_map_mod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.generate_map_mod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">generate_map_mod</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.generate_map_mod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generative algorithm that maps numbers to scale degrees
 and scale modulations based on an input file.</p>
 <dl class="field-list simple">
@@ -103,6 +103,8 @@ and scale modulations based on an input file.</p>
 (and modulate to)</p></li>
 <li><p><strong>params</strong><strong>[</strong><strong>&quot;input&quot;</strong><strong>]</strong> (<em>Text file</em>) – Input file to read from</p></li>
 <li><p><strong>params</strong><strong>[</strong><strong>&quot;gen_len&quot;</strong><strong>]</strong> (<em>int</em>) – How long of a phrase to generate</p></li>
+<li><p><strong>params</strong><strong>[</strong><strong>&quot;start_offset&quot;</strong><strong>]</strong> (<em>int</em>) – How many chars to offset before starting
+(optional)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -110,6 +112,40 @@ and scale modulations based on an input file.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="generate.Generate.set_opt_params">
+<code class="descname">set_opt_params</code><span class="sig-paren">(</span><em>optional_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.set_opt_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to set optional attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optional_params</strong> (<em>List</em>) – Dict of optional parameters</p></li>
+<li><p><strong>params</strong> (<em>Dict</em>) – Dict of inputted parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="generate.Generate.set_req_params">
+<code class="descname">set_req_params</code><span class="sig-paren">(</span><em>required_params</em>, <em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#generate.Generate.set_req_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to set required attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>required_params</strong> (<em>List</em>) – List of required parameters</p></li>
+<li><p><strong>params</strong> (<em>Dict</em>) – Dict of inputted parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
