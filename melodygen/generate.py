@@ -10,14 +10,11 @@
 """
 import random
 import time
-#import note
-#import scale
-#import phrase
 
 # Generate object - takes in type of algorithm and array of params 
 class Generate():
     
-    def __new__(cls, algorithm, params):
+    def __new__(self, algorithm, params):
         """Constructor for Generate object
         
         :param algorithm: Algorithm to use to generate Phrase 
@@ -29,15 +26,15 @@ class Generate():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        ALGORITHM_DICT = {"MapMod" : cls.generate_map_mod}
+        ALGORITHM_DICT = {"MapMod" : self.generate_map_mod}
 
         if algorithm not in ALGORITHM_DICT.keys():
             raise ValueError("Generate algorithm invalid")
         else:
-            cls.algorithm = algorithm
-            cls.params = params
+            self.algorithm = algorithm
+            self.params = params
 
-        phrase = ALGORITHM_DICT[cls.algorithm](cls.params)
+        phrase = ALGORITHM_DICT[self.algorithm](self, self.params)
         return phrase
 
     # Copy ctor for Generate
@@ -55,7 +52,7 @@ class Generate():
         return Generate(old_generate.algorithm, old_generate.params) 
     
     @staticmethod
-    def check_params(alg_name, required_params, params):
+    def check_req_params(alg_name, required_params, params):
         """Static utility method that checks to make sure all required parameters
         were passed in to generative algorithm.
         
@@ -74,7 +71,7 @@ class Generate():
             if param not in params.keys():
                 raise ValueError("Generate {}: {} not specified".format(alg_name, param))
     
-    def generate_map_mod(params):
+    def generate_map_mod(self, params):
         """Generative algorithm that maps numbers to scale degrees
         and scale modulations based on an input file.
         
@@ -83,11 +80,14 @@ class Generate():
             (and modulate to)
         :param params["input"]: Input file to read from
         :param params["gen_len"]: How long of a phrase to generate
+        :param params["start_offset"] How many chars to offset before starting
+            (optional)
 
         :type params: Dictionary 
         :type params["scales"]: List
         :type params["input"]: Text file
         :type params["gen_len"]: int
+        :type params["start_offset"] int
 
         :return: Returns an array of Note objects
         :rtype: List
@@ -95,32 +95,56 @@ class Generate():
         # List of required params
         required_params = ["scales", "input", "gen_len"]
         
-        # Error checking for params
-        Generate.check_params("MapMod", required_params, params)
+        # List of optional params
+        optional_params = {"start_offset": 0}
+
+        # Error checking for required params
+        Generate.check_req_params("MapMod", required_params, params)
+
+        # Assign required params
+        for req_param in required_params:
+            setattr(self, req_param, params[req_param])
+
+        # Assign optional param
+        for opt_param in optional_params:
+            if opt_param in params:    
+                setattr(self, opt_param, params[opt_param])
+            else:
+                setattr(self, opt_param, optional_params[opt_param])
 
         # Local vars to generate phrase
         working_phrase = []
-        active_scale = params["scales"][0]
+        active_scale = self.scales[0]
         counter = 0
 
         # Read in one character at a time from file
-        with open(params["input"]) as fileobj:
+        with open(self.input) as fileobj:
             for line in fileobj:  
                 for ch in line: 
+
+                    # Skip character based on start_offset
+                    if self.start_offset > 0:
+                        self.start_offset -= 1
+                        continue
+
                     # Check if character is a number
                     if ch.isdigit():
                         ch_int = int(ch)
-                        # If digit is between 0-scale length, add note
+
+                        # If digit is between 0-scale length add note
                         if (0 <= ch_int <= len(active_scale)):
                             # Append scale degree of active_scale based on ch
-                            working_phrase.append(active_scale.get_scale_degree(int(ch)))
+                            working_phrase.append(active_scale.get_scale_degree(
+                                int(ch)))
+
                             # Counter logic to break after desired length
                             counter += 1
-                            if counter >= params["gen_len"]:
+                            if counter >= self.gen_len:
                                 break
-                        # If digit is between scale length -9, change active_scale
+
+                        # If digit is between scale length-9 change active_scale
                         elif (len(active_scale) < ch_int <= 9):
-                            active_scale = random.choice(params["scales"])
+                            active_scale = random.choice(self.scales)
 
         return working_phrase 
 
