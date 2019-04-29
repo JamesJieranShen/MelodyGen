@@ -6,10 +6,10 @@ import time
 import random
 
 # Scales 
-e = gen.Scale("E", 'MAJOR', 2, 3)
-g = gen.Scale("G", 'MAJOR', 2, 3)
-c = gen.Scale("C", 'MAJOR_PENT', 3, 2)
-d = gen.Scale("D", "HARM_MINOR", 3, 2)
+e = gen.Scale("E", 'MAJOR', 3, 3)
+g = gen.Scale("G", 'MAJOR', 3, 3)
+c = gen.Scale("C", 'MAJOR_PENT', 4, 2)
+d = gen.Scale("D", "HARM_MINOR", 4, 2)
 
 scales = [e, c, g, d]
 
@@ -28,11 +28,14 @@ handler.play_note(note);
 
 # Phrase
 phrase = gen.Phrase(tempo=120, debug=True, endless=True)
-
 """
 for i in range(phrase_len):
     phrase.append(gen.Note(length=1/16,
         length_mod=random.choice([1, 1.5, 2/3]), scale=random.choice(scales), prob=0.8))
+"""
+phrase.generate_phrase("MapMod", {"input": "../melodygen/gen/pi.txt", "scales":
+    scales,
+    "gen_len": 8})
 
 while(True):
     phrase.play()
@@ -45,14 +48,11 @@ while(True):
             phrase.flip();
             print("Flipped")
     for note in phrase.phrase:
+        note.set_length(1/16)
         note.rand_note(scale=random.choice(scales), prob=0.15)
         note.mutate_length(prob=0.05)
 #print(e)
 """
-
-phrase.generate_phrase("MapMod", {"input": "../melodygen/gen/pi.txt", "scales":
-    scales,
-    "gen_len": 10})
 
 while(True):
     for note in phrase.phrase:
@@ -63,3 +63,4 @@ while(True):
             note.set_length(1/8)
 
     phrase.play()
+"""

@@ -1,8 +1,25 @@
+Parsing:
+- Implement Music21 to parse MIDI
+- Implement Music21 to Note/Chord
+
 Project:
+- Implement multithreading
 - Implement saving/loading
 - Implement real-time command-line interface?
 - Implement MIDI CC controls
 - Implement Keyboard input => Phrase?
+
+Chord:
+- Implement Chord
+
+Phrase:
+- Implement offset (each note has an offset within phrase, not neccessarily
+    determiend by length, so that multiple notes can be played overlapping -
+    requires multithreading)
+- Implement mutate (with 'type' input - all, note, length, etc.)
+- Implement generate phrase (based on algorithm)
+- Implement Signature object?
+- Implement different algorithms? 
 
 Note:
 - Implement is_valid (midi note between 0 and 127)
@@ -15,12 +32,6 @@ Scale:
   at a certain scale degree
 - Implement a get_note method - each note in scale has a certain
   probablity of being chosen (some more than others)
-
-Phrase:
-- Implement mutate (with 'type' input - all, note, length, etc.)
-- Implement generate phrase (based on algorithm)
-- Implement Signature object?
-- Implement different algorithms? 
 
 Signature:
 - Numerator
