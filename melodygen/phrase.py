@@ -15,11 +15,12 @@ from note import Note
 #from scale import Scale
 from generate import Generate
 from midi_handler import MIDIHandler as handler
+import threading
 #from signature import Signature
 
-# Phrase object. Is an array of Notes.
+# Phrase object. Is a dictionary of Notes.
 class Phrase():
-    def __init__(self, tempo=120, debug=False, endless=False):
+    def __init__(self, tempo=120, debug=False, endless=False, length=4):
         """Default constructor for Phrase. 
         
         :param tempo: Tempo of phrase 
@@ -33,12 +34,13 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        self.phrase = []
+        self.phrase = {}
         self.tempo = tempo
         self.debug = debug
-        self.handler = handler(tempo, debug)
         self.signature = None
+        self.length = length
         self.endless = endless
+        
 
     def attach_signature(self, signature):
         if self.signature is not None:
@@ -56,6 +58,16 @@ class Phrase():
     def on_detach_signature(self):
         pass
 
+    # Threading function for triggering multiple notes at the same time
+    def play_thread(self, note, offset):
+        print("Thread playing (somehow this prevents it from crashing)") #TODO
+        thread_handler = handler(self.tempo, self.debug)
+        time.sleep(240* offset /self.tempo)    # Wait until it's time to play
+        thread_handler.play_note(note)
+    
+    def clock(self, length):
+        time.sleep(240 * length / self.tempo)
+
     # Utility method to play phrase
     def play(self):
         """Utility method to play Phrase. 
@@ -63,12 +75,28 @@ class Phrase():
         :return: Plays Phrase via MIDIHandler
         :rtype: None 
         """
-        end_note = None
-        for note in self.phrase:
-            self.handler.play_note(note)
-            end_note = note
-        if not self.endless:
-            self.handler.exit_program(end_note)
+        # work clock:
+        clock = threading.Thread(target=self.clock, args=(self.length,))
+        thread_list = []
+        for note, start in self.phrase.items():
+            this_thread = threading.Thread(target=self.play_thread, args=(note,
+                start))
+            thread_list.append(this_thread)
+        # start all threads
+        clock.start()
+        for thread in thread_list:
+            thread.start()
+
+        # handle endless
+        if self.endless:
+            clock.join()
+            play()
+        else:
+            for thread in thread_list:
+                thread.join()
+            clock.join()
+            print("Phrase has stopped playing")
+
 
     # Build phrase
     def generate_phrase(self, algorithm, params):
@@ -113,24 +141,31 @@ class Phrase():
         new_phrase.handler = old_phrase.handler
 
         # Copy actual phrase info
-        for note in old_phrase.phrase:
-            new_phrase.append(note)
-        
+        for old_note, start in old_phrase.phrase.items():
+            new_note = copy_note(old_note)
+            new_phrase.phrase[new_note] = start
         return new_phrase 
 
     # Append to Phrase
-    def append(self, input_note):
+    def append(self, start, input_note):
         """Utility method to append a Note to a Phrase
         
-        :param input_slot: Note to append 
+        :param input_slot:  Note to append 
+        :param start:       start time stamp for the note
         
-        :type input_slot: Note 
+        :type input_slot:   Note 
+        :type start:        Fraction
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
         input_note = Note.copy_note(input_note)
-        self.phrase.append(input_note)
+        # allows out-of-phrase notes, but show warning.
+        if start >= self.length:
+            print("Warning: " + input_note.__str__ + 
+                    "outsidde of phrase, will not be played.")
+
+        self.phrase[input_note] = start
     
     # Utility methods for phrase manipulation
     
@@ -150,7 +185,7 @@ class Phrase():
         :rtype: None
         """
         first_note = self.phrase[0].get_note()
-        for note in self.phrase:
+        for note in self.set_phrase:
             original_value = note.get_note()
             interval = original_value - first_note
             new_value = first_note - interval
@@ -177,7 +212,7 @@ class Phrase():
         :rtype: String 
         """
         print("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
-                len(self.phrase), self.tempo, self.debug))
+                self.length, self.tempo, self.debug))
         if self.debug:
             for note in self.phrase:
                 print('\t', note)
