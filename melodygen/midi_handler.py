@@ -64,12 +64,12 @@ class MIDIHandler():
         if (random.random() <= note.prob):
             trig = True
 
-        try:
-            if trig: self.note_on(note)
-            time.sleep((240 * note.length * note.length_mod) / self.tempo)
-            if trig: self.note_off(note)
-        except KeyboardInterrupt:
-            self.exit_program(note)
+        #try:
+        if trig: self.note_on(note)
+        time.sleep((240 * note.length * note.length_mod) / self.tempo)
+        if trig: self.note_off(note)
+        #except KeyboardInterrupt:
+        #    self.exit_program(note)
 
     def exit_program(self, note):
         """Utility method to exit program. 
@@ -80,7 +80,8 @@ class MIDIHandler():
 
         :return: None. 
         """
-        self.note_off(note)
+        self.panic()
+        #self.note_off(note)
         print('\n')
         gc.collect(generation=2)
         os._exit(0)

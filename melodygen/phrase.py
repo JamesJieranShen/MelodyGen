@@ -39,6 +39,7 @@ class Phrase():
         self.debug = debug
         self.signature = None
         self.length = length
+        self.handler = handler(tempo, debug)
         self.endless = endless
         
 
@@ -60,11 +61,15 @@ class Phrase():
 
     # Threading function for triggering multiple notes at the same time
     def play_thread(self, note, offset):
-        print("Thread playing (somehow this prevents it from crashing)") #TODO
-        thread_handler = handler(self.tempo, self.debug)
         time.sleep(240* offset /self.tempo)    # Wait until it's time to play
-        thread_handler.play_note(note)
-    
+        self.handler.play_note(note)
+
+    def stop_threads(self, thread_list, clock):
+        for thread in thread_list:
+            thread.join()
+        clock.join()
+        self.handler.exit_program(Note(60))
+
     def clock(self, length):
         time.sleep(240 * length / self.tempo)
 
@@ -85,12 +90,16 @@ class Phrase():
         # start all threads
         clock.start()
         for thread in thread_list:
-            thread.start()
+            try:
+                thread.daemon=True
+                thread.start()
+            except KeyboardInterrupt:
+                self.stop_threads(thread_list, clock)
 
         # handle endless
         if self.endless:
             clock.join()
-            play()
+            self.play()
         else:
             for thread in thread_list:
                 thread.join()
