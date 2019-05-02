@@ -13,7 +13,7 @@ import time
 import mido
 import os
 import gc
-#from note import Note
+from note import Note
 
 # Object to handle playing MIDI data
 class MIDIHandler():
@@ -44,7 +44,7 @@ class MIDIHandler():
         
         # Define input/output to be used
         self.keyboard_input = mido.open_input(self.inputs[0])
-        self.midi_output = mido.open_output(self.outputs[0])
+        self.midi_output = mido.open_output(self.outputs[0], autoreset=True)
          
         # Print IO info
         self.print_io(debug)
@@ -64,23 +64,17 @@ class MIDIHandler():
         if (random.random() <= note.prob):
             trig = True
 
-        try:
-            if trig: self.note_on(note)
-            time.sleep((240 * note.length * note.length_mod) / self.tempo)
-            if trig: self.note_off(note)
-        except KeyboardInterrupt:
-            self.exit_program(note)
+        if trig: self.note_on(note)
+        time.sleep((240 * note.length * note.length_mod) / self.tempo)
+        if trig: self.note_off(note)
 
-    def exit_program(self, note):
+    def exit_program(self, notes):
         """Utility method to exit program. 
-        
-        :param note: Note to shut off. 
-        
-        :type note: Note 
-
+       
         :return: None. 
         """
-        self.note_off(note)
+        for note in notes.keys():
+            self.note_off(note)
         print('\n')
         gc.collect(generation=2)
         os._exit(0)

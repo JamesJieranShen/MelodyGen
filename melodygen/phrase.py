@@ -12,14 +12,13 @@ import random
 import time
 import mido
 from note import Note
-#from scale import Scale
 from generate import Generate
 from midi_handler import MIDIHandler as handler
-#from signature import Signature
+import threading
 
-# Phrase object. Is an array of Notes.
+# Phrase object. Is a dictionary of Notes.
 class Phrase():
-    def __init__(self, tempo=120, debug=False, endless=False):
+    def __init__(self, tempo=120, debug=False, endless=False, length=4):
         """Default constructor for Phrase. 
         
         :param tempo: Tempo of phrase 
@@ -33,12 +32,15 @@ class Phrase():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        self.phrase = []
+        self.phrase = {}
         self.tempo = tempo
         self.debug = debug
-        self.handler = handler(tempo, debug)
         self.signature = None
+        self.length = length
+        self.handler = handler(tempo, debug)
+        self.killed = False
         self.endless = endless
+        
 
     def attach_signature(self, signature):
         if self.signature is not None:
@@ -56,6 +58,15 @@ class Phrase():
     def on_detach_signature(self):
         pass
 
+    # Threading function for triggering multiple notes at the same time
+    def play_thread(self, note, offset):
+        time.sleep(240* offset /self.tempo)    # Wait until it's time to play
+        if not self.killed:
+            self.handler.play_note(note)
+
+    def clock(self, length):
+        time.sleep(240 * length / self.tempo)
+
     # Utility method to play phrase
     def play(self):
         """Utility method to play Phrase. 
@@ -63,12 +74,33 @@ class Phrase():
         :return: Plays Phrase via MIDIHandler
         :rtype: None 
         """
-        end_note = None
-        for note in self.phrase:
-            self.handler.play_note(note)
-            end_note = note
-        if not self.endless:
-            self.handler.exit_program(end_note)
+        # work clock:
+        clock = threading.Thread(target=self.clock, args=(self.length,))
+        thread_list = []
+        for note, start in self.phrase.items():
+            this_thread = threading.Thread(target=self.play_thread, args=(note,
+                start))
+            this_thread.daemon = True
+            thread_list.append(this_thread)
+
+        # start all threads
+        clock.start()
+        for thread in thread_list:
+            thread.start()
+
+        # handle endless
+        if self.endless and not self.killed:
+            try:
+                clock.join()
+                self.play()
+            except KeyboardInterrupt:
+                self.killed = True
+                self.handler.exit_program(self.phrase)
+        else:
+            for thread in thread_list:
+                thread.join()
+            clock.join()
+            self.handler.exit_program(self.phrase)
 
     # Build phrase
     def generate_phrase(self, algorithm, params):
@@ -113,24 +145,31 @@ class Phrase():
         new_phrase.handler = old_phrase.handler
 
         # Copy actual phrase info
-        for note in old_phrase.phrase:
-            new_phrase.append(note)
-        
+        for old_note, start in old_phrase.phrase.items():
+            new_note = copy_note(old_note)
+            new_phrase.phrase[new_note] = start
         return new_phrase 
 
     # Append to Phrase
-    def append(self, input_note):
+    def append(self, start, input_note):
         """Utility method to append a Note to a Phrase
         
-        :param input_slot: Note to append 
+        :param input_slot:  Note to append 
+        :param start:       start time stamp for the note
         
-        :type input_slot: Note 
+        :type input_slot:   Note 
+        :type start:        Fraction
 
         :return: No return, modifys existing object 
         :rtype: None 
         """
         input_note = Note.copy_note(input_note)
-        self.phrase.append(input_note)
+        # allows out-of-phrase notes, but show warning.
+        if start >= self.length:
+            print("Warning: " + input_note.__str__ + 
+                    "outsidde of phrase, will not be played.")
+
+        self.phrase[input_note] = start
     
     # Utility methods for phrase manipulation
     
@@ -150,7 +189,7 @@ class Phrase():
         :rtype: None
         """
         first_note = self.phrase[0].get_note()
-        for note in self.phrase:
+        for note in self.set_phrase:
             original_value = note.get_note()
             interval = original_value - first_note
             new_value = first_note - interval
@@ -177,8 +216,41 @@ class Phrase():
         :rtype: String 
         """
         print("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
-                len(self.phrase), self.tempo, self.debug))
+                self.length, self.tempo, self.debug))
         if self.debug:
             for note in self.phrase:
                 print('\t', note)
         return ""
+"""
+class Worker(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        # A flag to notify the thread that it should finish up and exit
+        self.kill_received = False
+
+  def run(self):
+      while not self.kill_received:
+          self.do_something()
+
+  def do_something(self):
+      [i*i for i in range(10000)]
+      time.sleep(1)
+
+def main(args):
+
+    threads = []
+    for i in range(10):
+        t = Worker()
+        threads.append(t)
+        t.start()
+
+    while len(threads) > 0:
+        try:
+            # Join all threads using a timeout so it doesn't block
+            # Filter out threads which have been joined or are None
+            threads = [t.join(1) for t in threads if t is not None and t.isAlive()]
+        except KeyboardInterrupt:
+            print "Ctrl-c received! Sending kill to threads..."
+            for t in threads:
+                t.kill_received = True
+"""
