@@ -12,11 +12,9 @@ import random
 import time
 import mido
 from note import Note
-#from scale import Scale
 from generate import Generate
 from midi_handler import MIDIHandler as handler
 import threading
-#from signature import Signature
 
 # Phrase object. Is a dictionary of Notes.
 class Phrase():
@@ -40,6 +38,7 @@ class Phrase():
         self.signature = None
         self.length = length
         self.handler = handler(tempo, debug)
+        self.killed = False
         self.endless = endless
         
 
@@ -62,13 +61,8 @@ class Phrase():
     # Threading function for triggering multiple notes at the same time
     def play_thread(self, note, offset):
         time.sleep(240* offset /self.tempo)    # Wait until it's time to play
-        self.handler.play_note(note)
-
-    def stop_threads(self, thread_list, clock):
-        for thread in thread_list:
-            thread.join()
-        clock.join()
-        self.handler.exit_program(Note(60))
+        if not self.killed:
+            self.handler.play_note(note)
 
     def clock(self, length):
         time.sleep(240 * length / self.tempo)
@@ -86,26 +80,27 @@ class Phrase():
         for note, start in self.phrase.items():
             this_thread = threading.Thread(target=self.play_thread, args=(note,
                 start))
+            this_thread.daemon = True
             thread_list.append(this_thread)
+
         # start all threads
         clock.start()
         for thread in thread_list:
-            try:
-                thread.daemon=True
-                thread.start()
-            except KeyboardInterrupt:
-                self.stop_threads(thread_list, clock)
+            thread.start()
 
         # handle endless
-        if self.endless:
-            clock.join()
-            self.play()
+        if self.endless and not self.killed:
+            try:
+                clock.join()
+                self.play()
+            except KeyboardInterrupt:
+                self.killed = True
+                self.handler.exit_program(self.phrase)
         else:
             for thread in thread_list:
                 thread.join()
             clock.join()
-            print("Phrase has stopped playing")
-
+            self.handler.exit_program(self.phrase)
 
     # Build phrase
     def generate_phrase(self, algorithm, params):
@@ -226,3 +221,36 @@ class Phrase():
             for note in self.phrase:
                 print('\t', note)
         return ""
+"""
+class Worker(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        # A flag to notify the thread that it should finish up and exit
+        self.kill_received = False
+
+  def run(self):
+      while not self.kill_received:
+          self.do_something()
+
+  def do_something(self):
+      [i*i for i in range(10000)]
+      time.sleep(1)
+
+def main(args):
+
+    threads = []
+    for i in range(10):
+        t = Worker()
+        threads.append(t)
+        t.start()
+
+    while len(threads) > 0:
+        try:
+            # Join all threads using a timeout so it doesn't block
+            # Filter out threads which have been joined or are None
+            threads = [t.join(1) for t in threads if t is not None and t.isAlive()]
+        except KeyboardInterrupt:
+            print "Ctrl-c received! Sending kill to threads..."
+            for t in threads:
+                t.kill_received = True
+"""
