@@ -107,7 +107,7 @@ class Generate():
         self.set_opt_params(optional_params, params)
 
         # Local vars to generate phrase
-        working_phrase = []
+        working_phrase = {}
         active_scale = self.scales[0]
         counter = 0
 
@@ -128,8 +128,8 @@ class Generate():
                         # If digit is between 0-scale length add note
                         if (0 <= ch_int <= len(active_scale)):
                             # Append scale degree of active_scale based on ch
-                            working_phrase.append(active_scale.get_scale_degree(
-                                int(ch)))
+                            working_phrase.update({active_scale.get_scale_degree(
+                                int(ch)): 0})
 
                             # Counter logic to break after desired length
                             counter += 1

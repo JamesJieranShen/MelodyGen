@@ -41,7 +41,6 @@ class Phrase():
         self.killed = False
         self.endless = endless
         
-
     def attach_signature(self, signature):
         if self.signature is not None:
             detach_signature()
