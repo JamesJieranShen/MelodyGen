@@ -134,8 +134,44 @@ class Phrase():
     
     # Utility methods for phrase manipulation
     
+    def quantize(self, division=None, sig_div=None, quantize_length= False):
+        """ Quantize all notes in phrase.
+        :param division:        division to quantize based on.
+        :param sig_div:         use division of signature.beat
+        :param quantize_length:    Quantize note length?
+
+        :type division:         Fraction / Float
+        :type sig_div:          Fraction / Float
+        :type quantize_length:  Boolean
+
+        :return:                Nothing. Self is mutated.
+        """
+        
+        # Sanity check:
+        if division is not None and sig_div is not None:
+            print("ERROR:  Only one parameter should be provided")
+            return
+        if division is None and sig_div is None:
+            print("ERROR:  No parameters provided")
+
+        # Init quantization base
+        base = 0
+        if division is not None:
+            base = division
+        if sig_div is not None:
+            base = self.signature.beat * sig_div
+        
+        # Iterate through notes
+        for note in self.phrase:
+            start = self.phrase[note]
+            # round start
+            self.phrase[note] = round(start/float(base)) * base
+            if quantize_length is True:
+                length = note.length
+                note.set_length(round(length/float(base))*base)
+
     # Utility method to reverse Phrase.  
-    def reverse(self):
+    def reverse(self): # DYSFUNCTIONAL
         """Utility method to reverse Phrase. 
         
         :return: None, modifys object in place 
@@ -143,7 +179,7 @@ class Phrase():
         """
         self.phrase.reverse()
 
-    def flip(self):
+    def flip(self): # DYSFUNCTIONAL
         """Reverse all intervals in the Phrase.
 
         :return: None, modifies object in place
