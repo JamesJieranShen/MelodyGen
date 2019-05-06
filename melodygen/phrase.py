@@ -167,7 +167,7 @@ class Phrase:
             print(
                 "Warning: "
                 + input_note.__str__
-                + "outsidde of phrase, will not be played."
+                + "outside of phrase, will not be played."
             )
 
         self.phrase[input_note] = start
