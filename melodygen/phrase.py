@@ -17,7 +17,7 @@ from midi_handler import MIDIHandler as handler
 import threading
 
 # Phrase object. Is a dictionary of Notes.
-class Phrase():
+class Phrase:
     def __init__(self, tempo=120, debug=False, endless=False, length=4):
         """Default constructor for Phrase. 
         
@@ -40,17 +40,17 @@ class Phrase():
         self.handler = handler(tempo, debug)
         self.killed = False
         self.endless = endless
-        
+
     def attach_signature(self, signature):
         if self.signature is not None:
             detach_signature()
         self.signature = signature
         on_attach_signature()
-    
+
     def detach_signature(self):
         self.signature = None
         on_detattch_signature()
-    
+
     def on_attach_signature(self):
         pass
 
@@ -59,7 +59,7 @@ class Phrase():
 
     # Threading function for triggering multiple notes at the same time
     def play_thread(self, note, offset):
-        time.sleep(240* offset /self.tempo)    # Wait until it's time to play
+        time.sleep(240 * offset / self.tempo)  # Wait until it's time to play
         if not self.killed:
             self.handler.play_note(note)
 
@@ -77,8 +77,7 @@ class Phrase():
         clock = threading.Thread(target=self.clock, args=(self.length,))
         thread_list = []
         for note, start in self.phrase.items():
-            this_thread = threading.Thread(target=self.play_thread, args=(note,
-                start))
+            this_thread = threading.Thread(target=self.play_thread, args=(note, start))
             this_thread.daemon = True
             thread_list.append(this_thread)
 
@@ -109,7 +108,7 @@ class Phrase():
         :rtype: Phrase 
         """
         self.set_phrase(Generate(algorithm, params).phrase)
-    
+
     # Set phrase
     def set_phrase(self, phrase):
         """Utility method to set Phrase. 
@@ -137,7 +136,7 @@ class Phrase():
         """
         # Create new phrase
         new_phrase = Phrase()
-        
+
         # Copy tempo, debug, handler info
         new_phrase.tempo = old_phrase.tempo
         new_phrase.debug = old_phrase.debug
@@ -147,7 +146,7 @@ class Phrase():
         for old_note, start in old_phrase.phrase.items():
             new_note = copy_note(old_note)
             new_phrase.phrase[new_note] = start
-        return new_phrase 
+        return new_phrase
 
     # Append to Phrase
     def append(self, start, input_note):
@@ -165,14 +164,17 @@ class Phrase():
         input_note = Note.copy_note(input_note)
         # allows out-of-phrase notes, but show warning.
         if start >= self.length:
-            print("Warning: " + input_note.__str__ + 
-                    "outsidde of phrase, will not be played.")
+            print(
+                "Warning: "
+                + input_note.__str__
+                + "outsidde of phrase, will not be played."
+            )
 
         self.phrase[input_note] = start
-    
+
     # Utility methods for phrase manipulation
-    
-    # Utility method to reverse Phrase.  
+
+    # Utility method to reverse Phrase.
     def reverse(self):
         """Utility method to reverse Phrase. 
         
@@ -214,42 +216,12 @@ class Phrase():
         :return: String representation of Phrase
         :rtype: String 
         """
-        print("<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
-                self.length, self.tempo, self.debug))
+        print(
+            "<Note: phrase_length: {}, tempo: {}, debug: {}>".format(
+                self.length, self.tempo, self.debug
+            )
+        )
         if self.debug:
             for note in self.phrase:
-                print('\t', note)
+                print("\t", note)
         return ""
-"""
-class Worker(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        # A flag to notify the thread that it should finish up and exit
-        self.kill_received = False
-
-  def run(self):
-      while not self.kill_received:
-          self.do_something()
-
-  def do_something(self):
-      [i*i for i in range(10000)]
-      time.sleep(1)
-
-def main(args):
-
-    threads = []
-    for i in range(10):
-        t = Worker()
-        threads.append(t)
-        t.start()
-
-    while len(threads) > 0:
-        try:
-            # Join all threads using a timeout so it doesn't block
-            # Filter out threads which have been joined or are None
-            threads = [t.join(1) for t in threads if t is not None and t.isAlive()]
-        except KeyboardInterrupt:
-            print "Ctrl-c received! Sending kill to threads..."
-            for t in threads:
-                t.kill_received = True
-"""

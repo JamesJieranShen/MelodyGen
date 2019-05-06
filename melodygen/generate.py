@@ -11,9 +11,8 @@
 import random
 import time
 
-# Generate object - takes in type of algorithm and array of params 
-class Generate():
-    
+# Generate object - takes in type of algorithm and array of params
+class Generate:
     def __init__(self, algorithm, params):
         """Constructor for Generate object
         
@@ -26,7 +25,7 @@ class Generate():
         :return: Returns a Phrase object
         :rtype: Phrase 
         """
-        ALGORITHM_DICT = {"MapMod" : self.generate_map_mod}
+        ALGORITHM_DICT = {"MapMod": self.generate_map_mod}
 
         if algorithm not in ALGORITHM_DICT.keys():
             raise ValueError("Generate algorithm invalid")
@@ -48,8 +47,8 @@ class Generate():
         :return: Returns a Generate object, copy of old_generate 
         :rtype: Generate
         """
-        return Generate(old_generate.algorithm, old_generate.params) 
-    
+        return Generate(old_generate.algorithm, old_generate.params)
+
     @staticmethod
     def check_req_params(alg_name, required_params, params):
         """Static utility method that checks to make sure all required parameters
@@ -68,8 +67,10 @@ class Generate():
         """
         for param in required_params:
             if param not in params.keys():
-                raise ValueError("Generate {}: {} not specified".format(alg_name, param))
-    
+                raise ValueError(
+                    "Generate {}: {} not specified".format(alg_name, param)
+                )
+
     def generate_map_mod(self, params):
         """Generative algorithm that maps numbers to scale degrees
         and scale modulations based on an input file.
@@ -93,7 +94,7 @@ class Generate():
         """
         # List of required params
         required_params = ["scales", "input", "gen_len"]
-        
+
         # List of optional params
         optional_params = {"start_offset": 0}
 
@@ -113,8 +114,8 @@ class Generate():
 
         # Read in one character at a time from file
         with open(self.input) as fileobj:
-            for line in fileobj:  
-                for ch in line: 
+            for line in fileobj:
+                for ch in line:
 
                     # Skip character based on start_offset
                     if self.start_offset > 0:
@@ -126,10 +127,11 @@ class Generate():
                         ch_int = int(ch)
 
                         # If digit is between 0-scale length add note
-                        if (0 <= ch_int <= len(active_scale)):
+                        if 0 <= ch_int <= len(active_scale):
                             # Append scale degree of active_scale based on ch
-                            working_phrase.update({active_scale.get_scale_degree(
-                                int(ch)): 0})
+                            working_phrase.update(
+                                {active_scale.get_scale_degree(int(ch)): 0}
+                            )
 
                             # Counter logic to break after desired length
                             counter += 1
@@ -137,9 +139,9 @@ class Generate():
                                 break
 
                         # If digit is between scale length-9 change active_scale
-                        elif (len(active_scale) < ch_int <= 9):
+                        elif len(active_scale) < ch_int <= 9:
                             active_scale = random.choice(self.scales)
-        return working_phrase 
+        return working_phrase
 
     # Utility method to set required attributes
     def set_req_params(self, required_params, params):
@@ -169,7 +171,7 @@ class Generate():
         :return: None 
         """
         for opt_param in optional_params:
-            if opt_param in params:    
+            if opt_param in params:
                 setattr(self, opt_param, params[opt_param])
             else:
                 setattr(self, opt_param, optional_params[opt_param])
@@ -181,5 +183,6 @@ class Generate():
         :return: String representation of Generate 
         :rtype: String 
         """
-        return ("<Generate: algorithm: {}, params: {}>".format(
-                self.algorithm, self.params))
+        return "<Generate: algorithm: {}, params: {}>".format(
+            self.algorithm, self.params
+        )
