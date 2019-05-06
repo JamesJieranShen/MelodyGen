@@ -11,6 +11,7 @@ from melodygen import (
 import mido
 import time
 import random
+import os
 
 # Scales
 e = gen.Scale("E", "MAJOR", 2, 3)
@@ -23,13 +24,15 @@ scales = [e, c, g, d]
 # Vars
 phrase_len = 16
 play_len = 5
+file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
 phrase = gen.Phrase(tempo=120, debug=True, endless=True)
 
+
 phrase.generate_phrase(
     "MapMod",
-    {"input": "../gen/pi.txt", "scales": scales, "gen_len": 2, "start_offset": 0},
+    {"input": file_path + "pi.txt", "scales": scales, "gen_len": 2, "start_offset": 0},
 )
 
 while True:
