@@ -41,7 +41,7 @@ for i in range(phrase_len):
         length_mod=random.choice([1, 1.5, 2/3]), scale=random.choice(scales), prob=0.8))
 """
 phrase.generate_phrase(
-    "MapMod", {"input": "../melodygen/gen/pi.txt", "scales": scales, "gen_len": 8}
+    "MapMod", {"input": "../gen/pi.txt", "scales": scales, "gen_len": 8}
 )
 
 while True:
