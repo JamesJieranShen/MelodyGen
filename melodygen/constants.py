@@ -1,5 +1,5 @@
 """
-.. module:: Constants
+.. module:: constants
    :platform: Mac, Unix, Windows
    :synopsis: List of constants for MelodyGen 
 
@@ -20,7 +20,6 @@ NOTE_DICT_FLATS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "
 OCTAVES = [-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
 """
 """
-
 # Dict of MIDI note values
 MIDI_KEY_DICT = {
     "C": 0,
@@ -43,7 +42,6 @@ MIDI_KEY_DICT = {
 }
 """
 """
-
 # Order of sharps/flats
 ORDER_OF_SHARPS = ["F", "C", "G", "D", "A", "E", "B"]
 """
