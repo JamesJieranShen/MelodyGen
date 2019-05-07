@@ -34,7 +34,7 @@
 <span id="phrase-module"></span><h1>Phrase module<a class="headerlink" href="#module-phrase" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-phrase"></span><dl class="class">
 <dt id="phrase.Phrase">
-<em class="property">class </em><code class="descclassname">phrase.</code><code class="descname">Phrase</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>debug=False</em>, <em>endless=False</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">phrase.</code><code class="descname">Phrase</code><span class="sig-paren">(</span><em>tempo=120</em>, <em>debug=False</em>, <em>endless=False</em>, <em>length=4</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Default constructor for Phrase.</p>
 <dl class="field-list simple">
@@ -54,11 +54,14 @@
 </dl>
 <dl class="method">
 <dt id="phrase.Phrase.append">
-<code class="descname">append</code><span class="sig-paren">(</span><em>input_note</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.append" title="Permalink to this definition">¶</a></dt>
+<code class="descname">append</code><span class="sig-paren">(</span><em>start</em>, <em>input_note</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.append" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method to append a Note to a Phrase</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>input_slot</strong> (<a class="reference internal" href="note.html#note.Note" title="note.Note"><em>Note</em></a>) – Note to append</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_slot</strong> (<a class="reference internal" href="note.html#note.Note" title="note.Note"><em>Note</em></a>) – Note to append</p></li>
+<li><p><strong>start</strong> (<em>Fraction</em>) – start time stamp for the note</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>No return, modifys existing object</p>
@@ -72,6 +75,11 @@
 <dl class="method">
 <dt id="phrase.Phrase.attach_signature">
 <code class="descname">attach_signature</code><span class="sig-paren">(</span><em>signature</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.attach_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="phrase.Phrase.clock">
+<code class="descname">clock</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.clock" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -147,6 +155,11 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="method">
+<dt id="phrase.Phrase.play_thread">
+<code class="descname">play_thread</code><span class="sig-paren">(</span><em>note</em>, <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.play_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="phrase.Phrase.reverse">

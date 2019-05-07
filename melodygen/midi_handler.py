@@ -13,10 +13,10 @@ import time
 import mido
 import os
 import gc
-#from note import Note
+from note import Note
 
 # Object to handle playing MIDI data
-class MIDIHandler():
+class MIDIHandler:
     # Constants
     DEBUG_ON = False
     PRINT_NOTES = False
@@ -41,11 +41,11 @@ class MIDIHandler():
         # Get inputs/outputs
         self.outputs = mido.get_output_names()
         self.inputs = mido.get_input_names()
-        
+
         # Define input/output to be used
         self.keyboard_input = mido.open_input(self.inputs[0])
-        self.midi_output = mido.open_output(self.outputs[0])
-         
+        self.midi_output = mido.open_output(self.outputs[0], autoreset=True)
+
         # Print IO info
         self.print_io(debug)
 
@@ -61,30 +61,26 @@ class MIDIHandler():
         :rtype: None 
         """
         trig = False
-        if (random.random() <= note.prob):
+        if random.random() <= note.prob:
             trig = True
 
-        try:
-            if trig: self.note_on(note)
-            time.sleep((240 * note.length * note.length_mod) / self.tempo)
-            if trig: self.note_off(note)
-        except KeyboardInterrupt:
-            self.exit_program(note)
+        if trig:
+            self.note_on(note)
+        time.sleep((240 * note.length * note.length_mod) / self.tempo)
+        if trig:
+            self.note_off(note)
 
-    def exit_program(self, note):
+    def exit_program(self, notes):
         """Utility method to exit program. 
-        
-        :param note: Note to shut off. 
-        
-        :type note: Note 
-
+       
         :return: None. 
         """
-        self.note_off(note)
-        print('\n')
+        for note in notes.keys():
+            self.note_off(note)
+        print("\n")
         gc.collect(generation=2)
         os._exit(0)
-    
+
     def print_io(self, debug):
         """Utility method to print input/output debug info. 
         
@@ -139,7 +135,6 @@ class MIDIHandler():
         :rtype: MIDI 
         """
         return mido.Message.from_bytes(msg)
-
 
     # Utility method to send a note on signal
     def note_on(self, note, chan=MIDI_CHANNEL_1):

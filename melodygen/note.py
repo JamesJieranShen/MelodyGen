@@ -13,10 +13,17 @@ from fractions import Fraction
 import constants as const
 
 # Base note object. Has Name of pitch and MIDI value.
-class Note():
-
-    def __init__(self, note=None, vel=100, length=None, length_mod=None,
-            prob=1, scale=None, accented=False):
+class Note:
+    def __init__(
+        self,
+        note=None,
+        vel=100,
+        length=None,
+        length_mod=None,
+        prob=1,
+        scale=None,
+        accented=False,
+    ):
         """Default constructor for Note. Assigns random pitch and length if not 
         specified.
         
@@ -50,18 +57,18 @@ class Note():
 
         # Check for length
         if length is None:
-            # Assign random rhythm 
+            # Assign random rhythm
             self.rand_length()
         else:
-            # Assign inputted rhythm 
-            self.length = length 
+            # Assign inputted rhythm
+            self.length = length
 
         # Check for length_mod
         if length_mod is None:
-            # Assign random length mod 
+            # Assign random length mod
             self.rand_length_mod()
         else:
-            # Assign inputted length mod 
+            # Assign inputted length mod
             self.length_mod = length_mod
 
         # Set note probability
@@ -83,10 +90,9 @@ class Note():
         :rtype: Note 
         """
         return Note(note.note, note.vel, note.length, note.length_mod, note.prob)
-    
+
     # Get random note from scale and random rhythm value
-    def rand(self, scale, custom_len_list=None, custom_len_mod_list=None,
-            prob=1):
+    def rand(self, scale, custom_len_list=None, custom_len_mod_list=None, prob=1):
         """Class method to randomize note and rhythm values of Note. 
         
         :param scale: Scale object to pick random note from 
@@ -127,7 +133,7 @@ class Note():
             return self
 
         # If scale was passed in, choose note from scale
-        if (scale is not None):
+        if scale is not None:
             self.note = random.choice(scale.notes).note
         else:
             self.note = random.randint(0, 127)
@@ -175,14 +181,13 @@ class Note():
             return self
 
         # Get random rhythm mod from class dict or custom dict
-        if custom_len_mod_list is None: 
-            self.length_mod = \
-                random.choice(list(const.NOTE_LEN_MOD_DICT.values()))
+        if custom_len_mod_list is None:
+            self.length_mod = random.choice(list(const.NOTE_LEN_MOD_DICT.values()))
         else:
             self.length_mod = random.choice(custom_len_mod_list)
-        
+
         return self
-    
+
     # Utility function to get note midi value
     def get_note(self):
         """Utility function to get note midi value.
@@ -193,8 +198,14 @@ class Note():
         return self.note
 
     # Mutate note and rhythm value
-    def mutate(self, scale, custom_len_list=None, custom_len_mod_list=None,
-            prob=1, threshold=0.5):
+    def mutate(
+        self,
+        scale,
+        custom_len_list=None,
+        custom_len_mod_list=None,
+        prob=1,
+        threshold=0.5,
+    ):
         """Class method to mutate note and rhythm values of Note. 
         
         :param scale: Scale object to pick random note from
@@ -214,7 +225,7 @@ class Note():
         self.mutate_note(scale, prob, threshold)
         self.mutate_length(custom_len_list, prob, threshold)
         self.mutate_length_mod(custom_len_mod_list, prob)
-        #self.mutate_prob()
+        # self.mutate_prob()
         return self
 
     # Mutate note based on scale (returns adjacent note in scale)
@@ -236,7 +247,7 @@ class Note():
         # Don't mutate if random prob is larger than prob
         if random.random() > prob:
             return self
-        
+
         # Get index of note in Scale
         for index, note in enumerate(scale.notes):
             if self.note == note.note:
@@ -300,7 +311,7 @@ class Note():
             else:
                 len_index = -1
 
-        # Raise error if rhythm is not in list 
+        # Raise error if rhythm is not in list
         if len_index == -1:
             raise ValueError("Length not in list for mutate_length")
 
@@ -319,7 +330,7 @@ class Note():
             else:
                 self.length = len_list[len_index - 1]
         return self
-    
+
     # Mutate length mod value
     def mutate_length_mod(self, custom_len_mod_list=None, prob=1):
         """Class method to mutate length mod value of Note using
@@ -340,7 +351,7 @@ class Note():
             return self
 
         old_length_mod = self.length_mod
-        while(self.length_mod == old_length_mod):
+        while self.length_mod == old_length_mod:
             self.rand_length_mod(custom_len_mod_list)
         return self
 
@@ -378,7 +389,6 @@ class Note():
         """
         self.note = note
         return self
-    
 
     # Set length value
     def set_length(self, length):
@@ -405,7 +415,7 @@ class Note():
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        self.length_mod = length_mod 
+        self.length_mod = length_mod
         return self
 
     # Set prob value
@@ -419,11 +429,32 @@ class Note():
         :return: No return, modifys existing object 
         :rtype: None 
         """
-        if (prob is None):
+        if prob is None:
             self.prob = 1
         else:
             self.prob = prob
         return self
+
+    def is_valid(self):
+        """Class method to determine whether the note is a valid midi note.
+        
+        :return: True if is valid, False otherwise
+        :rtype: Boolean
+        """
+        if self.note is None:
+            return False
+        elif self.note > 127 or self.note < 0:  # Pitch check
+            return False
+        elif self.vel > 127 or self.vel < 0:  # velocity check
+            return False
+        elif self.length is None or self.length <= 0:  # length check
+            return False
+        elif self.length_mod <= 0 or self.length_mod >= 2:
+            return False  # length_mod sanity
+        elif prob > 1 or prob < 0:  # prob between 0 & 1
+            return False
+        else:
+            return True
 
     # String representation of Note.
     def __str__(self):
@@ -433,8 +464,11 @@ class Note():
         :rtype: String 
         """
         return """<Note: note: %d, vel: %d, length: %s, length_mod: %s,
-            prob: %.2f>""" % (self.note,
-                              self.vel,
-                              Fraction(self.length),
-                              Fraction(self.length_mod).limit_denominator(),
-                              self.prob)
+            prob: %.2f>""" % (
+            self.note,
+            self.vel,
+            Fraction(self.length),
+            Fraction(self.length_mod).limit_denominator(),
+            self.prob,
+        )
+

@@ -12,7 +12,7 @@ from note import Note
 import constants as const
 
 # Scale object. Is an array of Notes
-class Scale():
+class Scale:
     # Default constructor for Scale. Takes in mode and key
     def __init__(self, key, mode, starting_octave=None, num_octaves=1):
         """Default constructor for Scale. Assigns starting pitch in 3rd octave.
@@ -43,8 +43,8 @@ class Scale():
         self.num_octaves = num_octaves
 
         # Assign key
-        if (isinstance(key, str)):
-            if (starting_octave is None):
+        if isinstance(key, str):
+            if starting_octave is None:
                 raise ValueError("Starting octave not specified for scale")
             else:
                 self.key = self.get_midi(key, starting_octave)
@@ -117,16 +117,28 @@ class Scale():
         for i in range(self.num_octaves):
             for interval in self.intervals:
                 if 0 <= scale_degree <= 127:
-                    scale.append(Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
-                    const.NOTE_LEN_MOD_DICT["NONE"])) 
+                    scale.append(
+                        Note(
+                            scale_degree,
+                            100,
+                            const.NOTE_LEN_DICT[4],
+                            const.NOTE_LEN_MOD_DICT["NONE"],
+                        )
+                    )
                 scale_degree += interval
         if 0 <= scale_degree <= 127:
-            scale.append(Note(scale_degree, 100, const.NOTE_LEN_DICT[4],
-                const.NOTE_LEN_MOD_DICT["NONE"])) 
+            scale.append(
+                Note(
+                    scale_degree,
+                    100,
+                    const.NOTE_LEN_DICT[4],
+                    const.NOTE_LEN_MOD_DICT["NONE"],
+                )
+            )
         return scale
 
     # Class method to get scale degree of Scale
-    def get_scale_degree(self, degree): 
+    def get_scale_degree(self, degree):
         """Utility function to return scale degree of Scale.
        
         :param degree: Scale degree to return
@@ -136,7 +148,7 @@ class Scale():
         :return: Note object at scale degree 
         :rtype: Note 
         """
-        return self.notes[degree-1]
+        return Note.copy_note(self.notes[degree - 1])
 
     # String representation of Scale.
     def __str__(self):
@@ -145,8 +157,10 @@ class Scale():
         :return: String representation of Scale
         :rtype: String 
         """
-        print("<Scale: key: %s, mode: %s, num_octaves: %d>" % (self.key,
-            self.mode, self.num_octaves))
+        print(
+            "<Scale: key: %s, mode: %s, num_octaves: %d>"
+            % (self.key, self.mode, self.num_octaves)
+        )
         for note in self.notes:
             print("\t", note)
 
