@@ -1,5 +1,4 @@
 Fix:
-- Fix generative algorithm (add time parameter)
 - Fix absolute path file reference (generate)
 
 Parsing:
