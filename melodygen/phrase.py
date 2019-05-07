@@ -191,10 +191,10 @@ class Phrase:
                 "Warning: " + str(input_note) + "outside of phrase, will not be played."
             )
         self.phrase[input_note] = start
-    
+
     # Utility methods for phrase manipulation
-    
-    def quantize(self, division=None, sig_div=None, quantize_length= False):
+
+    def quantize(self, division=None, sig_div=None, quantize_length=False):
         """ Quantize all notes in phrase.
         :param division:        division to quantize based on.
         :param sig_div:         use division of signature.beat
@@ -219,18 +219,18 @@ class Phrase:
             base = division
         if sig_div is not None:
             base = self.signature.beat * sig_div
-        
+
         # Iterate through notes
         for note in self.phrase:
             start = self.phrase[note]
             # round start
-            self.phrase[note] = round(start/float(base)) * base
+            self.phrase[note] = round(start / float(base)) * base
             if quantize_length is True:
                 length = note.length
-                note.set_length(round(length/float(base))*base)
- 
+                note.set_length(round(length / float(base)) * base)
+
     # Utility method to reverse Phrase
-    def reverse(self): # DYSFUNCTIONAL
+    def reverse(self):  # DYSFUNCTIONAL
         """Utility method to reverse Phrase. 
         
         :return: None, modifys object in place 
@@ -239,7 +239,7 @@ class Phrase:
         self.phrase.reverse()
 
     # Utility methods to flip intervals of Phrase
-    def flip(self): # DYSFUNCTIONAL
+    def flip(self):  # DYSFUNCTIONAL
         """Reverse all intervals in the Phrase.
 
         :return: None, modifies object in place
@@ -251,7 +251,7 @@ class Phrase:
             interval = original_value - first_note
             new_value = first_note - interval
             note.set_note(new_value)
-    
+
     # Utility method to resize phrase length to sum of note lengths
     def resize(self):
         """Utility method to resize phrase length to sum of note lengths.

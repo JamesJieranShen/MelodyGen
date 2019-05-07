@@ -27,7 +27,7 @@ play_len = 5
 file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=False, endless=True)
+phrase = gen.Phrase(tempo=120, debug=True, endless=True)
 
 
 phrase.generate_phrase(
