@@ -59,7 +59,13 @@ class Phrase:
 
     # Threading function for triggering multiple notes at the same time
     def play_thread(self, note, offset):
+        """Utility method to play thread. 
+        
+        :return: Plays thread via MIDIHandler
+        :rtype: None 
+        """
         time.sleep(240 * offset / self.tempo)  # Wait until it's time to play
+        # Logic for ending with Ctl-C
         if not self.killed:
             self.handler.play_note(note)
 
@@ -68,12 +74,13 @@ class Phrase:
 
     # Utility method to play phrase
     def play(self):
-        """Utility method to play Phrase. 
+        """Utility method to play Phrase. Utilizes multithreading to play multiple
+            notes at once. 
         
         :return: Plays Phrase via MIDIHandler
         :rtype: None 
         """
-        # work clock:
+        # Work clock:
         clock = threading.Thread(target=self.clock, args=(self.length,))
         thread_list = []
         for note, start in self.phrase.items():
@@ -81,20 +88,23 @@ class Phrase:
             this_thread.daemon = True
             thread_list.append(this_thread)
 
-        # start all threads
+        # Start all threads
         clock.start()
         for thread in thread_list:
             thread.start()
 
-        # handle endless
+        # Handle endless
         if self.endless and not self.killed:
             try:
+                # Play notes
                 clock.join()
                 self.play()
             except KeyboardInterrupt:
+                # Exit on Ctl-C
                 self.killed = True
                 self.handler.exit_program(self.phrase)
         else:
+            # Exit program on phrase end
             for thread in thread_list:
                 thread.join()
             clock.join()
@@ -121,6 +131,19 @@ class Phrase:
         :rtype: None 
         """
         self.phrase = phrase
+
+    # Set length
+    def set_length(self, length):
+        """Utility method to set Phrase length. 
+        
+        :param length: Phrase length to set 
+        
+        :type length: float 
+
+        :return: No return, modifys existing object 
+        :rtype: None 
+        """
+        self.length = length
 
     # Copy ctor for Phrase
     @staticmethod
@@ -162,19 +185,15 @@ class Phrase:
         :rtype: None 
         """
         input_note = Note.copy_note(input_note)
-        # allows out-of-phrase notes, but show warning.
+        # Allows out-of-phrase notes, but shows warning
         if start >= self.length:
             print(
-                "Warning: "
-                + input_note.__str__
-                + "outside of phrase, will not be played."
+                "Warning: " + str(input_note) + "outside of phrase, will not be played."
             )
 
         self.phrase[input_note] = start
 
-    # Utility methods for phrase manipulation
-
-    # Utility method to reverse Phrase.
+    # Utility method to reverse Phrase
     def reverse(self):
         """Utility method to reverse Phrase. 
         
@@ -183,6 +202,19 @@ class Phrase:
         """
         self.phrase.reverse()
 
+    # Utility method to resize phrase length to sum of note lengths
+    def resize(self):
+        """Utility method to resize phrase length to sum of note lengths.
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        counter = 0
+        for note in self.phrase.keys():
+            counter += note.length * note.length_mod
+        self.set_length(counter)
+
+    # Utility methods to flip intervals of Phrase
     def flip(self):
         """Reverse all intervals in the Phrase.
 
@@ -209,9 +241,9 @@ class Phrase:
         for note in self.phrase:
             note.set_prob(prob)
 
-    # Str representation of Phrase
+    # Str representation of Phrase.
     def __str__(self):
-        """Utility function to print Phrase.
+        """Utility function to print Phrase
        
         :return: String representation of Phrase
         :rtype: String 
