@@ -190,11 +190,47 @@ class Phrase:
             print(
                 "Warning: " + str(input_note) + "outside of phrase, will not be played."
             )
-
         self.phrase[input_note] = start
+    
+    # Utility methods for phrase manipulation
+    
+    def quantize(self, division=None, sig_div=None, quantize_length= False):
+        """ Quantize all notes in phrase.
+        :param division:        division to quantize based on.
+        :param sig_div:         use division of signature.beat
+        :param quantize_length:    Quantize note length?
 
+        :type division:         Fraction / Float
+        :type sig_div:          Fraction / Float
+        :type quantize_length:  Boolean
+
+        :return:                Nothing. Self is mutated.
+        """
+        # Sanity check:
+        if division is not None and sig_div is not None:
+            print("ERROR:  Only one parameter should be provided")
+            return
+        if division is None and sig_div is None:
+            print("ERROR:  No parameters provided")
+
+        # Init quantization base
+        base = 0
+        if division is not None:
+            base = division
+        if sig_div is not None:
+            base = self.signature.beat * sig_div
+        
+        # Iterate through notes
+        for note in self.phrase:
+            start = self.phrase[note]
+            # round start
+            self.phrase[note] = round(start/float(base)) * base
+            if quantize_length is True:
+                length = note.length
+                note.set_length(round(length/float(base))*base)
+ 
     # Utility method to reverse Phrase
-    def reverse(self):
+    def reverse(self): # DYSFUNCTIONAL
         """Utility method to reverse Phrase. 
         
         :return: None, modifys object in place 
@@ -202,20 +238,8 @@ class Phrase:
         """
         self.phrase.reverse()
 
-    # Utility method to resize phrase length to sum of note lengths
-    def resize(self):
-        """Utility method to resize phrase length to sum of note lengths.
-        
-        :return: None, modifys object in place 
-        :rtype: None 
-        """
-        counter = 0
-        for note in self.phrase.keys():
-            counter += note.length * note.length_mod
-        self.set_length(counter)
-
     # Utility methods to flip intervals of Phrase
-    def flip(self):
+    def flip(self): # DYSFUNCTIONAL
         """Reverse all intervals in the Phrase.
 
         :return: None, modifies object in place
@@ -227,6 +251,18 @@ class Phrase:
             interval = original_value - first_note
             new_value = first_note - interval
             note.set_note(new_value)
+    
+    # Utility method to resize phrase length to sum of note lengths
+    def resize(self):
+        """Utility method to resize phrase length to sum of note lengths.
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        counter = 0
+        for note in self.phrase.keys():
+            counter += note.length * note.length_mod
+        self.set_length(counter)
 
     def unify_prob(self, prob=1.0):
         """Set prob of all notes in phrase to be the same.
