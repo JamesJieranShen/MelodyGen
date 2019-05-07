@@ -195,16 +195,18 @@ class Phrase:
     # Utility methods for phrase manipulation
 
     def quantize(self, division=None, sig_div=None, quantize_length=False):
-        """ Quantize all notes in phrase.
-        :param division:        division to quantize based on.
-        :param sig_div:         use division of signature.beat
-        :param quantize_length:    Quantize note length?
+        """Quantize all notes in phrase
+        
+        :param division: Division to quantize based on
+        :param sig_div: Use division of signature.beat
+        :param quantize_length: Quantize note length?
 
-        :type division:         Fraction / Float
-        :type sig_div:          Fraction / Float
-        :type quantize_length:  Boolean
+        :type division: Fraction / Float
+        :type sig_div: Fraction / Float
+        :type quantize_length: Boolean
 
-        :return:                Nothing. Self is mutated.
+        :return: No return, modifys existing object 
+        :rtype: None 
         """
         # Sanity check:
         if division is not None and sig_div is not None:

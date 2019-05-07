@@ -9,4 +9,5 @@ Python
    phrase
    scale
    constants
-   generate 
+   generate
+   signature

@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Signature module &#8212; Melody Gen 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-signature">
+<span id="signature-module"></span><h1>Signature module<a class="headerlink" href="#module-signature" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-signature"></span><dl class="class">
+<dt id="signature.Signature">
+<em class="property">class </em><code class="descclassname">signature.</code><code class="descname">Signature</code><span class="sig-paren">(</span><em>num_beats=1</em>, <em>beat=Fraction(1</em>, <em>4)</em>, <em>Signature=None</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Default ctor - creates a 1/4 signature with no inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_beats</strong> (<em>int</em>) – Number of beats in a measure</p></li>
+<li><p><strong>beat</strong> (<em>Fraction</em>) – Value of one beat</p></li>
+<li><p><strong>Sinature</strong> – Act as copy ctor when signarure is not None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a Signature object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#signature.Signature" title="signature.Signature">Signature</a></p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="signature.Signature.accent">
+<code class="descname">accent</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.accent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set accent to True</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>int</em>) – Location of the beat in the measure</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Current state of location</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.get_accents">
+<code class="descname">get_accents</code><span class="sig-paren">(</span><em>location=1</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.get_accents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for _accents</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>int</em>) – Location of the beat in the measure</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if is accented, false if otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.get_beat">
+<code class="descname">get_beat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.get_beat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.get_num_beats">
+<code class="descname">get_num_beats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.get_num_beats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.is_valid">
+<code class="descname">is_valid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.is_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validity checker for Signature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if signature is valid</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.set_accent">
+<code class="descname">set_accent</code><span class="sig-paren">(</span><em>accent_list</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.set_accent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set accent according to accent_list
+:param accent_list: List specifying accents - true is accent
+:type accent_list: List of booleans</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True for success</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.set_beat">
+<code class="descname">set_beat</code><span class="sig-paren">(</span><em>beat</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.set_beat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.set_num_beats">
+<code class="descname">set_num_beats</code><span class="sig-paren">(</span><em>num_beats</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.set_num_beats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.set_signature">
+<code class="descname">set_signature</code><span class="sig-paren">(</span><em>num_beats</em>, <em>beatValue</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.set_signature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.toggle_accent">
+<code class="descname">toggle_accent</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.toggle_accent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle accent field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>int</em>) – Location of the beat in the measure</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if is now accented, false if otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="signature.Signature.unaccent">
+<code class="descname">unaccent</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="headerlink" href="#signature.Signature.unaccent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set accent to False</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>int</em>) – Location of the beat in the measure</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Current state of location</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Melody Gen</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nicholas Schenone.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/source/signature.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

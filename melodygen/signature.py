@@ -5,8 +5,6 @@
    :synopsis: Signature object for MelodyGen 
 
 .. moduleauthor:: James Shen 
-
-
 """
 from fractions import Fraction
 import constants as const
@@ -14,14 +12,15 @@ import constants as const
 # This object describes a musical signature.
 class Signature:
     def __init__(self, num_beats=1, beat=Fraction("1/4"), Signature=None):
-        """ Default ctor. Creates a 1/4 signature with no inputs.
-        :param num_beats:   number of beats in a measure.
-        :param beat:        the value of one beat.
-        :param Sinature:    Act as copy ctor when signarure is not None.
+        """ Default ctor - creates a 1/4 signature with no inputs
+
+        :param num_beats: Number of beats in a measure
+        :param beat: Value of one beat
+        :param Sinature: Act as copy ctor when signarure is not None
         
         :type num_beats:    int
         :type beat:         Fraction
-        :type Signature     Signature
+        :type Signature:     Signature
 
         :return:            Returns a Signature object
         :rtype:             Signature
@@ -35,11 +34,10 @@ class Signature:
             self.beat = Fraction(beat)  # Deep Copy
             self._accents = [False] * num_beats
 
-    def isValid(self):
-        """Validity checker for Signature.
-        :param:     NONE
+    def is_valid(self):
+        """Validity checker for Signature
 
-        :return:    True if signature is valid.
+        :return:    True if signature is valid
         :rtype:     Boolean
         """
         if self.num_beats != len(self._accents):
@@ -49,11 +47,12 @@ class Signature:
     # Methods related to accents
 
     def get_accents(self, location=1):
-        """ Getter for _accents.
-        :param location:    Location of the beat in the measure.
+        """ Getter for _accents
+
+        :param location:    Location of the beat in the measure
         :type location:     int
 
-        :return:            True if is accented, false if otherwise.
+        :return:            True if is accented, false if otherwise
         :rtype:             boolean
         """
         if location > self.num_beats or location < 1:
@@ -63,11 +62,12 @@ class Signature:
         return self._accents[location - 1]
 
     def toggle_accent(self, location):
-        """Set accent to True if False, False if True
-        :param location:    Location of the beat in the measure.
+        """Toggle accent field
+
+        :param location:    Location of the beat in the measure
         :type location:     int
 
-        :return:            True if is now accented, false if otherwise.
+        :return:            True if is now accented, false if otherwise
         :rtype:             boolean
         """
         if location > self._num_beats or location < 1:
@@ -78,8 +78,9 @@ class Signature:
         return _accents[location]
 
     def accent(self, location):
-        """Set accent to True.
-        :param location:    Location of the beat in the measure.
+        """Set accent to True
+
+        :param location:    Location of the beat in the measure
         :type location:     int
 
         :return:            Current state of location
@@ -93,8 +94,9 @@ class Signature:
         return self._accents[location]
 
     def unaccent(self, location):
-        """Set accent to False.
-        :param location:    Location of the beat in the measure.
+        """Set accent to False
+
+        :param location:    Location of the beat in the measure
         :type location:     int
 
         :return:            Current state of location
@@ -109,11 +111,11 @@ class Signature:
 
     def set_accent(self, accent_list):
         """Set accent according to accent_list
-        :param accent_list:    List specifying accents. True is accent.
-        :type accent_list:     list of boolean.
+        :param accent_list: List specifying accents - true is accent
+        :type accent_list: List of booleans
 
-        :return:                True for success
-        :rtype:                 boolean
+        :return: True for success
+        :rtype: Boolean
         """
         if len(accent_list) != self.num_beats:
             print("CATASTROPHIC FAILURE: list is not valid.")

@@ -176,13 +176,20 @@
 <dl class="method">
 <dt id="phrase.Phrase.quantize">
 <code class="descname">quantize</code><span class="sig-paren">(</span><em>division=None</em>, <em>sig_div=None</em>, <em>quantize_length=False</em><span class="sig-paren">)</span><a class="headerlink" href="#phrase.Phrase.quantize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Quantize all notes in phrase.
-:param division:        division to quantize based on.
-:param sig_div:         use division of signature.beat
-:param quantize_length:    Quantize note length?</p>
+<dd><p>Quantize all notes in phrase</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Nothing. Self is mutated.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>division</strong> (<em>Fraction / Float</em>) – Division to quantize based on</p></li>
+<li><p><strong>sig_div</strong> (<em>Fraction / Float</em>) – Use division of signature.beat</p></li>
+<li><p><strong>quantize_length</strong> (<em>Boolean</em>) – Quantize note length?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>No return, modifys existing object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
