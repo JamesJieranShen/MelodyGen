@@ -436,7 +436,7 @@ class Note:
         return self
 
     def is_valid(self):
-        """Class method too determine whether the note is a valid midi note.
+        """Class method to determine whether the note is a valid midi note.
         
         :return: True if is valid, False otherwise
         :rtype: Boolean
