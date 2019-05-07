@@ -148,7 +148,7 @@ class Scale:
         :return: Note object at scale degree 
         :rtype: Note 
         """
-        return self.notes[degree - 1]
+        return Note.copy_note(self.notes[degree - 1])
 
     # String representation of Scale.
     def __str__(self):
