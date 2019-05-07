@@ -435,29 +435,27 @@ class Note:
             self.prob = prob
         return self
 
-    def isValid(self):
-        """Class method too determine whether the note is a valid MidiNote
-        :param: None.
+    def is_valid(self):
+        """Class method too determine whether the note is a valid midi note.
         
-        :return: True if is valid, False otherwise.
+        :return: True if is valid, False otherwise
         :rtype: Boolean
         """
         if self.note is None:
             return False
-        elif self.note > 127 or self.note < 0:      # Pitch check
+        elif self.note > 127 or self.note < 0:  # Pitch check
             return False
-        elif self.vel > 127 or self.vel < 0:        # velocity check
+        elif self.vel > 127 or self.vel < 0:  # velocity check
             return False
-        elif self.length is None or length <= 0:    # length check
+        elif self.length is None or self.length <= 0:  # length check
             return False
         elif self.length_mod <= 0 or self.length_mod >= 2:
-            return False                            # length_mod sanity
-        elif prob > 1 or prob < 0:                  # prob between 0 & 1
+            return False  # length_mod sanity
+        elif prob > 1 or prob < 0:  # prob between 0 & 1
             return False
         else:
             return True
 
-    
     # String representation of Note.
     def __str__(self):
         """Utility function to print Note.
