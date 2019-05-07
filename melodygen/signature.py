@@ -111,6 +111,7 @@ class Signature:
 
     def set_accent(self, accent_list):
         """Set accent according to accent_list
+        
         :param accent_list: List specifying accents - true is accent
         :type accent_list: List of booleans
 
