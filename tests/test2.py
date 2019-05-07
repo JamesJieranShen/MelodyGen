@@ -14,7 +14,7 @@ import random
 import os
 
 # Scales
-e = gen.Scale("E", "MAJOR", 2, 3)
+e = gen.Scale("E", "MAJOR", 2, 1)
 g = gen.Scale("G", "MAJOR", 2, 3)
 c = gen.Scale("C", "MAJOR_PENT", 3, 2)
 d = gen.Scale("D", "HARM_MINOR", 3, 2)
@@ -27,16 +27,24 @@ play_len = 5
 file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=True, endless=True)
+phrase = gen.Phrase(tempo=120, debug=False, endless=True)
 
 
 phrase.generate_phrase(
     "MapMod",
-    {"input": file_path + "pi.txt", "scales": scales, "gen_len": 2, "start_offset": 0},
+    {
+        "input_file": file_path + "pi.txt",
+        "scales": [e],
+        "gen_len": 16,
+        "start_offset": 1,
+        "note_len": 1 / 16,
+    },
 )
 
+phrase.resize()
+
 while True:
-    for note in phrase.phrase:
-        note.set_length(1 / 8)
+    # for note in phrase.phrase:
+    #     note.set_length(1 / 8)
 
     phrase.play()

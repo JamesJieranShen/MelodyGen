@@ -11,6 +11,7 @@ from melodygen import (
 import mido
 import time
 import random
+import os
 
 # Scales
 e = gen.Scale("E", "MAJOR", 3, 3)
@@ -23,6 +24,7 @@ scales = [e, c, g, d]
 # Vars
 phrase_len = 16
 play_len = 5
+file_path = os.path.abspath("./melodygen/gen") + "/"
 
 """
 # Notes
@@ -34,15 +36,22 @@ handler.play_note(note);
 """
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=True, endless=True)
-"""
+phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=2)
+
+clock = 0
 for i in range(phrase_len):
-    phrase.append(gen.Note(length=1/16,
-        length_mod=random.choice([1, 1.5, 2/3]), scale=random.choice(scales), prob=0.8))
-"""
-phrase.generate_phrase(
-    "MapMod", {"input": "../gen/pi.txt", "scales": scales, "gen_len": 8}
-)
+    note_len = random.choice([1, 1.5, 2 / 3])
+    phrase.append(
+        clock,
+        gen.Note(
+            length=1 / 16, length_mod=note_len, scale=random.choice(scales), prob=1
+        ),
+    )
+    clock += 1 / 16 * note_len
+
+# phrase.generate_phrase(
+#     "MapMod", {"input": file_path + "pi.txt", "scales": scales, "gen_len": 8}
+# )
 
 while True:
     phrase.play()
@@ -58,7 +67,6 @@ while True:
         note.set_length(1 / 16)
         note.rand_note(scale=random.choice(scales), prob=0.15)
         note.mutate_length(prob=0.05)
-# print(e)
 """
 
 while(True):
