@@ -78,25 +78,25 @@ class Generate:
         :param params: Dictionary of parameters 
         :param params["scales"]: List of Scales to generate notes from
             (and modulate to)
-        :param params["input"]: Input file to read from
+        :param params["input_file"]: Input file to read from
         :param params["gen_len"]: How long of a phrase to generate
-        :param params["start_offset"]: How many chars to offset before starting
+        :param params["file_offset"]: How many chars to offset before starting
             (optional)
 
         :type params: Dictionary 
         :type params["scales"]: List
-        :type params["input"]: Text file
+        :type params["input_file"]: Text file
         :type params["gen_len"]: int
-        :type params["start_offset"]: int
+        :type params["file_offset"]: int
 
         :return: Returns an array of Note objects
         :rtype: List
         """
         # List of required params
-        required_params = ["scales", "input", "gen_len"]
+        required_params = ["scales", "input_file", "gen_len"]
 
         # List of optional params
-        optional_params = {"start_offset": 0}
+        optional_params = {"file_offset": 0, "note_len": 1 / 4, "note_len_mod": 1}
 
         # Error checking for required params
         Generate.check_req_params("MapMod", required_params, params)
@@ -110,28 +110,38 @@ class Generate:
         # Local vars to generate phrase
         working_phrase = {}
         active_scale = self.scales[0]
-        counter = 0
+        counter = 0  # Used to determine phrase end
+        clock = 0  # Used to add note offset based on length
 
         # Read in one character at a time from file
-        with open(self.input) as fileobj:
+        with open(self.input_file) as fileobj:
             for line in fileobj:
                 for ch in line:
 
-                    # Skip character based on start_offset
-                    if self.start_offset > 0:
-                        self.start_offset -= 1
+                    # Skip character based on file_offset
+                    if self.file_offset > 0:
+                        self.file_offset -= 1
                         continue
 
                     # Check if character is a number
                     if ch.isdigit():
                         ch_int = int(ch)
+                        scale_thres = (
+                            len(active_scale) - 1
+                        ) / active_scale.num_octaves + 1
 
                         # If digit is between 0-scale length add note
-                        if 0 <= ch_int <= len(active_scale):
+                        if 0 <= ch_int <= scale_thres:
+                            # Get note based on scale degree
+                            note = active_scale.get_scale_degree(int(ch))
+                            note.set_length(self.note_len)
+                            note.set_length_mod(self.note_len_mod)
+
                             # Append scale degree of active_scale based on ch
-                            working_phrase.update(
-                                {active_scale.get_scale_degree(int(ch)): 0}
-                            )
+                            working_phrase.update({note: clock})
+
+                            # Update clock
+                            clock += note.length * note.length_mod
 
                             # Counter logic to break after desired length
                             counter += 1
@@ -139,7 +149,7 @@ class Generate:
                                 break
 
                         # If digit is between scale length-9 change active_scale
-                        elif len(active_scale) < ch_int <= 9:
+                        elif scale_thres < ch_int <= 9:
                             active_scale = random.choice(self.scales)
         return working_phrase
 
