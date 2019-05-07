@@ -6,7 +6,6 @@ Parsing:
 - Implement Music21 to Note/Chord
 
 Project:
-- Implement multithreading
 - Implement saving/loading
 - Implement real-time command-line interface?
 - Implement MIDI CC controls
@@ -16,30 +15,20 @@ Chord:
 - Implement Chord
 
 Phrase:
-- Implement offset (each note has an offset within phrase, not neccessarily
-    determiend by length, so that multiple notes can be played overlapping -
-    requires multithreading)
 - Implement mutate (with 'type' input - all, note, length, etc.)
 - Implement generate phrase (based on algorithm)
-- Implement Signature object?
 - Implement different algorithms? 
+- Implement accentation
 
 Note:
-- Implement is_valid (midi note between 0 and 127)
 - Implement mutate_prob
 - Change length and length_mod to Fractions
-- Implement accent
 
 Scale:
 - Implement get_scale_degree method - returns a copy of a note
   at a certain scale degree
 - Implement a get_note method - each note in scale has a certain
   probablity of being chosen (some more than others)
-
-Signature:
-- Numerator
-- Denominator
-- Accent boolean array (could be none)
 
 Build:
 - Add AWS S3 script
