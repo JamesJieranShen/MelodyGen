@@ -1,13 +1,14 @@
 import glob
 import pickle
 import numpy
+from fractions import Fraction
 from music21 import converter, instrument, note, chord
 
-
-def get_notes():
+# Code adapted from https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5
+def parse_midi(file_path):
     """ Get all the notes and chords from the midi files in the ./midi_songs directory """
     notes = []
-    for file in glob.glob("midi_songs/cosmo.mid"):
+    for file in glob.glob(file_path):
         midi = converter.parse(file)
 
         print("Parsing %s" % file)
@@ -22,19 +23,31 @@ def get_notes():
 
         for element in notes_to_parse:
             if isinstance(element, note.Note):
-                notes.append(element)
+                notes.append(
+                    (
+                        element.pitch.midi,
+                        element.volume.velocity,
+                        Fraction(element.quarterLength),
+                        element.offset,
+                    )
+                )
                 # notes.append(str(element.pitch))
             elif isinstance(element, chord.Chord):
-                pass
-                # notes.append(".".join(str(n) for n in element.normalOrder))
+                for n in element:
+                    notes.append(
+                        (
+                            n.pitch.midi,
+                            n.volume.velocity,
+                            Fraction(n.quarterLength),
+                            element.offset,
+                        )
+                    )
 
     # with open('data/notes', 'wb') as filepath:
     #     pickle.dump(notes, filepath)
 
-    for asdf in notes[:5]:
-        print("pitch", asdf.pitch.midi)
-        print("offset", asdf.offset)
-        print("length", asdf.quarterLength)
+    for n in notes:
+        print(n)
 
 
-get_notes()
+parse_midi("midi_songs/cosmo.mid")
