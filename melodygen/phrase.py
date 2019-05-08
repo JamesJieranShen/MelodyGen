@@ -14,6 +14,7 @@ import mido
 from note import Note
 from generate import Generate
 from midi_handler import MIDIHandler as handler
+import midi_parser as parser
 import threading
 
 # Phrase object. Is a dictionary of Notes.
@@ -266,6 +267,35 @@ class Phrase:
             counter += note.length * note.length_mod
         self.set_length(counter)
 
+    def normalize_offset(self):
+        """Utility method to normalize offset (set first note's offset to 0
+        and subtract that value from the rest).
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        orig_offset = list(self.phrase.values())[0]
+        for note, offset in self.phrase.items():
+            self.phrase[note] = offset - orig_offset
+
+    def parse_midi(self, file_path):
+        """Utility method to parse midi via midi_parser and set phrase.
+        
+        :param file_path: File path of midi file to parse
+
+        :type file_path: String
+
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        notes = parser.parse_midi(file_path)
+        for note in notes:
+            self.append(
+                note[3], Note(note=note[0], vel=note[1], length=note[2], length_mod=1)
+            )
+        self.resize()
+        self.normalize_offset()
+
     def unify_prob(self, prob=1.0):
         """Set prob of all notes in phrase to be the same.
 
@@ -292,6 +322,7 @@ class Phrase:
             )
         )
         if self.debug:
-            for note in self.phrase:
+            for note, offset in self.phrase.items():
                 print("\t", note)
+                print("\t   ", "offset", offset)
         return ""

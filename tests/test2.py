@@ -7,6 +7,7 @@ from melodygen import (
     MIDIHandler as handler,
     Generate,
     constants as const,
+    midi_parser as parser,
 )
 import mido
 import time
@@ -27,21 +28,22 @@ play_len = 5
 file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=True, endless=True)
+phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=400)
 
+phrase.parse_midi("./midi_songs/cosmo.mid")
 
-phrase.generate_phrase(
-    "MapMod",
-    {
-        "input_file": file_path + "pi.txt",
-        "scales": [e],
-        "gen_len": 16,
-        "start_offset": 1,
-        "note_len": 1 / 16,
-    },
-)
+# phrase.generate_phrase(
+#     "MapMod",
+#     {
+#         "input_file": file_path + "pi.txt",
+#         "scales": [e],
+#         "gen_len": 16,
+#         "start_offset": 1,
+#         "note_len": 1 / 16,
+#     },
+# )
 
-phrase.resize()
+# phrase.resize()
 
 while True:
     # for note in phrase.phrase:

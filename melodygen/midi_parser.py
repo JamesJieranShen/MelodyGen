@@ -27,8 +27,8 @@ def parse_midi(file_path):
                     (
                         element.pitch.midi,
                         element.volume.velocity,
-                        Fraction(element.quarterLength),
-                        element.offset,
+                        float(Fraction(element.quarterLength / 4).limit_denominator()),
+                        element.offset / 4,
                     )
                 )
                 # notes.append(str(element.pitch))
@@ -38,16 +38,9 @@ def parse_midi(file_path):
                         (
                             n.pitch.midi,
                             n.volume.velocity,
-                            Fraction(n.quarterLength),
-                            element.offset,
+                            float(Fraction(n.quarterLength / 4).limit_denominator()),
+                            element.offset / 4,
                         )
                     )
 
-    # with open('data/notes', 'wb') as filepath:
-    #     pickle.dump(notes, filepath)
-
-    for n in notes:
-        print(n)
-
-
-parse_midi("midi_songs/cosmo.mid")
+    return notes

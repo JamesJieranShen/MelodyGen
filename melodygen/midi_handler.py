@@ -65,8 +65,9 @@ class MIDIHandler:
             trig = True
 
         if trig:
+            self.note_off(note)
             self.note_on(note)
-        time.sleep((240 * note.length * note.length_mod) / self.tempo)
+        time.sleep((240 * note.length * note.length_mod * 0.95) / self.tempo)
         if trig:
             self.note_off(note)
 
