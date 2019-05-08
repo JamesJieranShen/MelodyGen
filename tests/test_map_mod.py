@@ -28,25 +28,20 @@ play_len = 5
 file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=400)
+phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=4)
 
-phrase.parse_midi("./midi_songs/cosmo.mid")
+phrase.generate_phrase(
+    "MapMod",
+    {
+        "input_file": file_path + "pi.txt",
+        "scales": [e],
+        "gen_len": 16,
+        "start_offset": 1,
+        "note_len": 1 / 16,
+    },
+)
 
-# phrase.generate_phrase(
-#     "MapMod",
-#     {
-#         "input_file": file_path + "pi.txt",
-#         "scales": [e],
-#         "gen_len": 16,
-#         "start_offset": 1,
-#         "note_len": 1 / 16,
-#     },
-# )
-
-# phrase.resize()
+phrase.resize()
 
 while True:
-    # for note in phrase.phrase:
-    #     note.set_length(1 / 8)
-
     phrase.play()
