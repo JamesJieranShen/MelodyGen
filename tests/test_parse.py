@@ -7,7 +7,6 @@ from melodygen import (
     MIDIHandler as handler,
     Generate,
     constants as const,
-    midi_parser as parser,
 )
 import mido
 import time

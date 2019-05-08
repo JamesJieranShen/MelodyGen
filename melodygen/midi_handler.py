@@ -13,7 +13,11 @@ import time
 import mido
 import os
 import gc
-from note import Note
+import glob
+import pickle
+import numpy
+from fractions import Fraction
+from music21 import converter, instrument, note, chord
 
 # Object to handle playing MIDI data
 class MIDIHandler:
@@ -70,6 +74,59 @@ class MIDIHandler:
         time.sleep((240 * note.length * note.length_mod * 0.95) / self.tempo)
         if trig:
             self.note_off(note)
+
+    # Code adapted from https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5
+    def parse_midi(file_path):
+        """Utility method to parse midi file. 
+        
+        :param file_path: Path to midi file to parse
+        
+        :type file_path: String 
+
+        :return: Tuple of note pitch, velocity, length, offset
+        :rtype: Tuple 
+        """
+        notes = []
+        for file in glob.glob(file_path):
+            midi = converter.parse(file)
+
+            print("Parsing %s" % file)
+
+            notes_to_parse = None
+
+            try:  # file has instrument parts
+                s2 = instrument.partitionByInstrument(midi)
+                notes_to_parse = s2.parts[0].recurse()
+            except:  # file has notes in a flat structure
+                notes_to_parse = midi.flat.notes
+
+            for element in notes_to_parse:
+                if isinstance(element, note.Note):
+                    notes.append(
+                        (
+                            element.pitch.midi,
+                            element.volume.velocity,
+                            float(
+                                Fraction(element.quarterLength / 4).limit_denominator()
+                            ),
+                            element.offset / 4,
+                        )
+                    )
+                    # notes.append(str(element.pitch))
+                elif isinstance(element, chord.Chord):
+                    for n in element:
+                        notes.append(
+                            (
+                                n.pitch.midi,
+                                n.volume.velocity,
+                                float(
+                                    Fraction(n.quarterLength / 4).limit_denominator()
+                                ),
+                                element.offset / 4,
+                            )
+                        )
+
+        return notes
 
     def exit_program(self, notes):
         """Utility method to exit program. 

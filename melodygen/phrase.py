@@ -14,7 +14,6 @@ import mido
 from note import Note
 from generate import Generate
 from midi_handler import MIDIHandler as handler
-import midi_parser as parser
 import threading
 
 # Phrase object. Is a dictionary of Notes.
@@ -288,7 +287,7 @@ class Phrase:
         :return: None, modifys object in place 
         :rtype: None 
         """
-        notes = parser.parse_midi(file_path)
+        notes = handler.parse_midi(file_path)
         for note in notes:
             self.append(
                 note[3], Note(note=note[0], vel=note[1], length=note[2], length_mod=1)
