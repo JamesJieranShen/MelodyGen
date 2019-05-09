@@ -107,8 +107,13 @@ class MIDIHandler:
                         (
                             element.pitch.midi,
                             element.volume.velocity,
-                            float(
-                                Fraction(element.quarterLength / 4).limit_denominator()
+                            max(
+                                float(
+                                    Fraction(
+                                        element.quarterLength / 4
+                                    ).limit_denominator()
+                                ),
+                                1 / 64,
                             ),
                             element.offset / 4,
                         )
@@ -120,8 +125,13 @@ class MIDIHandler:
                             (
                                 n.pitch.midi,
                                 n.volume.velocity,
-                                float(
-                                    Fraction(n.quarterLength / 4).limit_denominator()
+                                max(
+                                    float(
+                                        Fraction(
+                                            n.quarterLength / 4
+                                        ).limit_denominator()
+                                    ),
+                                    1 / 64,
                                 ),
                                 element.offset / 4,
                             )

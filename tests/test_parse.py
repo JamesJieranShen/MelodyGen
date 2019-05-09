@@ -16,7 +16,7 @@ import os
 # Phrase
 phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=400)
 
-phrase.parse_midi("./midi_songs/cosmo.mid")
+phrase.parse_midi("./midi_songs/my_fugue.mid")
 
 while True:
     # for note in phrase.phrase:
