@@ -76,6 +76,7 @@ class MIDIHandler:
             self.note_off(note)
 
     # Code adapted from https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5
+    @staticmethod
     def parse_midi(file_path):
         """Utility method to parse midi file. 
         
@@ -160,7 +161,7 @@ class MIDIHandler:
                 print("[%d] %s" % (index, item))
 
     # Utility method to set tempo of handler
-    def set_tempo(tempo):
+    def set_tempo(self, tempo):
         """Utility method to set tempo of handler. 
         
         :param tempo: Tempo to set handler to 
@@ -173,7 +174,7 @@ class MIDIHandler:
         self.tempo = tempo
 
     # Utility method to get tempo of handler
-    def get_tempo():
+    def get_tempo(self):
         """Utility method to get tempo of handler. 
         
         :return: Tempo of handler 
