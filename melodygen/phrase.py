@@ -287,6 +287,13 @@ class Phrase:
         :return: None, modifys object in place 
         :rtype: None 
         """
+        try:
+            f = open(file_path)
+            f.close()
+        except:
+            print('File path "{}" incorrect.'.format(file_path))
+            self.handler.exit_program(self.phrase)
+
         notes = handler.parse_midi(file_path)
         for note in notes:
             self.append(
