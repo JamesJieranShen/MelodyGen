@@ -13,25 +13,26 @@ import time
 import random
 import os
 
-# Phrase
+# Initalize phrase
 phrase = gen.Phrase(tempo=200, debug=True, endless=True, length=400)
 
-counter = 0
-note_len = 1 / 4
-for i in range(4):
-    phrase.append(counter, Note(note=60, length=note_len, length_mod=1))
-    counter += note_len
+# Load file from midi
+phrase.parse_midi("./midi_songs/cosmo.mid")
 
-# phrase.parse_midi("./midi_songs/cosmo.mid")
+# Save phrase to file
+phrase.to_file("./tests/cosmo.song")
 
+# Load phrase from file
+phrase.from_file("./tests/cosmo.song")
 # phrase.quantize(division=1, quantize_length=True)
+print(phrase)
+phrase.play()
 
+# phrase.resize()
+# print(phrase.length)
 
-phrase.resize()
-print(phrase.length)
+# while True:
+#     # for note in phrase.phrase:
+#     #     note.set_length(1 / 8)
 
-while True:
-    # for note in phrase.phrase:
-    #     note.set_length(1 / 8)
-
-    phrase.play()
+#     phrase.play()

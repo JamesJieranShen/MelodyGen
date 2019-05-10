@@ -299,11 +299,60 @@ class Phrase:
 
         notes = handler.parse_midi(file_path)
         for note in notes:
-            self.append(
-                note[3], Note(note=note[0], vel=note[1], length=note[2], length_mod=1)
-            )
+            self.append(note[3], Note(note=note[0], vel=note[1], length=note[2]))
         self.resize()
         self.normalize_offset()
+
+    def to_file(self, file_path):
+        """Utility method to encode phrase into text file.
+        
+        :param file_path: File path of file to write
+
+        :type file_path: String
+
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        note_list = []
+        for note, offset in self.phrase.items():
+            note_list.append(
+                (note.note, note.vel, note.length, note.length_mod, note.prob, offset)
+            )
+        with open(file_path, "w") as f:
+            for element in note_list:
+                f.write(str(element) + ",\n")
+        return
+
+    def from_file(self, file_path):
+        """Utility method to encode phrase from text file.
+        
+        :param file_path: File path of file to read
+
+        :type file_path: String
+
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        with open(file_path, "r") as f:
+            self.set_phrase({})
+            for line in f.readlines():
+                tmp = str(line.split("\n")[0])[1:-2].split(",")
+                try:
+                    self.append(
+                        float(tmp[5]),
+                        Note(
+                            note=int(tmp[0]),
+                            vel=int(tmp[1]),
+                            length=float(tmp[2]),
+                            length_mod=float(tmp[3]),
+                            prob=int(tmp[4]),
+                        ),
+                    )
+                except:
+                    pass
+        self.resize()
+        self.normalize_offset()
+        return
 
     def unify_prob(self, prob=1.0):
         """Set prob of all notes in phrase to be the same.
