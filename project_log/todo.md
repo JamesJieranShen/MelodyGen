@@ -1,32 +1,33 @@
-Fix:
+# Project ToDo
+
+### Fix:
 - Fix absolute path file reference (generate)
 
-Parsing:
-- Implement Music21 to parse MIDI
-- Implement Music21 to Note/Chord
+### Parsing:
+- Implement on_phrase_end method (deafult behavior is exit)
 
-Project:
+### Project:
 - Implement saving/loading
 - Implement real-time command-line interface?
 - Implement MIDI CC controls
 - Implement Keyboard input => Phrase?
 
-Chord:
+### Chord:
 - Implement Chord
 
-Phrase:
+### Phrase:
 - Implement mutate (with 'type' input - all, note, length, etc.)
 - Implement generate phrase (based on algorithm)
 - Implement different algorithms? 
 - Implement accentation
 
-Note:
+### Note:
 - Implement mutate_prob
 - Change length and length_mod to Fractions
 
-Scale:
+### Scale:
 - Implement a get_note method - each note in scale has a certain
   probablity of being chosen (some more than others)
 
-Build:
+### Build:
 - Add AWS S3 script
