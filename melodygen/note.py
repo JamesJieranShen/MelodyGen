@@ -58,7 +58,7 @@ class Note:
         # Check for length
         if length is None:
             # Assign random rhythm
-            self.rand_length()
+            self.length = 1 / 4
         else:
             # Assign inputted rhythm
             self.length = length
@@ -66,7 +66,7 @@ class Note:
         # Check for length_mod
         if length_mod is None:
             # Assign random length mod
-            self.rand_length_mod()
+            self.length_mod = 1
         else:
             # Assign inputted length mod
             self.length_mod = length_mod
