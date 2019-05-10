@@ -32,12 +32,20 @@ def build_corpus(midi_path, parsed_path, corpus_path, corpus_name="corpus.song")
         phrase = Phrase(tempo=120, debug=False, endless=False, length=500)
         file_name = str(f.split("/")[-1].split(".mid")[0])
 
-        # Load file from midi
-        phrase.parse_midi(f)
+        try:
+            # Load file from midi
+            phrase.parse_midi(f)
+        except:
+            # Continue to next file on error
+            print(file_name + " not parsed")
+            continue
 
         # Save phrase to file
         parsed_file_name = parsed_path + "/" + file_name + ".song"
         phrase.to_file(parsed_file_name)
+
+    # Delete phrase object
+    del phrase
 
     # Create output corpus file
     with open(corpus_path + corpus_name, "wb") as outfile:

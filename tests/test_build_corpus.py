@@ -14,4 +14,4 @@ import time
 import random
 import os
 
-gen.ml.build_corpus("./test_midi_songs", "./parsed_songs", "./")
+gen.ml.build_corpus("./midi_songs", "./parsed_songs", "./")
