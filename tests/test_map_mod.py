@@ -7,6 +7,7 @@ from melodygen import (
     MIDIHandler as handler,
     Generate,
     constants as const,
+    midi_parser as parser,
 )
 import mido
 import time
@@ -27,8 +28,7 @@ play_len = 5
 file_path = os.path.abspath("./melodygen/gen") + "/"
 
 # Phrase
-phrase = gen.Phrase(tempo=120, debug=True, endless=True)
-
+phrase = gen.Phrase(tempo=120, debug=True, endless=True, length=4)
 
 phrase.generate_phrase(
     "MapMod",
@@ -44,7 +44,4 @@ phrase.generate_phrase(
 phrase.resize()
 
 while True:
-    # for note in phrase.phrase:
-    #     note.set_length(1 / 8)
-
     phrase.play()

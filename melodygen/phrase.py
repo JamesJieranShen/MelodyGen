@@ -232,6 +232,7 @@ class Phrase:
                 note.set_length(round(length / float(base)) * base)
 
     # Utility method to reverse Phrase
+    '''
     def reverse(self):  # DYSFUNCTIONAL
         """Utility method to reverse Phrase. 
         
@@ -239,6 +240,7 @@ class Phrase:
         :rtype: None 
         """
         self.phrase.reverse()
+    '''
 
     # Utility methods to flip intervals of Phrase
     def flip(self):  # DYSFUNCTIONAL
@@ -256,15 +258,52 @@ class Phrase:
 
     # Utility method to resize phrase length to sum of note lengths
     def resize(self):
-        """Utility method to resize phrase length to sum of note lengths.
+        """Utility method to resize phrase length to end of the last note.
         
         :return: None, modifys object in place 
         :rtype: None 
         """
-        counter = 0
+        max_end = 0
         for note in self.phrase.keys():
-            counter += note.length * note.length_mod
-        self.set_length(counter)
+            note_end = self.phrase[note] + note.length * note.length_mod
+            max_end = max(note_end, max_end)
+        self.set_length(max_end)
+
+    def normalize_offset(self):
+        """Utility method to normalize offset (set first note's offset to 0
+        and subtract that value from the rest).
+        
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        orig_offset = list(self.phrase.values())[0]
+        for note, offset in self.phrase.items():
+            self.phrase[note] = offset - orig_offset
+
+    def parse_midi(self, file_path):
+        """Utility method to parse midi via midi_parser and set phrase.
+        
+        :param file_path: File path of midi file to parse
+
+        :type file_path: String
+
+        :return: None, modifys object in place 
+        :rtype: None 
+        """
+        try:
+            f = open(file_path)
+            f.close()
+        except:
+            print('File path "{}" incorrect.'.format(file_path))
+            self.handler.exit_program(self.phrase)
+
+        notes = handler.parse_midi(file_path)
+        for note in notes:
+            self.append(
+                note[3], Note(note=note[0], vel=note[1], length=note[2], length_mod=1)
+            )
+        self.resize()
+        self.normalize_offset()
 
     def unify_prob(self, prob=1.0):
         """Set prob of all notes in phrase to be the same.
@@ -292,6 +331,7 @@ class Phrase:
             )
         )
         if self.debug:
-            for note in self.phrase:
+            for note, offset in self.phrase.items():
                 print("\t", note)
+                print("\t   ", "offset", offset)
         return ""
