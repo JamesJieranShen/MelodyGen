@@ -232,6 +232,7 @@ class Phrase:
                 note.set_length(round(length / float(base)) * base)
 
     # Utility method to reverse Phrase
+    '''
     def reverse(self):  # DYSFUNCTIONAL
         """Utility method to reverse Phrase. 
         
@@ -239,6 +240,7 @@ class Phrase:
         :rtype: None 
         """
         self.phrase.reverse()
+    '''
 
     # Utility methods to flip intervals of Phrase
     def flip(self):  # DYSFUNCTIONAL
@@ -256,15 +258,16 @@ class Phrase:
 
     # Utility method to resize phrase length to sum of note lengths
     def resize(self):
-        """Utility method to resize phrase length to sum of note lengths.
+        """Utility method to resize phrase length to end of the last note.
         
         :return: None, modifys object in place 
         :rtype: None 
         """
-        counter = 0
+        max_end = 0
         for note in self.phrase.keys():
-            counter += note.length * note.length_mod
-        self.set_length(counter)
+            note_end = self.phrase[note] + note.length * note.length_mod
+            max_end = max(note_end, max_end)
+        self.set_length(max_end)
 
     def normalize_offset(self):
         """Utility method to normalize offset (set first note's offset to 0
