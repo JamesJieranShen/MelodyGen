@@ -65,7 +65,7 @@ def build_train_model(X, y, epochs=1, batch_size=128, weights_path="./weights"):
     model.add(Dense(y.shape[1], activation="softmax"))
     model.compile(loss="categorical_crossentropy", optimizer="adam")
     # define the checkpoint
-    filepath = weights_path + "weights-{epoch:02d}-{loss:.4f}.hdf5"
+    filepath = weights_path + "/weights-{epoch:02d}-{loss:.4f}.hdf5"
     checkpoint = ModelCheckpoint(
         filepath, monitor="loss", verbose=1, save_best_only=True, mode="min"
     )
