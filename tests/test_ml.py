@@ -16,5 +16,6 @@ import os
 
 # gen.ml.build_corpus("./midi_songs", "./parsed_songs", "./")
 
-X, y = gen.ml.preprocess_data("./corpus.song")
-gen.ml.build_train_model(X, y, epochs=5)
+X, y, dataX, dataY = gen.ml.preprocess_data("./corpus.song")
+# model = gen.ml.build_train_model(X, y, epochs=5)
+gen.ml.generate("./weights/weights-01-0.7092.hdf5", "./corpus.song", X, y, dataX, dataY)

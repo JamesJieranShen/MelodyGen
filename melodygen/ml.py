@@ -54,7 +54,7 @@ def preprocess_data(corpus_path):
     # one hot encode the output variable
     y = np_utils.to_categorical(dataY)
 
-    return (X, y)
+    return (X, y, dataX, dataY)
 
 
 def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights"):
@@ -72,6 +72,48 @@ def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights")
     callbacks_list = [checkpoint]
 
     model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=callbacks_list)
+
+
+def generate(weights_path, corpus_path, X, y, dataX, dataY):
+    # load ascii text and covert to lowercase
+    corpus_filename = corpus_path
+    raw_text = open(corpus_filename).read()
+    raw_text = raw_text.lower()
+    # create mapping of unique chars to integers, and a reverse mapping
+    chars = sorted(list(set(raw_text)))
+    char_to_int = dict((c, i) for i, c in enumerate(chars))
+    int_to_char = dict((i, c) for i, c in enumerate(chars))
+    # summarize the loaded data
+    n_chars = len(raw_text)
+    n_vocab = len(chars)
+
+    # define model
+    model = Sequential()
+    model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
+    model.add(Dropout(0.2))
+    model.add(Dense(y.shape[1], activation="softmax"))
+
+    # load the network weights
+    filename = weights_path
+    model.load_weights(filename)
+    model.compile(loss="categorical_crossentropy", optimizer="adam")
+    # pick a random seed
+    start = numpy.random.randint(0, len(dataX) - 1)
+    pattern = dataX[start]
+    print("Seed:")
+    print('"', "".join([int_to_char[value] for value in pattern]), '"')
+    # generate characters
+    for i in range(5000):
+        x = numpy.reshape(pattern, (1, len(pattern), 1))
+        x = x / float(n_vocab)
+        prediction = model.predict(x, verbose=0)
+        index = numpy.argmax(prediction)
+        result = int_to_char[index]
+        seq_in = [int_to_char[value] for value in pattern]
+        sys.stdout.write(result)
+        pattern.append(index)
+        pattern = pattern[1 : len(pattern)]
+    print("\nDone.")
 
 
 def build_corpus(midi_path, parsed_path, corpus_path, corpus_name="corpus.song"):

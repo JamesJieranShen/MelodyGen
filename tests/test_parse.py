@@ -14,16 +14,19 @@ import random
 import os
 
 # Initalize phrase
-phrase = gen.Phrase(tempo=200, debug=True, endless=True, length=400)
+phrase = gen.Phrase(tempo=500, debug=True, endless=True, length=400)
 
 # Load file from midi
-phrase.parse_midi("./midi_songs/cosmo.mid")
+# phrase.parse_midi("./midi_songs/cosmo.mid")
 
 # Save phrase to file
-phrase.to_file("./tests/cosmo.song")
+# phrase.to_file("./tests/cosmo.song")
 
 # Load phrase from file
-phrase.from_file("./tests/cosmo.song")
+phrase.from_file("./tests/output.song")
+# phrase.resize()
+# phrase.length += 1
+# phrase.normalize_offset()
 # phrase.quantize(division=1, quantize_length=True)
 print(phrase)
 phrase.play()
