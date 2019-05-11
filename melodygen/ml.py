@@ -57,7 +57,7 @@ def preprocess_data(corpus_path):
     return (X, y)
 
 
-def build_train_model(X, y, epochs=1, batch_size=128, weights_path="./weights"):
+def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights"):
     # define the LSTM model
     model = Sequential()
     model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
