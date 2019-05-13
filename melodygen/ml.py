@@ -22,7 +22,7 @@ from keras.utils import np_utils
 from phrase import Phrase
 
 # Code adapted from https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/
-def preprocess_data(corpus_path):
+def preprocess_data(corpus_path, seq_length=100):
     # load ascii text and covert to lowercase
     filename = corpus_path
     raw_text = open(filename).read()
@@ -37,7 +37,7 @@ def preprocess_data(corpus_path):
     print("Total Vocab: ", n_vocab)
 
     # prepare the dataset of input to output pairs encoded as integers
-    seq_length = 100
+    seq_length = seq_length
     dataX = []
     dataY = []
     for i in range(0, n_chars - seq_length, 1):
