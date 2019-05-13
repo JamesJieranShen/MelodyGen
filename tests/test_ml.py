@@ -18,4 +18,9 @@ import os
 
 X, y, dataX, dataY = gen.ml.preprocess_data("./corpus.song")
 # model = gen.ml.build_train_model(X, y, epochs=5)
-gen.ml.generate("./weights/weights-01-0.7092.hdf5", "./corpus.song", X, y, dataX, dataY)
+
+# gen.ml.generate("./weights/weights-01-0.7092.hdf5", "./corpus.song", X, y, dataX, dataY)
+gen.ml.generate(
+    "./weights/weights-2_layer-01-0.5931.hdf5", "./corpus.song", X, y, dataX, dataY
+)
+

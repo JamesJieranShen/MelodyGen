@@ -89,8 +89,13 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
 
     # define model
     model = Sequential()
-    model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
+
+    model.add(LSTM(256, input_shape=(X.shape[1:]), return_sequences=True))
     model.add(Dropout(0.2))
+
+    model.add(LSTM(256))
+    model.add(Dropout(0.2))
+
     model.add(Dense(y.shape[1], activation="softmax"))
 
     # load the network weights
@@ -103,7 +108,7 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
     print("Seed:")
     print('"', "".join([int_to_char[value] for value in pattern]), '"')
     # generate characters
-    for i in range(5000):
+    for i in range(500):
         x = numpy.reshape(pattern, (1, len(pattern), 1))
         x = x / float(n_vocab)
         prediction = model.predict(x, verbose=0)
