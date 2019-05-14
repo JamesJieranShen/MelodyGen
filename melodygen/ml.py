@@ -118,7 +118,9 @@ def build_train_model(
         # define the checkpoint
         filepath = (
             weights_path
-            + "/weights-layer_size-{}-lstm_layers-{}-dense_layers-{}-epoch-{}-loss-{}.hdf5".format(layer_size, lstm_layers, dense_layers, epoch:02d, loss:.4f)
+            + "/weights-layer_size-{}-lstm_layers-{}-dense_layers-{}-epoch-{:02d}-loss-{:.4f}.hdf5".format(
+                layer_size, lstm_layers, dense_layers, epoch, loss
+            )
         )
         checkpoint = ModelCheckpoint(
             filepath, monitor="loss", verbose=1, save_best_only=True, mode="min"
