@@ -90,10 +90,10 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
     # define model
     model = Sequential()
 
-    model.add(LSTM(256, input_shape=(X.shape[1:]), return_sequences=True))
+    model.add(LSTM(256, input_shape=(X.shape[1:]), activation='relu', return_sequences=True))
     model.add(Dropout(0.2))
 
-    model.add(LSTM(256))
+    model.add(LSTM(256), activation='relu')
     model.add(Dropout(0.2))
 
     model.add(Dense(y.shape[1], activation="softmax"))
