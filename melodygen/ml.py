@@ -19,10 +19,11 @@ from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.layers import CuDNNLSTM
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, TensorBoard
 from keras.utils import np_utils
 from keras import backend as K
 
+import tensorflow as tf
 from tensorflow.python.client import device_lib
 
 from phrase import Phrase
@@ -63,7 +64,16 @@ def preprocess_data(corpus_path, seq_length=100):
     return (X, y, dataX, dataY)
 
 
-def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights"):
+def build_train_model(
+    X,
+    y,
+    epochs=20,
+    batch_size=128,
+    layer_size=256,
+    lstm_layers=2,
+    dense_layers=1,
+    weights_path="./data/weights",
+):
     # GPU settings
     print(device_lib.list_local_devices())
     K.tensorflow_backend._get_available_gpus()
@@ -71,35 +81,60 @@ def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights")
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
 
-    device_name = tf.test.gpu_device_name()
-    if device_name != "/device:GPU:0":
-        raise SystemError("GPU not found")
-    print("Found GPU at {}".format(device_name))
+    # device_name = tf.test.gpu_device_name()
+    # if device_name != "/device:GPU:0":
+    #     raise SystemError("GPU not found")
+    # print("Found GPU at {}".format(device_name))
 
-    with tf.device("/gpu:0"):
+    with tf.device("/cpu:0"):
         # define model
         model = Sequential()
 
+        # Add LSTM layers
         model.add(
             LSTM(
-                256, input_shape=(X.shape[1:]), activation="relu", return_sequences=True
+                layer_size,
+                input_shape=(X.shape[1:]),
+                activation="relu",
+                return_sequences=True,
             )
         )
         model.add(Dropout(0.2))
 
-        model.add(LSTM(256), activation="relu")
-        model.add(Dropout(0.2))
+        for l in range(lstm_layers - 1):
+            model.add(LSTM(layer_size))
+            model.add(Dropout(0.2))
+
+        # Add dense layers
+        for l in range(dense_layers - 1):
+            model.add(Dense(layer_size))
+            model.add(Activation("relu"))
 
         model.add(Dense(y.shape[1], activation="softmax"))
 
+        # Compile model
         model.compile(loss="categorical_crossentropy", optimizer="adam")
 
         # define the checkpoint
-        filepath = weights_path + "/weights-{epoch:02d}-{loss:.4f}.hdf5"
+        filepath = (
+            weights_path
+            + "/weights-layer_size-{layer_size}-lstm_layers-{lstm_layers}-dense_layers-{dense_layers}-epoch-{epoch:02d}-loss-{loss:.4f}.hdf5"
+        )
         checkpoint = ModelCheckpoint(
             filepath, monitor="loss", verbose=1, save_best_only=True, mode="min"
         )
-        callbacks_list = [checkpoint]
+
+        # Set up tensorboard
+        tensorboard = TensorBoard(
+            log_dir=weights_path
+            + "/logs/{}".format(
+                "weights-layer_size-{}-lstm_layers-{}-dense_layers-{}".format(
+                    layer_size, lstm_layers, dense_layers
+                )
+            )
+        )
+
+        callbacks_list = [checkpoint, tensorboard]
 
         model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=callbacks_list)
 
