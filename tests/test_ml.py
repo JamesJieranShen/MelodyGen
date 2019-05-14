@@ -14,16 +14,12 @@ import time
 import random
 import os
 
-# gen.ml.build_corpus(
-#     "./data/midi_songs",
-#     "./data/parsed_songs",
-#     "./data/corpus",
-#     "tiny_corpus.song",
-#     pct=0.02,
-# )
+gen.ml.build_corpus(
+    "./data/midi_songs", "./data/parsed_songs", "./data/corpus", "corpus.song"
+)
 
-X, y, dataX, dataY = gen.ml.preprocess_data("./data/corpus/tiny_corpus.song")
-
+# X, y, dataX, dataY = gen.ml.preprocess_data("./data/corpus/tiny_corpus.song")
+"""
 dense_layers = [1]
 layer_sizes = [256]
 lstm_layers = [2]
@@ -44,3 +40,4 @@ for dense_layer in dense_layers:
 # gen.ml.generate(
 #     "./weights/weights-2_layer-01-0.5931.hdf5", "./corpus.song", X, y, dataX, dataY
 # )
+"""

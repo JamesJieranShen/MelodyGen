@@ -163,8 +163,8 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
     )
     model.add(Dropout(0.2))
 
-    model.add(LSTM(256), activation="relu")
-    model.add(Dropout(0.2))
+    # model.add(LSTM(256))
+    # model.add(Dropout(0.2))
 
     model.add(Dense(y.shape[1], activation="softmax"))
 
