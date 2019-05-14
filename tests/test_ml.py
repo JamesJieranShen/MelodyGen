@@ -14,18 +14,16 @@ import time
 import random
 import os
 
-print(
-    gen.ml.build_corpus(
-        "./data/midi_songs",
-        "./data/parsed_songs",
-        "./data/corpus",
-        "quarter_corpus.song",
-        pct=0.25,
-    )
+gen.ml.build_corpus(
+    "./data/midi_songs",
+    "./data/parsed_songs",
+    "./data/corpus",
+    "quarter_corpus.song",
+    pct=0.25,
 )
 
-X, y, dataX, dataY = gen.ml.preprocess_data("./corpus.song")
-gen.ml.build_train_model(X, y, epochs=1)
+# X, y, dataX, dataY = gen.ml.preprocess_data("./corpus.song")
+# gen.ml.build_train_model(X, y, epochs=1)
 
 # gen.ml.generate("./weights/weights-01-0.7092.hdf5", "./corpus.song", X, y, dataX, dataY)
 # gen.ml.generate(
