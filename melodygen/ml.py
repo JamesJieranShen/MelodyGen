@@ -8,6 +8,8 @@
 
 
 """
+import os.path
+
 import glob
 import sys
 import numpy
@@ -16,8 +18,12 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
+from keras.layers import CuDNNLSTM
 from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
+from keras import backend as K
+
+from tensorflow.python.client import device_lib
 
 from phrase import Phrase
 
@@ -58,20 +64,44 @@ def preprocess_data(corpus_path, seq_length=100):
 
 
 def build_train_model(X, y, epochs=20, batch_size=128, weights_path="./weights"):
-    # define the LSTM model
-    model = Sequential()
-    model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2])))
-    model.add(Dropout(0.2))
-    model.add(Dense(y.shape[1], activation="softmax"))
-    model.compile(loss="categorical_crossentropy", optimizer="adam")
-    # define the checkpoint
-    filepath = weights_path + "/weights-{epoch:02d}-{loss:.4f}.hdf5"
-    checkpoint = ModelCheckpoint(
-        filepath, monitor="loss", verbose=1, save_best_only=True, mode="min"
-    )
-    callbacks_list = [checkpoint]
+    # GPU settings
+    print(device_lib.list_local_devices())
+    K.tensorflow_backend._get_available_gpus()
 
-    model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=callbacks_list)
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+
+    device_name = tf.test.gpu_device_name()
+    if device_name != "/device:GPU:0":
+        raise SystemError("GPU not found")
+    print("Found GPU at {}".format(device_name))
+
+    with tf.device("/gpu:0"):
+        # define model
+        model = Sequential()
+
+        model.add(
+            LSTM(
+                256, input_shape=(X.shape[1:]), activation="relu", return_sequences=True
+            )
+        )
+        model.add(Dropout(0.2))
+
+        model.add(LSTM(256), activation="relu")
+        model.add(Dropout(0.2))
+
+        model.add(Dense(y.shape[1], activation="softmax"))
+
+        model.compile(loss="categorical_crossentropy", optimizer="adam")
+
+        # define the checkpoint
+        filepath = weights_path + "/weights-{epoch:02d}-{loss:.4f}.hdf5"
+        checkpoint = ModelCheckpoint(
+            filepath, monitor="loss", verbose=1, save_best_only=True, mode="min"
+        )
+        callbacks_list = [checkpoint]
+
+        model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=callbacks_list)
 
 
 def generate(weights_path, corpus_path, X, y, dataX, dataY):
@@ -90,10 +120,12 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
     # define model
     model = Sequential()
 
-    model.add(LSTM(256, input_shape=(X.shape[1:]), activation='relu', return_sequences=True))
+    model.add(
+        LSTM(256, input_shape=(X.shape[1:]), activation="relu", return_sequences=True)
+    )
     model.add(Dropout(0.2))
 
-    model.add(LSTM(256), activation='relu')
+    model.add(LSTM(256), activation="relu")
     model.add(Dropout(0.2))
 
     model.add(Dense(y.shape[1], activation="softmax"))
@@ -121,21 +153,39 @@ def generate(weights_path, corpus_path, X, y, dataX, dataY):
     print("\nDone.")
 
 
-def build_corpus(midi_path, parsed_path, corpus_path, corpus_name="corpus.song"):
+def build_corpus(midi_path, parsed_path, corpus_path, corpus_name="corpus.song", pct=1):
     """Utility method to build corpus for input into ML model.
     
     :param midi_path: Path of midi files to parse 
     :param parsed_path: Path to store parsed (.song) files
     :param corpus_path: Path to output final corpus file (corpus.song)
+    :param pct: Percent of files in directory to parse
 
     :type note_name: int
     :type vel: int
     :type length: float 
+    :type pct: float
 
     :return: No return, creates parsed .song files and outputs corpus.song
     :rtype: None 
     """
+    # Only parse percent of files
+    num_files = int(
+        pct * sum(os.path.isfile(f) for f in glob.glob(midi_path + "/*.mid"))
+    )
+    print("Parsing {} files".format(num_files))
+
+    # Delete all .song files in parsed_songs
+    for f in glob.glob(parsed_path + "/*.song"):
+        os.remove(f)
+
+    # Counter for parsing percentage of files
+    counter = 0
     for f in glob.glob(midi_path + "/*.mid"):
+        # Break out of loop if num_files met
+        if counter >= num_files:
+            break
+
         # Initalize phrase and filename
         phrase = Phrase(tempo=120, debug=False, endless=False, length=500)
         file_name = str(f.split("/")[-1].split(".mid")[0])
@@ -152,11 +202,14 @@ def build_corpus(midi_path, parsed_path, corpus_path, corpus_name="corpus.song")
         parsed_file_name = parsed_path + "/" + file_name + ".song"
         phrase.to_file(parsed_file_name)
 
+        # Increment counter
+        counter += 1
+
     # Delete phrase object
     del phrase
 
     # Create output corpus file
-    with open(corpus_path + corpus_name, "wb") as outfile:
+    with open(corpus_path + "/" + corpus_name, "wb") as outfile:
         for f in glob.glob(parsed_path + "/*.song"):
             with open(f, "rb") as infile:
                 outfile.write(infile.read())
