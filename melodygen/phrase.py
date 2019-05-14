@@ -278,7 +278,7 @@ class Phrase:
         """
         orig_offset = list(self.phrase.values())[0]
         for note, offset in self.phrase.items():
-            self.phrase[note] = offset - orig_offset
+            self.phrase[note] = max(0, offset - orig_offset)
 
     def parse_midi(self, file_path):
         """Utility method to parse midi via midi_parser and set phrase.
