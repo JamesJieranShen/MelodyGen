@@ -14,15 +14,16 @@ import time
 import random
 import os
 
-# gen.ml.build_corpus(
-#     "./data/midi_songs",
-#     "./data/parsed_songs",
-#     "./data/corpus",
-#     "tiny_corpus.song",
-#     pct=0.02,
-# )
-
-X, y, dataX, dataY = gen.ml.preprocess_data("./data/corpus/tiny_corpus.song")
+'''
+gen.ml.build_corpus(
+    "./data/midi_songs",
+    "./data/parsed_songs",
+    "./data/corpus",
+    "half_corpus.song",
+    pct=0.5,
+)
+'''
+X, y, dataX, dataY = gen.ml.preprocess_data("./data/corpus/quarter_corpus.song")
 
 dense_layers = [1]
 layer_sizes = [256]
@@ -34,7 +35,7 @@ for dense_layer in dense_layers:
             gen.ml.build_train_model(
                 X,
                 y,
-                epochs=1,
+                epochs=5,
                 layer_size=layer_size,
                 lstm_layers=lstm_layer,
                 dense_layers=dense_layer,

@@ -81,12 +81,12 @@ def build_train_model(
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
 
-    # device_name = tf.test.gpu_device_name()
-    # if device_name != "/device:GPU:0":
-    #     raise SystemError("GPU not found")
-    # print("Found GPU at {}".format(device_name))
+    device_name = tf.test.gpu_device_name()
+    if device_name != "/device:GPU:0":
+        raise SystemError("GPU not found")
+    print("Found GPU at {}".format(device_name))
 
-    with tf.device("/cpu:0"):
+    with tf.device("/gpu:0"):
         # define model
         model = Sequential()
 
@@ -95,7 +95,7 @@ def build_train_model(
             LSTM(
                 layer_size,
                 input_shape=(X.shape[1:]),
-                activation="relu",
+                activation='relu',
                 return_sequences=True,
             )
         )
